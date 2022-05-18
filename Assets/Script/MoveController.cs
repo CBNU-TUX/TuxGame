@@ -12,10 +12,10 @@ public class MoveController : MonoBehaviour
     [Header("점프 높이 조절")]
     [SerializeField]
     [Range(1f, 50f)]
-    float maxJump = 20f;
+    float maxJump = 40f;
 
     SpriteRenderer PlayerSP;
-    float jumpTimerLimit = 0.1f; //최대 점프 시간
+    float jumpTimerLimit = 0.05f; //최대 점프 시간
     float jumpTimer;
     //현재 점프시간이 너무 길기때문에 이를 방지하기 위해서 사용하는 변수이다.
 
@@ -33,7 +33,7 @@ public class MoveController : MonoBehaviour
     {
         is_Jumping = false;
 
-        rigid.gravityScale = 1.0f;
+        rigid.gravityScale = 1f;
     }
     // Update is called once per frame
     private void Update()
@@ -47,7 +47,6 @@ public class MoveController : MonoBehaviour
         if (Input.GetButtonUp("Horizontal"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);//float곱할때는 f붙여줘야한다.
-
         }
 
         //위치 변환, -1인지와 1인지에 따라서 방향전환 
@@ -57,8 +56,6 @@ public class MoveController : MonoBehaviour
         moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         this.transform.position = new Vector2(transform.position.x + moveX, transform.position.y);
 
-
     }
-
 
 }

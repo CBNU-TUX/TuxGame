@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: 91692eec4e611b94a99ffc179724d7a2
+guid: db406234603fc81428f944029fa25d6c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1841578899557937178
-    second: LongRight_0
+      213: 785547273125201149
+    second: player1_right_0
   - first:
-      213: 6776168969769700699
-    second: LongRight_1
+      213: -7304338631705979559
+    second: player1_right_1
   - first:
-      213: -4707692320751981432
-    second: LongRight_2
+      213: -4245004962827591113
+    second: player1_right_2
   - first:
-      213: -4861409181763684034
-    second: LongRight_3
+      213: 8450083359002467635
+    second: player1_right_3
   - first:
-      213: 2709106360822280449
-    second: LongRight_4
+      213: -2569091513434313830
+    second: player1_right_4
+  - first:
+      213: 1960595731357668404
+    second: player1_right_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,122 +105,131 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LongRight_0
+      name: player1_right_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 28
+        x: 0
+        y: 14
         width: 196
-        height: 224
+        height: 182
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a107106804a9e8910800000000000000
-      internalID: 1841578899557937178
+      spriteID: df487e83513d6ea00800000000000000
+      internalID: 785547273125201149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LongRight_1
+      name: player1_right_1
       rect:
         serializedVersion: 2
-        x: 280
-        y: 28
+        x: 238
+        y: 14
         width: 196
-        height: 224
+        height: 196
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5dc52db6c9c90e50800000000000000
-      internalID: 6776168969769700699
+      spriteID: 955900ae6b6c1aa90800000000000000
+      internalID: -7304338631705979559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LongRight_2
+      name: player1_right_2
       rect:
         serializedVersion: 2
-        x: 518
-        y: 28
-        width: 182
-        height: 224
+        x: 478
+        y: 14
+        width: 196
+        height: 196
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88c6eb5d6caeaaeb0800000000000000
-      internalID: -4707692320751981432
+      spriteID: 73224e03a76b615c0800000000000000
+      internalID: -4245004962827591113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LongRight_3
+      name: player1_right_3
       rect:
         serializedVersion: 2
-        x: 742
-        y: 28
-        width: 224
-        height: 210
+        x: 714
+        y: 14
+        width: 196
+        height: 196
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3937252b1ec88cb0800000000000000
-      internalID: -4861409181763684034
+      spriteID: 33d18c76b0ab44570800000000000000
+      internalID: 8450083359002467635
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LongRight_4
+      name: player1_right_4
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 28
-        width: 168
-        height: 224
+        x: 952
+        y: 14
+        width: 196
+        height: 182
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1013097b1eda89520800000000000000
-      internalID: 2709106360822280449
+      spriteID: a9be64251e0c85cd0800000000000000
+      internalID: -2569091513434313830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player1_right_5
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 14
+        width: 196
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43498b31e6f653b10800000000000000
+      internalID: 1960595731357668404
       vertices: []
       indices: 
       edges: []

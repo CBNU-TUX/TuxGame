@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player2P_LeftJump
+  m_Name: P1_walk
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1620190098672966279, guid: ed6c545c24ea12b42b6c8ecfe58af8ca, type: 3}
+      value: {fileID: -4245004962827591113, guid: db406234603fc81428f944029fa25d6c, type: 3}
     - time: 0.083333336
-      value: {fileID: -1801930903720385254, guid: ed6c545c24ea12b42b6c8ecfe58af8ca, type: 3}
+      value: {fileID: 8450083359002467635, guid: db406234603fc81428f944029fa25d6c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,8 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -1620190098672966279, guid: ed6c545c24ea12b42b6c8ecfe58af8ca, type: 3}
-    - {fileID: -1801930903720385254, guid: ed6c545c24ea12b42b6c8ecfe58af8ca, type: 3}
+    - {fileID: -4245004962827591113, guid: db406234603fc81428f944029fa25d6c, type: 3}
+    - {fileID: 8450083359002467635, guid: db406234603fc81428f944029fa25d6c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
