@@ -62,7 +62,7 @@ public class Player_move : MonoBehaviour
         {
             Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));//에디터 상에서만 레이를 그려준다
             RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("platform"));
-            if (rayHit.collider != null) // 바닥 감지를 위해서 레이저를 쏜다! 
+            if (rayHit.collider != null) // 바닥 감지를 위해서 레이저를 쏜다! 안됨 도와줘셈
             {
                 if (rayHit.distance < 0.5f)
                 {
