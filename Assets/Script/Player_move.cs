@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Player_move : MonoBehaviour
 {
-    public float maxSpeed;// 최대속도 설정
-    public float jumpPower;
+
+    [Header("이동 속도 조절")]
+    [SerializeField]
+    [Range(1f, 50f)]
+    float maxSpeed = 20f;
+    [Header("점프 높이 조절")]
+    [SerializeField]
+    [Range(1f, 50f)]
+    float jumpPower = 40f; //속도 
+
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
@@ -16,23 +24,29 @@ public class Player_move : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        anim.SetBool("isJumping", false);
+        Debug.Log(collision.transform.name);
 
+    }
     void Update()
     {
-        //Jump
+        //Jump -> Jump_2p : w
         if (Input.GetButtonDown("Jump") && !anim.GetBool("isJumping"))
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
         }
+
         // Stop Speed 
         if (Input.GetButtonUp("Horizontal"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);//float곱할때는 f붙여줘야한다.
-
         }
 
         // change Direction
+
         if (Input.GetButtonDown("Horizontal"))
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
 
@@ -43,33 +57,16 @@ public class Player_move : MonoBehaviour
             anim.SetBool("isWalking", true);
 
     }
-
-
     void FixedUpdate()
     {
         // Move by Control
         float h = Input.GetAxisRaw("Horizontal");
-        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        float v = Input.GetAxisRaw("Vertical");
 
+        Vector3 dir = Vector2.right * h + Vector2.up * v;
+        dir.Normalize();
 
-        // MaxSpeed Limit
-        if (rigid.velocity.x > maxSpeed)// right
-            rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
-        else if (rigid.velocity.x < maxSpeed * (-1)) // Left Maxspeed
-            rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
+        transform.position += dir * maxSpeed * Time.deltaTime;
 
-        if (rigid.velocity.y < 0)
-        {
-            Debug.DrawRay(rigid.position, Vector3.down, new Color(1, 0, 0));//에디터 상에서만 레이를 그려준다
-            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 500, LayerMask.GetMask("platform"));
-            if (rayHit.collider != null) // 바닥 감지를 위해서 레이저를 쏜다! 안됨 도와줘셈
-            {
-                if (rayHit.distance < 5f)
-                {
-                    Debug.Log(rayHit.collider.name);
-                    anim.SetBool("isJumping", false);
-                }
-            }
-        }
     }
 }
