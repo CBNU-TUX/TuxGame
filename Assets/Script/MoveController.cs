@@ -4,58 +4,86 @@ using UnityEngine;
 
 public class MoveController : MonoBehaviour
 {
-    float moveX;
-
+    
     [Header("이동 속도 조절")]
     [SerializeField] [Range(1f, 50f)]
-    float moveSpeed = 20f;
+    float maxSpeed = 20f;
     [Header("점프 높이 조절")]
     [SerializeField]
     [Range(1f, 50f)]
-    float maxJump = 40f;
+    float jumpPower = 40f;
 
-    SpriteRenderer PlayerSP;
-    float jumpTimerLimit = 0.05f; //최대 점프 시간
-    float jumpTimer;
-    //현재 점프시간이 너무 길기때문에 이를 방지하기 위해서 사용하는 변수이다.
-
-    Rigidbody2D rigid; //자기 자신의 rigid(무게정보)를 가리킴
-    bool is_Jumping;
-
-    // Start is called before the first frame update
-    void Start()
+    Rigidbody2D rigid;
+    SpriteRenderer spriteRenderer;
+    Animator anim;
+    bool isLongJump = false;
+    void Awake()
     {
-        PlayerSP = this.GetComponent<SpriteRenderer>();
-        rigid = this.GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Update()
     {
-        is_Jumping = false;
-
-        rigid.gravityScale = 1f;
-    }
-    // Update is called once per frame
-    private void Update()
-    {
-       
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !is_Jumping)
+        //Jump
+        if (Input.GetButtonDown("Jump_2p") && !anim.GetBool("isJumping"))
         {
-            rigid.AddForce(Vector2.up * maxJump, ForceMode2D.Impulse);
-            is_Jumping = true;
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            anim.SetBool("isJumping", true);
         }
-        if (Input.GetButtonUp("Horizontal"))
+        // Stop Speed 
+        if (Input.GetButtonUp("Horizontal_2p"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);//float곱할때는 f붙여줘야한다.
         }
 
-        //위치 변환, -1인지와 1인지에 따라서 방향전환 
+        // change Direction
+
         if (Input.GetButtonDown("Horizontal"))
-            PlayerSP.flipX = Input.GetAxisRaw("Horizontal") == 1;
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+        
+        //Walk
+        if (Mathf.Abs(rigid.velocity.x) < 0.2)
+            anim.SetBool("isWalking", false);
+        else
+            anim.SetBool("isWalking", true);
 
-        moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        this.transform.position = new Vector2(transform.position.x + moveX, transform.position.y);
+    }
 
+
+    void FixedUpdate()
+    {
+        // Move by Control
+        float h = Input.GetAxisRaw("Horizontal_2p");
+        float v = Input.GetAxisRaw("Vertical_2p");
+
+        Vector3 dir = Vector2.right * h + Vector2.up * v;
+        dir.Normalize();
+
+        transform.position += dir * maxSpeed * Time.deltaTime;
+    //    rigid.AddForce(Vector2.right * h+ Vector2.up*v, ForceMode2D.Impulse);
+
+        // MaxSpeed Limit
+        /*
+        if (rigid.velocity.x > maxSpeed)// right
+            rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
+        else if (rigid.velocity.x < maxSpeed * (-1)) // Left Maxspeed
+            rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
+        */
+        if (rigid.velocity.y < 0)
+        {
+            Debug.DrawRay(rigid.position, Vector3.down, new Color(1, 0, 0));//에디터 상에서만 레이를 그려준다
+            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 500, LayerMask.GetMask("platform"));
+            if (rayHit.collider != null) // 바닥 감지를 위해서 레이저를 쏜다! 안됨 도와줘셈
+            {
+                if (rayHit.distance < 6f)
+                {
+                    Debug.Log(rayHit.collider.name);
+                    anim.SetBool("isJumping", false);
+                }
+            }
+        }
     }
 
 }
