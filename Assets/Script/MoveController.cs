@@ -42,18 +42,23 @@ public class MoveController : MonoBehaviour
         if (Input.GetButtonUp("Horizontal_2p"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);//float°öÇÒ¶§´Â fºÙ¿©Áà¾ßÇÑ´Ù.
+            anim.SetBool("isWalking",false);
         }
 
         // change Direction
 
-        if (Input.GetButtonDown("Horizontal"))
-            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+        if (Input.GetButtonDown("Horizontal_2p"))
+        {
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal_2p") == -1;
+            anim.SetBool("isWalking", true);
+
+        }
 
         //Walk
-        if (Mathf.Abs(rigid.velocity.x) < 0.2)
-            anim.SetBool("isWalking", false);
-        else
-            anim.SetBool("isWalking", true);
+        //if (Mathf.Abs(rigid.velocity.x) < 0.2)
+        //    anim.SetBool("isWalking", false);
+        //else
+        //    anim.SetBool("isWalking", true);
 
     }
     void FixedUpdate()
