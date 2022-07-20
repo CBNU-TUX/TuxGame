@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class Slot : MonoBehaviour, IDropHandler
 {
     GameObject[] TrashBoxs;
+    public static bool is_Right = false;
     
     void Start(){
         TrashBoxs=GameObject.FindGameObjectsWithTag("TrashBox");
@@ -23,10 +24,11 @@ public class Slot : MonoBehaviour, IDropHandler
                     eventData.pointerDrag.GetComponent<RectTransform>().gameObject.SetActive(false);
                 }else{
                     //원래 위치로 되돌아가야함.
+                    is_Right = false;
                 }
             }
         }catch(NullReferenceException e){
-            ;
+            is_Right = false;
         }
     }
 }

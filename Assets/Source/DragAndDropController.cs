@@ -46,15 +46,15 @@ public class DragAndDropController : MonoBehaviour, IDragHandler,IPointerDownHan
         
         if (!isCollider)
         {
-                    canvasGroup.blocksRaycasts = true;
-                    billTransform.anchoredPosition = loadedPostion;
-                   
+            canvasGroup.blocksRaycasts = true;
+            billTransform.anchoredPosition = loadedPostion;
+            Debug.Log("case1");
         }
         isCollider = false;
         canvasGroup.alpha = 1f;
+        Debug.Log("EndDrag");
         //canvasGroup.blocksRaycasts = true;
         //drag가 끝났을때 raycast 함
-            
     }
     //drag를 위해 클릭할때
     public void OnPointerDown(PointerEventData eventData)

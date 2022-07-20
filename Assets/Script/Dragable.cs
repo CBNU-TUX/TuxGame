@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerDownHandler
 {
     [SerializeField] private Canvas canvas;
-    private RectTransform rectTransform;
+    public static RectTransform rectTransform;
+    private Vector3 loadedPosition;
     private CanvasGroup canvasGroup;
     Animator ani;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        loadedPosition = rectTransform.anchoredPosition;
         canvasGroup = GetComponent<CanvasGroup>();
     }
     // Start is called before the first frame update
@@ -54,13 +56,19 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!Slot.is_Right)
+        {
+            canvasGroup.blocksRaycasts = true;
+            rectTransform.anchoredPosition = loadedPosition;
+            Debug.Log("case1");
+        }
+        Slot.is_Right= false;
         canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
-
+        Debug.Log("EndDrag");
     }
 
     public void OnPointerDown(PointerEventData eventData)
     { 
-        ;
+        Debug.Log("pointerdown");
     }
 }
