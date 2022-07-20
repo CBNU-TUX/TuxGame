@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     [SerializeField] private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-
+    Animator ani;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -17,26 +18,49 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("On mouse");
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("On Drag");
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        
+        try{
+            ani=eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<Animator>();
+            if(eventData.pointerCurrentRaycast.gameObject.tag=="Image"&&eventData.pointerCurrentRaycast.gameObject!=null)
+            {
+                ani.SetBool("isIdle",false);
+                ani.SetBool("isOpening",false);
+            }else{
+                ani.SetBool("isIdle",false);
+                ani.SetBool("isOpening",true);
+                Invoke("CloseDoor",0.2f);
+            }
+        }catch(NullReferenceException ex){
+            Invoke("CloseDoor",0.2f);
+            Debug.Log("gameobject is null");
+        }
+    }
+
+    void CloseDoor(){
+        try{
+            ani.SetBool("isIdle",true);
+            ani.SetBool("isOpening",false);
+        }catch(NullReferenceException e){
+            Debug.Log("Animator is null");
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("PointerDown");
+    { 
+        ;
     }
 }
