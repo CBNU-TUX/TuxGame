@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 179675425}
   - component: {fileID: 179675427}
   - component: {fileID: 179675426}
+  - component: {fileID: 179675428}
   m_Layer: 5
   m_Name: Won
   m_TagString: Untagged
@@ -240,6 +241,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179675424}
   m_CullTransparentMesh: 1
+--- !u!114 &179675428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179675424}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458f25cda6ac4e14db9867c9c5831bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: {fileID: 179675426}
 --- !u!1 &310209317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,6 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 860741639}
+  won: {fileID: 179675426}
 --- !u!114 &1226994556
 MonoBehaviour:
   m_ObjectHideFlags: 0
