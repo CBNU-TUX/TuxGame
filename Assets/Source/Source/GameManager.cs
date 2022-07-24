@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -7,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public float transitionTime = 1f;
     protected Animator transitionAnimator;
-    //PlayerMovement player;
-    /*À§Ä¡ Á¶Á¤À» À§ÇÑ º¯¼ö, ÀÌµ¿ÇÒ ¾À, À§Ä¡ º¯¼ö*/
+    PlayerMovement player;
+    /*ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½*/
     [SerializeField]
     string transferScene;
     [SerializeField]
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameObject[] gameManagers = GameObject.FindGameObjectsWithTag("GameManager");
-        //¾ÀÀÌµ¿½Ã Á¸ÀçÇÏ´Â ¿ÀºêÁ§Æ®°¡ ÀÖÀ½ »èÁ¦ÇÏ±â À§ÇÔ.
+        //ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½.
         if (gameManagers.Length == 1)
         {
             DontDestroyOnLoad(gameObject);
@@ -29,26 +30,32 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        } // Áßº¹µÈ GameMangager ¿ÀºêÁ§Æ®°¡ ÀÖÀ» °æ¿ì ¿ÀºêÁ§Æ® ÆÄ±«
+        } // ï¿½ßºï¿½ï¿½ï¿½ GameMangager ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ä±ï¿½
         GameObject transition = transform.Find("UI").Find("Transition").gameObject;
         transition.SetActive(true);
-        //°ËÀº È­¸éÀ» ¶ç¿ö ÀÚ¿¬½º·¯¿òÀ» ±¸Çö
+        //ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindObjectOfType<PlayerMovement>();
+        transitionAnimator=this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transferScene != null)
-        {
-            //ÇöÀç ÇÃ·¹ÀÌ¾î°¡ ¾øÀ½. ³ªÁß¿¡ ÀÌ¸¦ Ç®¾îÁÖ¸éµÈ´Ù.
-            //player.CurrentMapName = transferScene;
+        try{
+            if (transferScene != null)
+            {
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ì¸ï¿½ Ç®ï¿½ï¿½ï¿½Ö¸ï¿½È´ï¿½.
+                player.CurrentMapName = transferScene;
+            }
+        }catch(NullReferenceException e){
+            ;
         }
     }
+    
     public IEnumerator LoadMap(string transferMapName)
     {
         yield return new WaitForSeconds(0f);
@@ -82,10 +89,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        /*
+        
         if (teleportPosition != new Vector3(0, 0, 0))
             player.transform.position = teleportPosition;
-        */
+        
         transitionAnimator.SetBool("FadeOut", false);
         transitionAnimator.SetBool("FadeIn", true);
 

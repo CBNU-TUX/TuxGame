@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Transfer : MonoBehaviour
 {
-    [Tooltip("ÀÌµ¿ÇÏ·Á´Â Scene ÀÌ¸§")]
+    [Tooltip("Transfer Scene && Player Position")]
     [SerializeField]
     string GoTo;
     [SerializeField]
     Vector3 teleportPosition = new Vector3(0, 0, 0);
-    //ÀÌµ¿ÇÒ À§Ä¡¿Í ¾ÀÀÌ¸§
+    //ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½
 
     GameManager gameManager;
     // Start is called before the first frame update

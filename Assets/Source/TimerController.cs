@@ -7,12 +7,18 @@ using UnityEngine;
 public class TimerController : MonoBehaviour
 {
     public static bool isEnding=false;
+    GameManager gameManager;
     [SerializeField]
     float LimitedTime;
     Text timer;
     [SerializeField]
     Text Result;
 
+    [Tooltip("Transfer Scene && Player Position")]
+    [SerializeField]
+    string GoTo;
+    [SerializeField]
+    Vector3 teleportPosition = new Vector3(0, 0, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +27,7 @@ public class TimerController : MonoBehaviour
     }
 
     protected void Timer(){
+        GlobalTimer.timer+=Time.deltaTime;
         LimitedTime -= Time.deltaTime;
         timer.text = ((int)LimitedTime).ToString();
     }
@@ -36,11 +43,18 @@ public class TimerController : MonoBehaviour
             {
                 Result.text = "FAILURE";
             }
-                
+            SceneTransition();
         }
         else
         {
             Timer();
         }
+    }
+
+    public void SceneTransition()
+    {
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager.setTransfer(GoTo);
+        StartCoroutine(gameManager.FadeOut(teleportPosition));
     }
 }

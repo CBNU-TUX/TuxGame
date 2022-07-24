@@ -9,15 +9,23 @@ public class GlobalTimer : MonoBehaviour
     static int hours;
     static int sec;
     static int min;
+    static int day;
     Text minText;
     Text secText;
 
     [SerializeField]
     Light2D light;
-    
+    [SerializeField]
+    Text Calender;
+    [SerializeField]
+    Image Calender_img;
+    [SerializeField]
+    Sprite img;
+
     private float timerSpeed = 1.0f; //초 분위
     public static float timer=0f;
-    
+    string []days={"일","이","삼","사","오"};
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,18 +33,18 @@ public class GlobalTimer : MonoBehaviour
         secText = GameObject.FindGameObjectWithTag("SS").GetComponent<Text>();
         minText.text=((int)min).ToString();
         secText.text=((int)min).ToString();
-        Invoke("evening",10f);
+        
+        Invoke("evening",180f);
     }
 
     void evening(){
         light.color= new Color(233f/255f,210f/255f,134f/255f,134f/255f);
-        Invoke("night",10f);
+        Invoke("night",180f);
     }
     void night(){
-        light.color= new Color(200f/255f,200f/255f,200f/255f,134f/255f);
-        Invoke("morning",10f);
+        light.color= new Color(159f/255f,159f/255f,159f/255f,134f/255f);
+        Invoke("morning",240f);
     }
-
     void morning(){
         light.color= new Color(1f,1f,1f,134f/255f);
         Invoke("evening",180f);
@@ -59,8 +67,10 @@ public class GlobalTimer : MonoBehaviour
         min = Mathf.FloorToInt(timer / 60.0f - hours * 60);
         sec = Mathf.FloorToInt(timer - min * 60 - hours * 60.0f * 60.0f);
 
-        if (hours > 12)
-            hours -= 12;
+        if (min >= 10){
+            min -= 10;
+            day+=1;
+        }
 
         if((min/10)==0)
             minText.text="0"+min.ToString();
@@ -72,6 +82,14 @@ public class GlobalTimer : MonoBehaviour
         else
             secText.text=sec.ToString();
             //Debug.Log(minutes);
+
+        if(day<=4){
+            Calender.text=days[day];
+        }
+
+        if(Calender.text!="일"){
+            Calender_img.sprite=img;
+        }
     }
 
     public void Reset()
