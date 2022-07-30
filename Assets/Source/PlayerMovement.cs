@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] float speed;
+    
     Animator animator;
     Rigidbody2D rigid;
     Vector2 move,direction;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
         animator=this.GetComponent<Animator>();
         rigid=this.GetComponent<Rigidbody2D>();
     }
+
   private void Awake()
     {
 

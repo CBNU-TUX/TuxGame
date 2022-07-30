@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,8 @@ public class ClickController : MonoBehaviour
 
     Button []buttons;
     bool isCheck=false;
-    GameObject click;
+    public GameObject click;
+
 
     void Start(){
         buttons = GetComponentsInChildren<Button>();
@@ -17,7 +19,6 @@ public class ClickController : MonoBehaviour
     public void OnClick(){
         if(!isCheck&&!Input.GetKeyDown(KeyCode.Space)){
             click = EventSystem.current.currentSelectedGameObject;
-            Debug.Log(click.name);
             RectTransform clickTransform=click.GetComponent<RectTransform>();
             clickTransform.anchoredPosition=new Vector2(clickTransform.anchoredPosition.x,clickTransform.anchoredPosition.y+30);
             isCheck=true;
@@ -28,7 +29,6 @@ public class ClickController : MonoBehaviour
             }
         }else if(isCheck&&!Input.GetKeyDown(KeyCode.Space)){
             click = EventSystem.current.currentSelectedGameObject;
-            Debug.Log(click.name);
             RectTransform clickTransform=click.GetComponent<RectTransform>();
             clickTransform.anchoredPosition=new Vector2(clickTransform.anchoredPosition.x,clickTransform.anchoredPosition.y-30);
             isCheck=false;
