@@ -9,10 +9,15 @@ public class Slot : MonoBehaviour, IDropHandler
 {
     GameObject[] TrashBoxs;
     Animator Ani;
+    //[SerializeField]
+    //private Transform parentTransform;
+    //[SerializeField]
+    //private GameObject hudTextPrefab;
     public static bool is_ground = true;
     public static bool is_Right = false;
 
-    void Start() {
+    void Start() 
+    {
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
     }
 
@@ -36,12 +41,6 @@ public class Slot : MonoBehaviour, IDropHandler
                     is_Right = false;
                     is_ground = false;
                     Debug.Log("Not on ground");
-                }
-                else
-                {
-                    is_Right = false;
-                    is_ground = true;
-                    Debug.Log("on ground");
                 }
             }
         } catch (NullReferenceException e) {

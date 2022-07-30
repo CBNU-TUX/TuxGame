@@ -7,7 +7,13 @@ using UnityEngine.EventSystems;
 public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerDownHandler
 {
     int gold = 1000;
+    Color color;
+    String text;
     [SerializeField] private Canvas canvas;
+    //[SerializeField]
+    //private Transform parentTransform;
+    //[SerializeField]
+    //private GameObject hudTextPrefab;
     public static bool is_Close=false;
     public static RectTransform rectTransform;
     private Vector3 loadedPosition;
@@ -69,15 +75,35 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
             canvasGroup.blocksRaycasts = true;
             rectTransform.anchoredPosition = loadedPosition;
             if (!Slot.is_ground)
-                gold -=10;
+            {
+                color = Color.red;
+                text = "Wrong";
+                gold -= 10;
                 won.text = gold.ToString();
+                Slot.is_ground = true;
+                //SpawnHUDText(text, color);
+            }
         }
+        else
+        {
+            color = Color.blue;
+            text = "Correct";
+            //SpawnHUDText(text,color);
+        }
+           
         Slot.is_Right= false;
         canvasGroup.alpha = 1f;
         is_Close = true;
         Debug.Log("EndDrag");
     }
 
+    //public void SpawnHUDText(string text,Color color)
+    //{
+    //    GameObject clone = Instantiate(hudTextPrefab);
+    //    clone.transform.SetParent(parentTransform);
+    //    clone.GetComponent<Trash_text>.Play(text,color);
+    //    Debug.Log(text);
+    //}
     public void OnPointerDown(PointerEventData eventData)
     { 
         Debug.Log("pointerdown");
