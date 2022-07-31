@@ -7,11 +7,15 @@ public class SoilInfo : MonoBehaviour
 {
     public string name;
     public int level;
+    public string treelevel;
 
+    void Start(){
+        treelevel="No";
+    }
     public void setImg(Sprite img){
         this.gameObject.GetComponent<SpriteRenderer>().sprite=img;
     }
-    
+
     void OnEnable()
     {
     	  // 씬 매니저의 sceneLoaded에 체인을 건다.
@@ -27,6 +31,9 @@ public class SoilInfo : MonoBehaviour
                 if(this.name==tmp.name){
                     this.level=tmp.level;
                     this.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
+                    this.treelevel=tmp.treelevel;
+                    if(treelevel!="No")
+                        this.gameObject.transform.Find(tmp.treelevel).gameObject.SetActive(true);
                 }
             }
         }catch(NullReferenceException){
