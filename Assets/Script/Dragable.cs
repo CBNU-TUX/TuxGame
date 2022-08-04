@@ -9,17 +9,23 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     int gold = 1000;
     Color color;
     String text;
+    GameObject[] TrashBoxs;
     [SerializeField] private Canvas canvas;
     //[SerializeField]
     //private Transform parentTransform;
     //[SerializeField]
     //private GameObject hudTextPrefab;
     public static bool is_Close=false;
-    public static RectTransform rectTransform;
+    public RectTransform rectTransform;
     private Vector3 loadedPosition;
     private CanvasGroup canvasGroup;
     public Text won;
     Animator ani;
+    Animator anima;
+    void Start()
+    {
+        TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
+    }
     private void Awake()
     {
         won.text = gold.ToString();
@@ -46,30 +52,42 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
             {
                 ani.SetBool("isIdle",false);
                 ani.SetBool("isOpening",false);
+                Debug.Log("case1");
             }else{
                 ani.SetBool("isIdle",false);
                 ani.SetBool("isOpening",true);
                 Invoke("CloseDoor",0.2f);
+                Debug.Log("case2");
             }
         }
         catch(NullReferenceException ex)
         {
             Invoke("CloseDoor",0.2f);
+            Debug.Log("case3");
             Debug.Log("gameobject is null");
         }
     }
-
-    void CloseDoor(){
-        try{
-            ani.SetBool("isIdle",true);
-            ani.SetBool("isOpening",false);
-        }catch(NullReferenceException e){
+    void CloseDoor()
+    {
+        try
+        {
+            ani.SetBool("isIdle", true);
+            ani.SetBool("isOpening", false);
+        }
+        catch (NullReferenceException e)
+        {
             Debug.Log("Animator is null");
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        //foreach (GameObject TrashBox in TrashBoxs)
+        //{
+        //    anima=TrashBox.GetComponentInParent<Animator>();
+        //    anima.SetBool("isIdle", true);
+        //    anima.SetBool("isOpening", false);
+        //}
         if (!Slot.is_Right)
         {
             canvasGroup.blocksRaycasts = true;

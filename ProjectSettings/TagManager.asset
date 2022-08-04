@@ -11,6 +11,8 @@ TagManager:
   - Timer
   - MM
   - SS
+  - Trashs
+  - Net
   layers:
   - Default
   - TransparentFX

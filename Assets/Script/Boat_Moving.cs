@@ -5,11 +5,13 @@ using UnityEngine;
 public class Boat_Moving : MonoBehaviour
 {
     public float maxSpeed;
+    Animator animator;
     SpriteRenderer renderer;
     Rigidbody2D rigid;
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
     }
@@ -35,13 +37,13 @@ public class Boat_Moving : MonoBehaviour
         if (rigid.velocity.x > maxSpeed)// right
         {
             rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
-            renderer.flipX = false;
+            animator.SetBool("is_right", true);
         }
            
         else if (rigid.velocity.x < maxSpeed * (-1))
         {
             rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
-            renderer.flipX = true;
+            animator.SetBool("is_right",false);
         }
            
 
