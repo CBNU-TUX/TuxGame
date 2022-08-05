@@ -29,7 +29,7 @@ public class Transfer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             //StartCoroutine(deleayTime());
             SceneTransition();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-
+using System;
 public class GlobalTimer : MonoBehaviour
 {
     static int hours;
@@ -57,6 +57,7 @@ public class GlobalTimer : MonoBehaviour
     {
         timer += Time.deltaTime * timerSpeed;
         DisplayTime();
+
     }
 
     void DisplayTime()
@@ -70,6 +71,28 @@ public class GlobalTimer : MonoBehaviour
         min = Mathf.FloorToInt(timer / 60.0f - hours * 60);
         sec = Mathf.FloorToInt(timer - min * 60 - hours * 60.0f * 60.0f);
 
+        /*밭의 경우*/
+        try{
+            foreach(SoilInfo tmp in PlayerWorking.working){
+               int freetime=Mathf.FloorToInt(timer-tmp.timer);
+               if(freetime==60&&tmp.treelevel=="seed"){
+                    tmp.treelevel="sprout";
+                    tmp.isGrowing=true;
+                    tmp.timer=freetime;
+               }
+                else if(freetime==90f&&tmp.treelevel=="sprout"){
+                    tmp.treelevel="tree";
+                    tmp.isGrowing=true;
+                    tmp.timer=freetime;
+                }
+                else
+                    ; //나무 핀다..
+
+            }
+        }catch(NullReferenceException e){
+                ;
+        }
+        //
         if (min >= 10)
         {
             min -= 10;

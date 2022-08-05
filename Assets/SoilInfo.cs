@@ -8,20 +8,63 @@ public class SoilInfo : MonoBehaviour
     public string name;
     public int level;
     public string treelevel;
+    public float timer;
+    private float timerSpeed = 1.0f; //초 분위
+    public bool isGrowing=false;
 
-    void Start(){
-        treelevel="No";
-    }
     public void setImg(Sprite img){
         this.gameObject.GetComponent<SpriteRenderer>().sprite=img;
     }
 
     void OnEnable()
     {
+        try{
+            foreach(SoilInfo tmp in PlayerWorking.working){
+                if(tmp.name==this.name){
+                    this.isGrowing=tmp.isGrowing;
+                    this.treelevel=tmp.treelevel;
+                    this.timer=tmp.timer;
+                }
+            }
+        }catch(NullReferenceException e){
+            ;
+        }
     	  // 씬 매니저의 sceneLoaded에 체인을 건다.
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    void Update(){
+        if(isGrowing&&treelevel=="seed"){
+            timer += Time.deltaTime * timerSpeed;
+            if(timer<=1f){
+                Invoke("GrowSeed",60f);
+            }else if(Mathf.FloorToInt(timer)==60){
+                GrowSeed();    
+            }
+        }else if(isGrowing&&level>=1&&treelevel=="sprout")
+        {
+           timer += Time.deltaTime * timerSpeed;
+            if(timer<=1f)
+                Invoke("GrowSprout",30f);
+            else if(Mathf.FloorToInt(timer)==30){
+                GrowSprout();    
+            }
+        }
+    }
+    void GrowSeed(){
+        this.gameObject.transform.Find("seed").gameObject.SetActive(false);
+        this.treelevel="sprout";
+        this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
+        this.isGrowing=false;
+        Invoke("GrowSprout",15f);
+    }
+
+    public void GrowSprout(){
+        this.gameObject.transform.Find("sprout").gameObject.SetActive(false);
+        this.treelevel="tree";
+        this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
+        isGrowing=false;
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
         try{
@@ -29,11 +72,13 @@ public class SoilInfo : MonoBehaviour
             {
                 Debug.Log(tmp.name+" "+this.name);
                 if(this.name==tmp.name){
+                    this.timer=tmp.timer+GlobalTimer.timer;
                     this.level=tmp.level;
                     this.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
                     this.treelevel=tmp.treelevel;
-                    if(treelevel!="No")
+                    if(treelevel!="No"){
                         this.gameObject.transform.Find(tmp.treelevel).gameObject.SetActive(true);
+                    }
                 }
             }
         }catch(NullReferenceException){
@@ -44,7 +89,36 @@ public class SoilInfo : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        try{
+            foreach(SoilInfo tmp in PlayerWorking.working){
+                if(tmp.name==this.name){
+                    tmp.timer=GlobalTimer.timer-this.timer;
+                    Debug.Log(tmp.name+" : "+tmp.timer);
+                }
+            }
+        }catch(NullReferenceException e){
+            ;
+        }
     }
+
+/*
+     void DisplayTime()
+    {
+
+        if (timer >= 60.0f * 60.0f)
+        {
+            timer -= 60.0f * 60.0f;
+        }
+
+        min = Mathf.FloorToInt(timer / 60.0f - hours * 60);
+        sec = Mathf.FloorToInt(timer - min * 60 - hours * 60.0f * 60.0f);
+
+        if (min >= 10)
+        {
+            min -= 10;
+            day += 1;
+        }    
+    }*/
     /*
     나무심기에선 레벨 5단계로 나눈다.
     
