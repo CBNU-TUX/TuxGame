@@ -15,6 +15,8 @@ public class PlayerWorking : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision){
         try{
+            if(clickObject==null)
+                clickObject = GameObject.FindObjectOfType<ClickController>();
             Debug.Log("1");
             SoilInfo tmp=collision.gameObject.GetComponent<SoilInfo>();
             if(clickObject.click.name=="BoxUI01"&&clickObject.click!=null&&tmp.level<1)
