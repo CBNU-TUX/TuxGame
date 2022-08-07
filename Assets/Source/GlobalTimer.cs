@@ -74,13 +74,13 @@ public class GlobalTimer : MonoBehaviour
         /*밭의 경우*/
         try{
             foreach(SoilInfo tmp in PlayerWorking.working){
-               int freetime=Mathf.FloorToInt(timer-tmp.timer);
-               if(freetime==60&&tmp.treelevel=="seed"){
+               int freetime=Mathf.FloorToInt(timer-tmp.timer)%240;
+               if(freetime>=60&&freetime<=89&&tmp.treelevel=="seed"){
                     tmp.treelevel="sprout";
                     tmp.isGrowing=true;
                     tmp.timer=freetime;
                }
-                else if(freetime==90f&&tmp.treelevel=="sprout"){
+                else if(freetime>=90&&freetime<=120&&tmp.treelevel=="sprout"){
                     tmp.treelevel="tree";
                     tmp.isGrowing=true;
                     tmp.timer=freetime;

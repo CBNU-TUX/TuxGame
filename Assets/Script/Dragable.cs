@@ -4,17 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
 public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerDownHandler
 {
     int gold = 1000;
     Color color;
     String text;
     GameObject[] TrashBoxs;
+
     [SerializeField] private Canvas canvas;
-    //[SerializeField]
-    //private Transform parentTransform;
-    //[SerializeField]
-    //private GameObject hudTextPrefab;
+    
+    
+    HeartController hc;
     public static bool is_Close=false;
     public RectTransform rectTransform;
     private Vector3 loadedPosition;
@@ -24,6 +25,8 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     Animator anima;
     void Start()
     {
+        
+    hc=GameObject.Find("Heart").GetComponent<HeartController>();
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
     }
     private void Awake()
@@ -54,9 +57,7 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
                 ani.SetBool("isOpening",false);
                 Debug.Log("case1");
             }else{
-                ani.SetBool("isIdle",false);
-                ani.SetBool("isOpening",true);
-                Invoke("CloseDoor",0.2f);
+                CloseDoor();
                 Debug.Log("case2");
             }
         }
@@ -66,13 +67,16 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
             Debug.Log("case3");
             Debug.Log("gameobject is null");
         }
+
     }
     void CloseDoor()
     {
         try
         {
-            ani.SetBool("isIdle", true);
-            ani.SetBool("isOpening", false);
+            foreach(GameObject trash in TrashBoxs){
+                trash.GetComponent<Animator>().SetBool("isIdle", true);
+                trash.GetComponent<Animator>().SetBool("isOpening", true);
+            }
         }
         catch (NullReferenceException e)
         {
@@ -99,6 +103,8 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
                 gold -= 10;
                 won.text = gold.ToString();
                 Slot.is_ground = true;
+                hc.liftCount--;
+                CloseDoor();
                 //SpawnHUDText(text, color);
             }
         }
@@ -106,12 +112,14 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
         {
             color = Color.blue;
             text = "Correct";
+            CloseDoor();
             //SpawnHUDText(text,color);
         }
            
         Slot.is_Right= false;
         canvasGroup.alpha = 1f;
         is_Close = true;
+        
         Debug.Log("EndDrag");
     }
 
@@ -124,6 +132,8 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     //}
     public void OnPointerDown(PointerEventData eventData)
     { 
+        CloseDoor();
         Debug.Log("pointerdown");
     }
+
 }

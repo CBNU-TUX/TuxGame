@@ -24,6 +24,7 @@ public class SoilInfo : MonoBehaviour
                     this.isGrowing=tmp.isGrowing;
                     this.treelevel=tmp.treelevel;
                     this.timer=tmp.timer;
+                    Debug.Log("씬 변경 시"+this.timer);
                 }
             }
         }catch(NullReferenceException e){
@@ -38,15 +39,15 @@ public class SoilInfo : MonoBehaviour
             timer += Time.deltaTime * timerSpeed;
             if(timer<=1f){
                 Invoke("GrowSeed",60f);
-            }else if(Mathf.FloorToInt(timer)==60){
+            }else if(Mathf.FloorToInt(timer)>=60){
                 GrowSeed();    
             }
-        }else if(isGrowing&&level>=1&&treelevel=="sprout")
+        }else if(isGrowing&&treelevel=="sprout")
         {
            timer += Time.deltaTime * timerSpeed;
             if(timer<=1f)
                 Invoke("GrowSprout",30f);
-            else if(Mathf.FloorToInt(timer)==30){
+            else if(Mathf.FloorToInt(timer)>=30){
                 GrowSprout();    
             }
         }
@@ -92,8 +93,13 @@ public class SoilInfo : MonoBehaviour
         try{
             foreach(SoilInfo tmp in PlayerWorking.working){
                 if(tmp.name==this.name){
-                    tmp.timer=GlobalTimer.timer-this.timer;
-                    Debug.Log(tmp.name+" : "+tmp.timer);
+                    if(tmp.treelevel=="sprout"){
+                        tmp.timer=GlobalTimer.timer-this.timer;
+                        tmp.timer+=60f;
+                    }else{
+                        tmp.timer=GlobalTimer.timer-this.timer;
+                        Debug.Log(tmp.name+" : "+tmp.timer);
+                    }
                 }
             }
         }catch(NullReferenceException e){

@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IDropHandler
 {
+
+    
     GameObject[] TrashBoxs;
     Animator Ani;
     //[SerializeField]
@@ -16,9 +18,11 @@ public class Slot : MonoBehaviour, IDropHandler
     public static bool is_ground = true;
     public static bool is_Right = false;
 
+
     void Start() 
     {
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
+        
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -40,23 +44,26 @@ public class Slot : MonoBehaviour, IDropHandler
                     Money.is_first = false;
                     is_Right = false;
                     is_ground = false;
-                    Debug.Log("Not on ground");
                 }
             }
+            CloseDoor();
         } catch (NullReferenceException e) {
             is_ground = true;
         }
     }
-    public void close()
+    void CloseDoor()
     {
-        if (Dragable.is_Close)
+        try
         {
-            foreach (GameObject TrashBox in TrashBoxs)
-            {
-                Ani = TrashBox.GetComponent<Animator>();
-                Ani.SetBool("isIdle", true);
-                Ani.SetBool("isOpening", false);
+            foreach(GameObject trash in TrashBoxs){
+                 trash.GetComponent<Animator>().SetBool("isIdle", true);
+                trash.GetComponent<Animator>().SetBool("isOpening", true);
             }
         }
+        catch (NullReferenceException e)
+        {
+            Debug.Log("Animator is null");
+        }
     }
+
 }
