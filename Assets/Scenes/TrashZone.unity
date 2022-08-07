@@ -1176,7 +1176,6 @@ GameObject:
   - component: {fileID: 736994062}
   - component: {fileID: 736994065}
   - component: {fileID: 736994064}
-  - component: {fileID: 736994063}
   m_Layer: 5
   m_Name: Won
   m_TagString: Untagged
@@ -1204,19 +1203,6 @@ RectTransform:
   m_AnchoredPosition: {x: 43, y: -26.602}
   m_SizeDelta: {x: 294.8, y: 155.5634}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &736994063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736994061}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458f25cda6ac4e14db9867c9c5831bcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  label: {fileID: 736994064}
 --- !u!114 &736994064
 MonoBehaviour:
   m_ObjectHideFlags: 0

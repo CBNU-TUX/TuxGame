@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerDownHandler
 {
-    int gold = 1000;
+    static public int gold = 0;
     Color color;
     String text;
     GameObject[] TrashBoxs;
@@ -25,8 +25,8 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     Animator anima;
     void Start()
     {
-        
-    hc=GameObject.Find("Heart").GetComponent<HeartController>();
+        gold=1000;
+        hc=GameObject.Find("Heart").GetComponent<HeartController>();
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
     }
     private void Awake()

@@ -17,14 +17,14 @@ public class PlayerWorking : MonoBehaviour
         try{
             if(clickObject==null)
                 clickObject = GameObject.FindObjectOfType<ClickController>();
-            Debug.Log("1");
+
             SoilInfo tmp=collision.gameObject.GetComponent<SoilInfo>();
             if(clickObject.click.name=="BoxUI01"&&clickObject.click!=null&&tmp.level<1)
             {
-                Debug.Log("2");
+
                 if(Input.GetKey(KeyCode.Space)){
                     tmp.treelevel="No";
-                    Debug.Log("3");
+
                     tmp.level=1;
                     tmp.setImg(Soil.levelImg[1]);
                     working.Add(tmp);
