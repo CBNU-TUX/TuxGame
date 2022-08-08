@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/FactoryGameZone.unity
     guid: 5b995fcec2e0940b29c6f83fc0a394a2
   - enabled: 1
-    path: Assets/Scenes/FactoryZone.unity
-    guid: 0056f8fbed85a204d9e0415479eff948
-  - enabled: 1
     path: Assets/Scenes/SeaZone.unity
     guid: 830625c7c1ae61547af879d4018cc7d7
   - enabled: 1
     path: Assets/Scenes/TrashZone.unity
     guid: 244ed0f886d0a644cba3b4f19a7db5e7
+  - enabled: 1
+    path: Assets/Scenes/TreeZone.unity
+    guid: 33d6227beee804642aef766a1172503a
   m_configObjects: {}

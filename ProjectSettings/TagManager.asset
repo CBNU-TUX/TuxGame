@@ -6,6 +6,13 @@ TagManager:
   tags:
   - TrashBox
   - Image
+  - Factory
+  - GameManager
+  - Timer
+  - MM
+  - SS
+  - Trashs
+  - Net
   layers:
   - Default
   - TransparentFX
@@ -42,6 +49,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tile
+    uniqueID: 112543769
     locked: 0
   - name: Background
     uniqueID: 2764170543
