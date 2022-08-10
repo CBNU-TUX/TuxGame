@@ -12,6 +12,10 @@ public class Net_Action : MonoBehaviour
     public Transform target;
     public BoxCollider2D box;
     public Text don;
+
+
+    static public bool isThrowing;
+
     void Start()
     {
         don.text = gold.ToString();
@@ -31,14 +35,16 @@ public class Net_Action : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) && opening == false)
+        if (Input.GetKey(KeyCode.Space) && opening == false&&!isThrowing)
         {
+            isThrowing=true;
+            GameObject.Find("Canvas").transform.GetChild(1).gameObject.SetActive(true);
             animator.SetBool("is_open", true);
             box.size = new Vector2(0.5f, 4f);
             target.localScale = new Vector3(4.2f, 11f, 1f);
             Invoke("Status_open", 0.5f);
         }
-        else if (Input.GetKey(KeyCode.Space) && opening == true)
+        else if (Input.GetKey(KeyCode.Space) && opening == true&&!isThrowing)
         {
             animator.SetBool("is_open", false);
             box.size = new Vector2(0.5f, 0.3f);

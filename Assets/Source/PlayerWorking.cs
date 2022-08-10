@@ -24,15 +24,16 @@ public class PlayerWorking : MonoBehaviour
 
                 if(Input.GetKey(KeyCode.Space)){
                     tmp.treelevel="No";
-
                     tmp.level=1;
                     tmp.setImg(Soil.levelImg[1]);
                     working.Add(tmp);
+                    this.gameObject.GetComponent<Animator>().SetTrigger("isDigging");
                 }
             }
             else if(clickObject.click.name=="BoxUI03"&&clickObject.click!=null){
                 if(Input.GetKey(KeyCode.Space)){
                     collision.gameObject.GetComponent<Animator>().SetTrigger("isStarting");
+                    this.gameObject.GetComponent<Animator>().SetTrigger("isWater");
                 }
             }else if(clickObject.click.name=="BoxUI04"&&clickObject.click!=null&&tmp.level>=1&&tmp.treelevel=="No"){
                 if(Input.GetKey(KeyCode.Space)){
