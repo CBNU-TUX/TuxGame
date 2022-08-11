@@ -10,24 +10,45 @@ public class Trash_move : MonoBehaviour
     public int nextMove;
     public int nextMove2;
     public GameObject net;
+    GameObject Boat;
+    bool isCollider=false;
+    static public bool isFishing=false;
+    Vector3 offset;
     // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        Boat=GameObject.Find("Boat");
         Invoke("Think", 1);
+        offset=this.transform.position-Boat.transform.position;
     }
-    private void OnTriggerEnter2D(Collider2D collision) //Net¶û ¾²·¹±â¶û Ãæµ¹ÇßÀ»°æ¿ì
+    private void OnTriggerEnter2D(Collider2D collision) //Netï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         if (collision.gameObject.tag == "Net") 
         {
-            gameObject.SetActive(false);
+            rigid.velocity =Vector3.forward;
         }
+        if(collision.name=="Collision")
+            gameObject.SetActive(false);
+    }
+    private void OnTriggerExit2D(Collider2D collision){
+        isCollider=false;
+        //isFishing=false;
+    }
+    void Update(){
+        if(isCollider)
+            if(isFishing){
+                transform.position = Vector3.MoveTowards(gameObject.transform.position,Boat.transform.position, 0.01f);    
+            }
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        rigid.velocity = new Vector2 (nextMove, nextMove2);
+        if(!isCollider){
+            rigid.velocity = new Vector2(nextMove, nextMove2);
+        }
     }
+
     void Think()
     {
         nextMove = Random.Range(-1, 2);
@@ -36,6 +57,8 @@ public class Trash_move : MonoBehaviour
         {
             Think();
         }
-        Invoke("Think", 1);
+        if(!isCollider){
+            Invoke("Think", 1);
+        }
     }
 }

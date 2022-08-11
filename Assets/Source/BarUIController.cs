@@ -13,15 +13,18 @@ public class BarUIController : MonoBehaviour
     float speed;
     /*boat bar 스피드 조절을 위함.*/
 
+    Text textScore;
     GameObject MovingBar;
     private GraphicRaycaster GRaycast;
     PointerEventData PED;
     EventSystem eventSystem;
     int count=0;
     Vector2 InitPosition;
+    Vector2 InitPosition_text;
     bool isMoving;
     void Start(){
         isMoving=false;
+        textScore=GameObject.Find("Canvas").transform.GetChild(2).GetComponent<Text>();
         boat=GameObject.Find("Boat");
         MovingBar=GameObject.Find("MoveBar");
         GRaycast = GameObject.Find("Canvas").GetComponent<GraphicRaycaster>();
@@ -29,6 +32,7 @@ public class BarUIController : MonoBehaviour
         //UI내에 있는 GraphicRaycaster사용. Canvas에 보면 달려있음.
 
         InitPosition=new Vector2(MovingBar.GetComponent<RectTransform>().anchoredPosition.x,MovingBar.GetComponent<RectTransform>().anchoredPosition.y);
+        InitPosition_text=new Vector2(textScore.GetComponent<RectTransform>().anchoredPosition.x,textScore.GetComponent<RectTransform>().anchoredPosition.y);
     }
 
     void OnEnable(){
@@ -58,6 +62,16 @@ public class BarUIController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Space)&&results.Count>3){
                 count++;
+                textScore.gameObject.SetActive(true);
+                if(count>=3)
+                    textScore.text="성공!";
+                else
+                    textScore.text="+ "+count.ToString();   
+            }
+
+            if(textScore.gameObject.activeSelf){
+                textScore.gameObject.transform.Translate(UnityEngine.Random.Range(-1f,1f),UnityEngine.Random.Range(0.5f,1f),0.0f);
+                Invoke("DisappearText",0.5f);
             }
 
             this.transform.position = Camera.main.WorldToScreenPoint(boat.transform.position+new Vector3(0,1.8f,0));
@@ -70,6 +84,10 @@ public class BarUIController : MonoBehaviour
             }
             
         }
+    }
+    void DisappearText(){
+        textScore.gameObject.SetActive(false);
+        textScore.GetComponent<RectTransform>().anchoredPosition=InitPosition_text;
     }
 
 /*

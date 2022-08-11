@@ -7,12 +7,11 @@ public class Net_Action : MonoBehaviour
 {
     // Start is called before the first frame update
     int gold = 0;
-    public bool opening = false;
-    public Animator animator;
-    public Transform target;
-    public BoxCollider2D box;
+    bool opening = false;
+    Animator animator;
+    Transform target;
+    BoxCollider2D box;
     public Text don;
-
 
     static public bool isThrowing;
 
@@ -26,10 +25,13 @@ public class Net_Action : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Trashs")
-        {
-            gold += 50;
-            don.text=gold.ToString();
+        if(opening){
+            if (collision.gameObject.tag == "Trashs")
+            {
+                gold += 50;
+                don.text=gold.ToString();
+            }
+            Debug.Log("충돌");
         }
     }
     // Update is called once per frame
@@ -39,16 +41,14 @@ public class Net_Action : MonoBehaviour
         {
             isThrowing=true;
             GameObject.Find("Canvas").transform.GetChild(1).gameObject.SetActive(true);
+            animator.SetTrigger("isFishing");
             animator.SetBool("is_open", true);
-            box.size = new Vector2(0.5f, 4f);
-            target.localScale = new Vector3(4.2f, 11f, 1f);
             Invoke("Status_open", 0.5f);
         }
         else if (Input.GetKey(KeyCode.Space) && opening == true&&!isThrowing)
         {
+            Trash_move.isFishing=true;
             animator.SetBool("is_open", false);
-            box.size = new Vector2(0.5f, 0.3f);
-            target.localScale = new Vector3(4.2f, 4.8f, 1f);
             Invoke("Status_close", 0.5f);
         }
 
@@ -61,5 +61,6 @@ public class Net_Action : MonoBehaviour
     private void Status_close()
     {
         opening = false;
+        Trash_move.isFishing=false;
     }
 }
