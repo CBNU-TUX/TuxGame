@@ -274,8 +274,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155883780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -9.4, z: 0}
-  m_LocalScale: {x: 1.6612302, y: 2.6510677, z: 1}
+  m_LocalPosition: {x: 0.2, y: -10.061, z: 0}
+  m_LocalScale: {x: 1.6612302, y: 2.7915742, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 486905284}
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d29f6e8c87ed04eb31ad6e8f5b76c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  don: {fileID: 1417707399}
+  col: {fileID: 1318796346}
 --- !u!212 &155883785
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -379,7 +379,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 10}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3087,6 +3087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -3618,6 +3619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -3919,6 +3921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -4146,6 +4149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -4342,6 +4346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -4758,6 +4763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -4886,8 +4892,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318796346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.015, y: -3.193, z: 0}
-  m_LocalScale: {x: 7.9479795, y: 3.9079103, z: 1}
+  m_LocalPosition: {x: -0.015, y: -1.583, z: 0}
+  m_LocalScale: {x: 7.9479795, y: 2.9982617, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 486905284}
@@ -4917,7 +4923,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
 --- !u!212 &1318796349
 SpriteRenderer:
@@ -5018,6 +5024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -5167,6 +5174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -5396,6 +5404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -5663,6 +5672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -5820,7 +5830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boat: {fileID: 0}
-  speed: 1
+  speed: 8
 --- !u!114 &1584538643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5986,6 +5996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
@@ -6211,6 +6222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60ac4c3ca3c79d499f07c1fb00ed7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  don: {fileID: 1417707399}
   nextMove: 0
   nextMove2: 0
   net: {fileID: 0}
