@@ -13,7 +13,6 @@ public class Net_Action : MonoBehaviour
     BoxCollider2D box;
     PolygonCollider2D polygon;
     public GameObject col;
-    BoxCollider2D colBox;
     static public bool isThrowing;
 
     void Start()
@@ -22,7 +21,6 @@ public class Net_Action : MonoBehaviour
         target = GetComponent<Transform>();
         box = GetComponent<BoxCollider2D>();
         polygon = GetComponent<PolygonCollider2D>();
-        colBox=col.GetComponent<BoxCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +28,7 @@ public class Net_Action : MonoBehaviour
         if(opening){
             if (collision.gameObject.tag == "Trashs")
             {
-                ;
+                //collision.gameObject.SetActive(false);
             }
             Debug.Log("충돌");
         }
@@ -41,8 +39,6 @@ public class Net_Action : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && opening == false&&!isThrowing)
         {
             polygon.offset = new Vector2(0, 0);
-            colBox.offset = new Vector2(0, -0.4f);
-            colBox.size = new Vector2(1, 3);
             isThrowing=true;
             GameObject.Find("Canvas").transform.GetChild(1).gameObject.SetActive(true);
             animator.SetTrigger("isFishing");
@@ -52,10 +48,9 @@ public class Net_Action : MonoBehaviour
         else if (Input.GetKey(KeyCode.Space) && opening == true&&!isThrowing)
         {
             polygon.offset=new Vector2(0, 10);
-            colBox.offset = new Vector2(0, 0);
-            Trash_move.isFishing=true;
+            FishingController.isFishing=true;
             animator.SetBool("is_open", false);
-            Invoke("Status_close", 0.5f);
+            Invoke("Status_close", 1f);
         }
     }
     private void Status_open()
@@ -65,10 +60,6 @@ public class Net_Action : MonoBehaviour
     private void Status_close()
     {
         opening = false;
-        Trash_move.isFishing=false;
-    }
-    void Colbox()
-    {
-        colBox.size=new Vector2(0, 0);
+        FishingController.isFishing=false;
     }
 }

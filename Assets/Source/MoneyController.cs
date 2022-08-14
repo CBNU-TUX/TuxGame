@@ -11,6 +11,7 @@ public class MoneyController : MonoBehaviour
     void Start()
     {
         tg=GameObject.Find("Money").GetComponent<TotalGoldController>();
+        don=GameObject.Find("MoneyUI").transform.GetChild(0).GetComponent<Text>();
         don.text = gold.ToString();
     }
     void OnTriggerStay2D(Collider2D collision)
