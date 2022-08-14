@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //animator.SetBool("isIdle",false);
+
         move.x=Input.GetAxisRaw("Horizontal");
         move.y=Input.GetAxisRaw("Vertical");
 
@@ -48,8 +50,7 @@ public class PlayerMovement : MonoBehaviour
             direction.y=Input.GetAxisRaw("Vertical");
         }
          if (animator.GetFloat("MoveSpeed") > 0)
-            {
-                // 이동
+            { 
                 animator.SetFloat("MoveHorizontally", move.x);
                 animator.SetFloat("MoveVertically", move.y);
             }

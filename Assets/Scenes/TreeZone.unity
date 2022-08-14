@@ -1014,6 +1014,7 @@ MonoBehaviour:
   name: soil04
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &186866342
 Animator:
@@ -1964,6 +1965,7 @@ MonoBehaviour:
   name: soil16
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!61 &381129701
 BoxCollider2D:
@@ -2777,6 +2779,7 @@ MonoBehaviour:
   name: soil09
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &548325072
 Animator:
@@ -18614,6 +18617,7 @@ MonoBehaviour:
   name: soil07
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &792044094
 Animator:
@@ -19309,6 +19313,7 @@ MonoBehaviour:
   name: soil06
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!61 &824596346
 BoxCollider2D:
@@ -19660,6 +19665,7 @@ MonoBehaviour:
   name: soil08
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &940283268
 Animator:
@@ -19891,6 +19897,7 @@ MonoBehaviour:
   name: soil14
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &960242461
 Animator:
@@ -20142,6 +20149,7 @@ MonoBehaviour:
   name: soil18
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!1 &1006141528
 GameObject:
@@ -21918,6 +21926,7 @@ MonoBehaviour:
   name: soil03
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!61 &1390218330
 BoxCollider2D:
@@ -22186,6 +22195,7 @@ MonoBehaviour:
   name: soil10
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &1433196636
 Animator:
@@ -22654,6 +22664,7 @@ MonoBehaviour:
   name: soil13
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &1543816267
 Animator:
@@ -22937,6 +22948,7 @@ MonoBehaviour:
   name: soil11
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &1552902864
 Animator:
@@ -23562,23 +23574,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1635324109 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5110626922470003347, guid: 20fa1b0f749f7446c809f8a9d7fe80bc, type: 3}
-  m_PrefabInstance: {fileID: 14814194}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1635324116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635324109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdad142a54e2f40898ed1da56d4428c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1639893624
 GameObject:
   m_ObjectHideFlags: 0
@@ -23769,6 +23764,7 @@ MonoBehaviour:
   name: soil01
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!61 &1640022068
 BoxCollider2D:
@@ -24020,6 +24016,7 @@ MonoBehaviour:
   name: soil05
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!1 &1663201924
 GameObject:
@@ -24127,6 +24124,7 @@ MonoBehaviour:
   name: soil17
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &1663201928
 Animator:
@@ -24981,6 +24979,7 @@ MonoBehaviour:
   name: soil12
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!95 &1755925603
 Animator:
@@ -25676,6 +25675,7 @@ MonoBehaviour:
   name: soil02
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!1 &1892397560
 GameObject:
@@ -25855,6 +25855,7 @@ MonoBehaviour:
   name: soil15
   level: 0
   treelevel: 
+  timer: 0
   isGrowing: 0
 --- !u!1 &1971944439
 GameObject:

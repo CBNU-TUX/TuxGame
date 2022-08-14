@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Transfer : MonoBehaviour
 {
     [Tooltip("Transfer Scene && Player Position")]
@@ -16,6 +16,13 @@ public class Transfer : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
+    }
+    void OnEnable(){
+        if(SceneManager.GetActiveScene().name=="TreeZone"){
+            GameObject.Find("Player").GetComponent<Animator>().SetTrigger("isTreeZone");
+        }else{
+            GameObject.Find("Player").GetComponent<Animator>().SetTrigger("isGeneral");
+        }
     }
 
     private void Update()
@@ -40,5 +47,6 @@ public class Transfer : MonoBehaviour
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
         StartCoroutine(gameManager.FadeOut(teleportPosition));
+        GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
     }
 }
