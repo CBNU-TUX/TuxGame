@@ -38,7 +38,6 @@ public class Transfer : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            //StartCoroutine(deleayTime());
             SceneTransition();
         }
     }

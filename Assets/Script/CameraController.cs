@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class CameraController : MonoBehaviour
 {
     GameObject Player;
@@ -31,7 +31,11 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         try{
-            this.transform.position = new Vector3(Player.transform.position.x , Player.transform.position.y,-50);
+            if(Player!=null&&SceneManager.GetActiveScene().name!="SeaZone")
+                this.transform.position = new Vector3(Player.transform.position.x , Player.transform.position.y,-50);
+            
+            if(SceneManager.GetActiveScene().name=="SeaZone")
+                this.transform.position = new Vector3(0,0,-50);
         }catch (NullReferenceException e) {
             ;
         }

@@ -32,7 +32,7 @@ public class BarUIController : MonoBehaviour
         //UI내에 있는 GraphicRaycaster사용. Canvas에 보면 달려있음.
 
         InitPosition=new Vector2(MovingBar.GetComponent<RectTransform>().anchoredPosition.x,MovingBar.GetComponent<RectTransform>().anchoredPosition.y);
-        InitPosition_text=new Vector2(this.gameObject.GetComponent<RectTransform>().anchoredPosition.x,textScore.GetComponent<RectTransform>().anchoredPosition.y);
+        InitPosition_text=new Vector2(textScore.GetComponent<RectTransform>().anchoredPosition.x,textScore.GetComponent<RectTransform>().anchoredPosition.y);
     }
 
     void OnEnable(){

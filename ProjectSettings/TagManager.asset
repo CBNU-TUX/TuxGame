@@ -62,3 +62,6 @@ TagManager:
   - name: Sea
     uniqueID: 1425871931
     locked: 0
+  - name: SeaObject
+    uniqueID: 2280710229
+    locked: 0

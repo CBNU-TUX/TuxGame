@@ -12,9 +12,11 @@ public class HeartController : MonoBehaviour
     GameManager gameManager;
     public Transform Heart;
     public int liftCount=3;
-    
+    GameObject[] trashs;
+
     void Start(){
         Heart=this.gameObject.GetComponentInChildren<Transform>();
+        trashs=GameObject.FindGameObjectsWithTag("Trashs");
     }
 
     void Update(){
@@ -26,6 +28,19 @@ public class HeartController : MonoBehaviour
         if(liftCount<0){
             SceneTransition();
         }
+
+        bool isCheck=false;
+
+        foreach(GameObject t in trashs){
+            if(t.activeSelf){
+                isCheck=true;
+            }
+        }
+
+        if(!isCheck){
+            SceneTransition();
+        }
+
     }
         //목숨을 다할 경우 -> 씬이동
     public void SceneTransition()

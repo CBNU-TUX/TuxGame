@@ -781,6 +781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412474224}
   - component: {fileID: 412474225}
+  - component: {fileID: 412474226}
   m_Layer: 0
   m_Name: Home
   m_TagString: Untagged
@@ -855,6 +856,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &412474226
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412474223}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9.45, y: 9.45}
+    newSize: {x: 9.45, y: 9.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6, y: 4}
+  m_EdgeRadius: 0
 --- !u!1 &464153881
 GameObject:
   m_ObjectHideFlags: 0
@@ -97719,7 +97746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoTo: SeaZone
-  teleportPosition: {x: 3.17, y: -3.13, z: 0}
+  teleportPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &855609343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98763,7 +98790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoTo: TreeZone
-  teleportPosition: {x: 14, y: -2.82, z: 0}
+  teleportPosition: {x: 15.25, y: -2.92, z: 0}
 --- !u!1 &1204099087
 GameObject:
   m_ObjectHideFlags: 0
@@ -105546,11 +105573,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5110626922470003336, guid: 20fa1b0f749f7446c809f8a9d7fe80bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.7
+      value: 20.4
       objectReference: {fileID: 0}
     - target: {fileID: 5110626922470003336, guid: 20fa1b0f749f7446c809f8a9d7fe80bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23.4
+      value: -20.7
       objectReference: {fileID: 0}
     - target: {fileID: 5110626922470003336, guid: 20fa1b0f749f7446c809f8a9d7fe80bc, type: 3}
       propertyPath: m_LocalPosition.z

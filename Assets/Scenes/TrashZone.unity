@@ -1589,7 +1589,7 @@ GameObject:
   - component: {fileID: 1053068832}
   m_Layer: 5
   m_Name: Trash
-  m_TagString: Untagged
+  m_TagString: Trashs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2596,7 +2596,7 @@ GameObject:
   - component: {fileID: 1856733502}
   m_Layer: 5
   m_Name: Trash
-  m_TagString: Untagged
+  m_TagString: Trashs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3001,7 +3001,7 @@ GameObject:
   - component: {fileID: 2119755942}
   m_Layer: 5
   m_Name: Trash
-  m_TagString: Untagged
+  m_TagString: Trashs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
