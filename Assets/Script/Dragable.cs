@@ -14,7 +14,6 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
 
     [SerializeField] private Canvas canvas;
     
-    
     HeartController hc;
     public static bool is_Close=false;
     public RectTransform rectTransform;
@@ -110,16 +109,16 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
         }
         else
         {
+            RandomSpawn.spawn = true;
             color = Color.blue;
             text = "Correct";
             CloseDoor();
             //SpawnHUDText(text,color);
         }
-           
+        
         Slot.is_Right= false;
         canvasGroup.alpha = 1f;
         is_Close = true;
-        
         Debug.Log("EndDrag");
     }
 

@@ -7,8 +7,6 @@ using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IDropHandler
 {
-
-    
     GameObject[] TrashBoxs;
     Animator Ani;
     //[SerializeField]
@@ -35,6 +33,7 @@ public class Slot : MonoBehaviour, IDropHandler
                     Money.is_first = true;
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = image.anchoredPosition;
                     eventData.pointerDrag.GetComponent<RectTransform>().gameObject.SetActive(false);
+                    RandomSpawn.spawn = true;
                     is_Right = true;
                     is_ground = false;
                 }
