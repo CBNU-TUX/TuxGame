@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerDownHandler
 {
-    static public int gold = 0;
+    static public int gold = 1000;
     Color color;
     String text;
     GameObject[] TrashBoxs;
