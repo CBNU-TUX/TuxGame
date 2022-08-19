@@ -13,6 +13,7 @@ TagManager:
   - SS
   - Trashs
   - Net
+  - Sign
   layers:
   - Default
   - TransparentFX
