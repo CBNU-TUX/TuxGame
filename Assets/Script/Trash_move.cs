@@ -38,13 +38,13 @@ public class Trash_move : MonoBehaviour
         Think();
     }
 
-    void Update(){
-        if(isCollider)
-            if(FishingController.isFishing)
-            {
-                transform.position = Vector3.MoveTowards(gameObject.transform.position,Boat.transform.position, 0.01f);    
-            }
-    }
+    //void Update(){
+    //    if(isCollider)
+    //        if(FishingController.isFishing)
+    //        {
+    //            transform.position = Vector3.MoveTowards(gameObject.transform.position,Boat.transform.position, 0.01f);    
+    //        }
+    //}
     void FixedUpdate()
     {
         if (!isCollider)
