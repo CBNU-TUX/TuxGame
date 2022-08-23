@@ -55,7 +55,14 @@ public class Trash_move : MonoBehaviour
             rigid.velocity = new Vector2(0, 3);
         }
 
-        Vector3 pos=Camera.main.WorldToViewportPoint(transform.position);
+        Vector3 pos=Camera.main.WorldToViewportPoint(transform.position);  
+        //카메라 -> 플레이어를 따라감
+        //씬을 넘어갈때도 플레이어가 필요함.
+        //플레이어 자체가 파괴하지않게함. -> 해양씬에서 플레이어가없으면 모든씬 오류가 발생
+        //쓰레기존, 해양씬, 공장씬 에서는 플레이어가 없어도됌 -> 플레이어를 안쪽에넣고 (배경화면)
+        //해양씬 카메라 -> 플레이어를 따라감. 
+        //pos -> 카메라의 뷰포트를 찾음 
+        //플레이어가 잘못된 위치에 있으면 쓰레기가 뭉쳐서나옴 
         if(pos.x<0f) pos.x=0.2f;
         if(pos.x>1f) pos.x=0.8f;
         if(pos.y<0f) pos.y=0.2f;

@@ -9,10 +9,6 @@ public class TrashInfo : MonoBehaviour
     [SerializeField]
     string type;
     [SerializeField]
-    double height;
-    [SerializeField]
-    double weight;
-    [SerializeField]
     int coin;
 
 
@@ -21,13 +17,11 @@ public class TrashInfo : MonoBehaviour
     {
         return type;
     }
-    public double getheight()
-    {
-        return height;
+
+    public int GetCoin(){
+        return coin;
     }
-    public double getweight()
-    {
-        return weight;
-    }
+
+
 
 }

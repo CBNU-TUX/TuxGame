@@ -22,7 +22,11 @@ public class Slot : MonoBehaviour, IDropHandler
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
         
     }
-
+    void OnTriggerStay2D(Collider2D collision){
+        if(is_Right){
+            collision.gameObject.SetActive(false);
+        }
+    }
     public void OnDrop(PointerEventData eventData)
     {
         try {
@@ -34,6 +38,8 @@ public class Slot : MonoBehaviour, IDropHandler
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = image.anchoredPosition;
                     eventData.pointerDrag.GetComponent<RectTransform>().gameObject.SetActive(false);
                     RandomSpawn.spawn = true;
+                    if(Dragable.gold>=0)
+                        Dragable.gold+=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
                     is_Right = true;
                     is_ground = false;
                 }
@@ -43,6 +49,14 @@ public class Slot : MonoBehaviour, IDropHandler
                     Money.is_first = false;
                     is_Right = false;
                     is_ground = false;
+                    if(Dragable.gold>=0)
+                        Dragable.gold-=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
+                }else{
+                     Money.is_first = false;
+                    is_Right = false;
+                    is_ground = false;
+                    if(Dragable.gold>=0)
+                        Dragable.gold-=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
                 }
             }
             CloseDoor();

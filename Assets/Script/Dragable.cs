@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerDownHandler
 {
-    static public int gold = 1000;
+    static public int gold = 300;
     Color color;
     String text;
     GameObject[] TrashBoxs;
@@ -24,7 +24,6 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     Animator anima;
     void Start()
     {
-        gold=1000;
         hc=GameObject.Find("Heart").GetComponent<HeartController>();
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
     }
@@ -99,8 +98,7 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
             {
                 color = Color.red;
                 text = "Wrong";
-                gold -= 10;
-                won.text = gold.ToString();
+                //gold -= 10;
                 Slot.is_ground = true;
                 hc.liftCount--;
                 CloseDoor();
@@ -119,6 +117,7 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
         Slot.is_Right= false;
         canvasGroup.alpha = 1f;
         is_Close = true;
+        won.text = gold.ToString();
         Debug.Log("EndDrag");
     }
 
