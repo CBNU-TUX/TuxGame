@@ -48,6 +48,14 @@ public class PlayerMovement : MonoBehaviour
         if(move.sqrMagnitude>0){
             direction.x=Input.GetAxisRaw("Horizontal");
             direction.y=Input.GetAxisRaw("Vertical");
+            if (CurrentMapName == "HomeZone")
+            {
+                SoundManger.instance.platSE("WalkWood");
+            }
+            if (CurrentMapName=="MainZone")
+            {
+                SoundManger.instance.platSE("WalkDirt");
+            }
         }
          if (animator.GetFloat("MoveSpeed") > 0)
             { 
