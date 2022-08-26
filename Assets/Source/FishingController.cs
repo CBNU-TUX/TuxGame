@@ -14,7 +14,9 @@ public class FishingController : MonoBehaviour
     [SerializeField]
     Vector3 teleportPosition = new Vector3(0, 0, 0);
 
+    bool isFirst;
     void Start(){
+        isFirst=false;
         Money=GameObject.Find("don").GetComponent<Text>();
         Money.text = gold.ToString();    
         trash=GameObject.FindGameObjectsWithTag("Trashs");
@@ -43,6 +45,10 @@ public class FishingController : MonoBehaviour
         }
 
         if(!isCheck){
+            if(!isFirst){
+                isFirst=true;
+                TotalGoldController.TotalGold+=gold;
+            }
             SceneTransition();
         }
 

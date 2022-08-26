@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 public class MailController : MonoBehaviour
 {
     [SerializeField]
@@ -17,7 +18,7 @@ public class MailController : MonoBehaviour
 
     void Start(){
         mail=new ArrayList();
-        RandCount=Random.Range(2,20); //스크롤방법을 알아내면 더 늘어날 예정
+        RandCount=UnityEngine.Random.Range(2,20); //스크롤방법을 알아내면 더 늘어날 예정
         MailUI.transform.Find("Count").GetComponent<Text>().text=RandCount.ToString();
 
         mail.Add(Grey);
@@ -41,19 +42,31 @@ public class MailController : MonoBehaviour
     }
     
     public void ExitClick(){
-        GameObject exit=EventSystem.current.currentSelectedGameObject;
-
-        Debug.Log(exit.transform.parent.name);
-
-        Destroy(exit.transform.parent.gameObject);
-        
-        foreach(GameObject m in mail){
-            if(m.name==exit.transform.parent.name){
-                Debug.Log("찾음");
-                mail.Remove(m);
-                break;
+        try{
+            
+            GameObject exit=EventSystem.current.currentSelectedGameObject;
+                
+            foreach(GameObject m in mail){
+                if(m.name==exit.transform.parent.name){
+                    Debug.Log("찾음");
+                    mail.Remove(m);
+                    break;
+                }
             }
+
+            if(mail.Count!=0){
+                MailUI.transform.Find("Count").GetComponent<Text>().text=mail.Count.ToString();
+            }else{
+                MailUI.transform.Find("Count").GetComponent<Text>().text="0";
+            }
+
+            Destroy(exit.transform.parent.gameObject);
+            //MailUI.transform.Find("Count").GetComponent<Text>().text=mail.Count.ToString();
+        }catch(NullReferenceException e)
+        {
+            ;
+        }catch(MissingReferenceException e){
+            ;
         }
-        MailUI.transform.Find("Count").GetComponent<Text>().text=mail.Count.ToString();
     }
 }

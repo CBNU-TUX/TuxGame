@@ -12,4 +12,13 @@ public class SpaceController : MonoBehaviour
             Ui.SetActive(true);
         }
     }
+    
+    void Update(){
+
+        if(Input.GetKey(KeyCode.Escape)){
+            if(Ui.activeSelf){
+                Ui.SetActive(false);
+            }
+        }
+    }
 }

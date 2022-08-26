@@ -38,8 +38,7 @@ public class Slot : MonoBehaviour, IDropHandler
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = image.anchoredPosition;
                     eventData.pointerDrag.GetComponent<RectTransform>().gameObject.SetActive(false);
                     RandomSpawn.spawn = true;
-                    if(Dragable.gold>=0)
-                        Dragable.gold+=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
+                    Dragable.gold+=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
                     is_Right = true;
                     is_ground = false;
                 }
@@ -52,13 +51,13 @@ public class Slot : MonoBehaviour, IDropHandler
                     if(Dragable.gold>=0)
                         Dragable.gold-=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
                 }else{
-                     Money.is_first = false;
+                    Money.is_first = false;
                     is_Right = false;
                     is_ground = false;
-                    if(Dragable.gold>=0)
-                        Dragable.gold-=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
                 }
             }
+            if(Dragable.gold<0)
+                        Dragable.gold=0;
             CloseDoor();
         } catch (NullReferenceException e) {
             is_ground = true;

@@ -24,6 +24,7 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     Animator anima;
     void Start()
     {
+        gold=300;
         hc=GameObject.Find("Heart").GetComponent<HeartController>();
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
     }
@@ -98,7 +99,6 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
             {
                 color = Color.red;
                 text = "Wrong";
-                //gold -= 10;
                 Slot.is_ground = true;
                 hc.liftCount--;
                 CloseDoor();

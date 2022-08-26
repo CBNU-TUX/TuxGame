@@ -13,8 +13,9 @@ public class HeartController : MonoBehaviour
     public Transform Heart;
     public int liftCount=3;
     GameObject[] trashs;
-
+    bool isFirst;
     void Start(){
+        isFirst=false;
         Heart=this.gameObject.GetComponentInChildren<Transform>();
         trashs=GameObject.FindGameObjectsWithTag("Trashs");
     }
@@ -26,6 +27,10 @@ public class HeartController : MonoBehaviour
         }
 
         if(liftCount<0){
+            if(!isFirst){
+                TotalGoldController.TotalGold+=Dragable.gold;
+                isFirst=true;
+            }
             SceneTransition();
         }
 

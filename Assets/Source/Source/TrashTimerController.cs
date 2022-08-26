@@ -8,7 +8,7 @@ public class TrashTimerController : MonoBehaviour
     [SerializeField]
     float LimitedTime;
     Text timer;
-
+    bool isFirst;
     [Tooltip("Transfer Scene && Player Position")]
     [SerializeField]
     string GoTo;
@@ -17,6 +17,7 @@ public class TrashTimerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isFirst=false;
        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
     }
 
@@ -30,6 +31,11 @@ public class TrashTimerController : MonoBehaviour
     {
         if (LimitedTime <= 0)
         {
+            if(!isFirst){
+                isFirst=true;
+                TotalGoldController.TotalGold+=Dragable.gold;
+            }
+            
             SceneTransition();
         }
         else

@@ -192,7 +192,7 @@ RectTransform:
   m_Children:
   - {fileID: 1114849012851688134}
   m_Father: {fileID: 1114849012465305737}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -583,8 +583,8 @@ RectTransform:
   - {fileID: 1114849013690893424}
   - {fileID: 1114849012183753875}
   - {fileID: 1114849013534245891}
-  - {fileID: 1114849012122987637}
   - {fileID: 1114849013545847317}
+  - {fileID: 1114849012122987637}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -602,7 +602,7 @@ Canvas:
   m_GameObject: {fileID: 1114849012465305717}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1007,7 +1007,7 @@ RectTransform:
   m_Children:
   - {fileID: 1114849012223828951}
   m_Father: {fileID: 1114849012465305737}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

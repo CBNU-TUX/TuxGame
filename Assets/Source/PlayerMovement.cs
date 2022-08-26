@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] float speed;
-    
     Animator animator;
     Rigidbody2D rigid;
     Vector2 move,direction;
