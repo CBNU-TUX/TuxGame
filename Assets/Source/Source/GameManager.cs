@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
             audio.Stop();
             
             if(async.progress<0.9f){
-                progressBar.value=Mathf.Lerp(progressBar.value,async.progress*1f, timer);
+                progressBar.value=Mathf.MoveTowards(progressBar.value,0.9f, timer);
                 if (progressBar.value >= async.progress)
                 {
                     timer = 0f;
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                progressBar.value = Mathf.Lerp(progressBar.value, 1f, timer);
+                progressBar.value =Mathf.MoveTowards(progressBar.value,1f, timer);
                 if (progressBar.value >= 0.99f)
                 {
                     async.allowSceneActivation = true;

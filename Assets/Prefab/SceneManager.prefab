@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4948889199840309944}
   m_Layer: 0
   m_Name: SceneManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   transferScene: 
   teleportPosition: {x: 0, y: 0, z: 0}
   progressBar: {fileID: 4948889200525054023}
-  audio: {fileID: 0}
+  audio: {fileID: 8890370140337049252, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
   Fade_img: {fileID: 4948889200244917758}
 --- !u!1 &4948889200244917756
 GameObject:
