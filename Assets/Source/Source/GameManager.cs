@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public float transitionTime = 1f;
@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviour
     string transferScene;
     [SerializeField]
     Vector3 teleportPosition = new Vector3(0, 0, 0);
-
+    [SerializeField]
+    Slider progressBar;
+    [SerializeField]
+    AudioSource audio;
     public void setTransfer(string transfer)
     {
         this.transferScene = transfer;
@@ -55,26 +58,55 @@ public class GameManager : MonoBehaviour
             ;
         }
     }
-    
+/*  
     public IEnumerator LoadMap(string transferMapName)
     {
         yield return new WaitForSeconds(0f);
         if (transferMapName != null)
         {
-            SceneManager.LoadScene(transferMapName);
+            SceneManager.LoadScene("LoadMap");
         }
     }
     public IEnumerator LoadMap()
     {
-        if (transferScene != null)
-        {
-            yield return new WaitForSeconds(0f);
-            SceneManager.LoadScene(transferScene);
+        yield return null;
+        Debug.Log("Load중");
+        transform.Find("UI").Find("ProgressBar").gameObject.SetActive(true);
+        AsyncOperation op=SceneManager.LoadSceneAsync(transferScene);
+        op.allowSceneActivation=false;
+        float timer=0.0f;
+        while(!op.isDone){
+            yield return null;
+            timer+=Time.deltaTime;
+            audio.Stop();
+            if(op.progress<0.9f){
+                progressBar.value=Mathf.Lerp(op.progress,1f, timer);
+                if (progressBar.value >= op.progress)
+                {
+                    timer = 0f;
+                }
+            }
+            else
+            {
+                progressBar.value = Mathf.Lerp(progressBar.value, 1f, timer); 
+                if (progressBar.value == 1.0f)
+                {
+                    op.allowSceneActivation = true;
+                    yield break;
+                }
+            }
         }
+        audio.Play();
+        //if (transferScene != null)
+        //{
+        //    yield return new WaitForSeconds(0f);
+        //    SceneManager.LoadScene(transferScene);
+        //}
     }
-
-    virtual public IEnumerator FadeOut(Vector3 teleportPosition = default(Vector3))
+*/
+    virtual public void FadeOut(Vector3 teleportPosition = default(Vector3))
     {
+        transform.Find("UI").Find("ProgressBar").gameObject.SetActive(true);
         if(transferScene!="SeaZone"){
             if (teleportPosition != default(Vector3)) // 0, 0, 0
                 this.teleportPosition = teleportPosition;
@@ -84,10 +116,10 @@ public class GameManager : MonoBehaviour
         
         transitionAnimator.SetBool("FadeOut", true);
         transitionAnimator.SetBool("FadeIn", false);
-        yield return new WaitForSeconds(0.5f);
-        yield return new WaitForSeconds(transitionTime);
+        //yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(transitionTime);
         StartCoroutine(AsyncLoadMap());
-        yield return null;
+        
     }
 
     virtual public IEnumerator FadeIn()
@@ -114,15 +146,34 @@ public class GameManager : MonoBehaviour
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(transferScene);
         async.allowSceneActivation = false;
+        float timer=0.0f;
+
         while (!async.isDone)
         {
-            if (async.progress >= 0.9f)
-            {
-                async.allowSceneActivation = true;
-                StartCoroutine(FadeIn());
-            }
             yield return null;
+            timer+=Time.deltaTime;
+            audio.Stop();
+            if(async.progress<0.9f){
+                progressBar.value=Mathf.Lerp(async.progress,1f, timer);
+                if (progressBar.value >= async.progress)
+                {
+                    timer = 0f;
+                }
+            }
+            else
+            {
+                progressBar.value = Mathf.Lerp(progressBar.value, 1f, timer);
+                if (progressBar.value >= 0.99f)
+                {
+                    async.allowSceneActivation = true;
+                    audio.Play();
+                    break;
+                }
+            }
         }
+        Debug.Log("???????????");
+        StartCoroutine(FadeIn());
+        transform.Find("UI").Find("ProgressBar").gameObject.SetActive(false);
     }
 
     public Animator GetTransitionAnimator()

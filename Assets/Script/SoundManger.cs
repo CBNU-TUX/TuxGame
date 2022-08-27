@@ -13,16 +13,30 @@ public class SoundManger : MonoBehaviour
 {
     public static SoundManger instance;
 
-    [Header("»ç¿îµå µî·Ï")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½")]
     [SerializeField] Sound[] bgmsounds;
     [SerializeField] Sound[] sfxsounds;
 
-    [Header("ºê±İ ÇÃ·¹ÀÌ¾î")]
+    [Header("ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½")]
     [SerializeField] AudioSource bgmplayers;
 
-    [Header("È¿°úÀ½ ÇÃ·¹ÀÌ¾î")]
+    [Header("È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½")]
     [SerializeField] AudioSource[] sfxplayers;
     // Start is called before the first frame update
+     private void Awake()
+    {
+
+        GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
+        if (sounds.Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        } // ì¤‘ë³µëœ Player ì˜¤ë¸Œì íŠ¸ê°€ ìˆì„ ê²½ìš° ì˜¤ë¸Œì íŠ¸ íŒŒê´´
+
+    }
     void Start()
     {
         instance = this;
@@ -31,6 +45,7 @@ public class SoundManger : MonoBehaviour
 
     public void platSE(string _soundName)
     {
+        Debug.Log(_soundName);
         for (int i = 0; i < sfxsounds.Length; i++)
         {
             if (_soundName == sfxsounds[i].soundname)

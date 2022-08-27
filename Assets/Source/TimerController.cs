@@ -54,6 +54,6 @@ public class TimerController : MonoBehaviour
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
-        StartCoroutine(gameManager.FadeOut(teleportPosition));
+        //StartCoroutine(gameManager.FadeOut(teleportPosition));
     }
 }

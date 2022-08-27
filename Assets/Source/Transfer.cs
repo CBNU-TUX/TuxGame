@@ -9,6 +9,9 @@ public class Transfer : MonoBehaviour
     string GoTo;
     [SerializeField]
     Vector3 teleportPosition = new Vector3(0, 0, 0);
+
+    //When Moving the Scene, Stop the audio.
+
     //�̵��� ��ġ�� ���̸�
 
     GameManager gameManager;
@@ -45,7 +48,7 @@ public class Transfer : MonoBehaviour
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
-        StartCoroutine(gameManager.FadeOut(teleportPosition));
+        gameManager.FadeOut(teleportPosition);
         GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
     }
 }
