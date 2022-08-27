@@ -48,7 +48,7 @@ public class Transfer : MonoBehaviour
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
-        gameManager.FadeOut(teleportPosition);
+        gameManager.ChangeScene(GoTo,teleportPosition);
         GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
     }
 }

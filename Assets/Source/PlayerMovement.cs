@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //animator.SetBool("isIdle",false);
-
+        try{
+            
         move.x=Input.GetAxisRaw("Horizontal");
         move.y=Input.GetAxisRaw("Vertical");
 
@@ -62,6 +63,9 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetFloat("MoveVertically", move.y);
             }
 
+        }catch(NullReferenceException e){
+            ;
+        }
     }
 
 
