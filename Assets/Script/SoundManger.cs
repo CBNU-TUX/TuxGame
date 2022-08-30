@@ -23,20 +23,20 @@ public class SoundManger : MonoBehaviour
     [Header("ȿ���� �÷��̾�")]
     [SerializeField] AudioSource[] sfxplayers;
     // Start is called before the first frame update
-     private void Awake()
-    {
+    // private void Awake()
+    //{
 
-        GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
-        if (sounds.Length == 1)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        } // 중복된 Player 오브젝트가 있을 경우 오브젝트 파괴
+    //    GameObject[] sounds = GameObject.FindGameObjectsWithTag("Sound");
+    //    if (sounds.Length == 1)
+    //    {
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    } // 중복된 Player 오브젝트가 있을 경우 오브젝트 파괴
 
-    }
+    //}
     void Start()
     {
         instance = this;

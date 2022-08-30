@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        try{
+        try
+        {
             if (transferScene != null)
             {
                 //���� �÷��̾ ����. ���߿� �̸� Ǯ���ָ�ȴ�.
@@ -68,7 +69,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy() {
+    private void OnDestroy() 
+    {
         SceneManager.sceneLoaded -= OnSceneLoaded; // 이벤트에서 제거*
     }
 

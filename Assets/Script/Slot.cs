@@ -39,7 +39,7 @@ public class Slot : MonoBehaviour, IDropHandler
                     eventData.pointerDrag.GetComponent<RectTransform>().gameObject.SetActive(false);
                     RandomSpawn.spawn = true;
                     Dragable.gold+=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
-                    is_Right = true;
+                    SoundManger.instance.platSE("correct");
                     is_ground = false;
                 }
                 else if (eventData.pointerCurrentRaycast.gameObject.name == image.GetChild(0).name && eventData.pointerDrag.GetComponent<TrashInfo>().getType() != image.name)
@@ -49,8 +49,12 @@ public class Slot : MonoBehaviour, IDropHandler
                     is_Right = false;
                     is_ground = false;
                     if(Dragable.gold>=0)
-                        Dragable.gold-=eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
-                }else{
+                    {
+                        Dragable.gold -= eventData.pointerDrag.GetComponent<TrashInfo>().GetCoin();
+                        SoundManger.instance.platSE("wrong");
+                    }
+                }
+                else{
                     Money.is_first = false;
                     is_Right = false;
                     is_ground = false;
