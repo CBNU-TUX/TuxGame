@@ -379,9 +379,15 @@ public class Book : MonoBehaviour {
     void Flip()
     {
         if (mode == FlipMode.RightToLeft)
+        {
             currentPage += 2;
+            SoundManger.instance.platSE("flip");
+        }
         else
+        {
             currentPage -= 2;
+            SoundManger.instance.platSE("flip");
+        }
         LeftNext.transform.SetParent(BookPanel.transform, true);
         Left.transform.SetParent(BookPanel.transform, true);
         LeftNext.transform.SetParent(BookPanel.transform, true);

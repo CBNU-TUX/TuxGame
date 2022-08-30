@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator=this.GetComponent<Animator>();
         rigid=this.GetComponent<Rigidbody2D>();
-        SceneName=SceneManager.GetActiveScene().name;
+       
     }
 
   private void Awake()
@@ -39,8 +39,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SceneName = SceneManager.GetActiveScene().name;
         //animator.SetBool("isIdle",false);
-        try{
+        try
+        {
             
         move.x=Input.GetAxisRaw("Horizontal");
         move.y=Input.GetAxisRaw("Vertical");

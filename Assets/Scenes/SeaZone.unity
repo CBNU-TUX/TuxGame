@@ -4295,6 +4295,14 @@ PrefabInstance:
       propertyPath: bgmsounds.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: f926c587880ed694a8ec695ff62f52f0, type: 3}
+    - target: {fileID: 8890370140337049259, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
+      propertyPath: sfxsounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f7689e6cbdc32cc429deaea0b9da9e3c, type: 3}
+    - target: {fileID: 8890370140337049259, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
+      propertyPath: sfxsounds.Array.data[0].soundname
+      value: net
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
 --- !u!1001 &978495472
@@ -4986,7 +4994,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0d5c8234fa336a0419376c3b3683b3db, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0

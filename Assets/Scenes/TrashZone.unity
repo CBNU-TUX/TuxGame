@@ -3201,8 +3201,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5643,12 +5643,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8890370140337049252, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890370140337049252, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
       propertyPath: m_Volume
-      value: 0.4
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8890370140337049253, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
       propertyPath: m_Name
       value: Soundmanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890370140337049257, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
+      propertyPath: m_Volume
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8890370140337049258, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
       propertyPath: m_RootOrder
@@ -5717,7 +5725,7 @@ PrefabInstance:
     - target: {fileID: 8890370140337049259, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
       propertyPath: sfxsounds.Array.data[1].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 788afd416bfcfca46977213866d32415, type: 3}
+      objectReference: {fileID: 8300000, guid: 6dcf5bb7b701e4c46a66ba4d5f95ab8c, type: 3}
     - target: {fileID: 8890370140337049259, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
       propertyPath: sfxsounds.Array.data[0].soundname
       value: correct

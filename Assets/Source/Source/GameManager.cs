@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     PlayerMovement player;
     /*��ġ ������ ���� ����, �̵��� ��, ��ġ ����*/
     [SerializeField]
-    string transferScene;
+    public string transferScene;
     [SerializeField]
     Vector3 teleportPosition = new Vector3(0, 0, 0);
     [SerializeField]
@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (transferScene != null)
+        //    transferScene = SceneManager.GetActiveScene().name;
         try
         {
             if (transferScene != null)
