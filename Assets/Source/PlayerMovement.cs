@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using System;
 public class PlayerMovement : MonoBehaviour
@@ -10,11 +11,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigid;
     Vector2 move,direction;
     public string CurrentMapName;
+    public string SceneName;
     // Start is called before the first frame update
     void Start()
     {
         animator=this.GetComponent<Animator>();
         rigid=this.GetComponent<Rigidbody2D>();
+        SceneName=SceneManager.GetActiveScene().name;
     }
 
   private void Awake()
@@ -48,11 +51,11 @@ public class PlayerMovement : MonoBehaviour
         if(move.sqrMagnitude>0){
             direction.x=Input.GetAxisRaw("Horizontal");
             direction.y=Input.GetAxisRaw("Vertical");
-            if (CurrentMapName == "HomeZone")
+            if (SceneName == "HomeZone")
             {
                 SoundManger.instance.platSE("WalkWood");
             }
-            if (CurrentMapName=="MainZone")
+            if (SceneName == "MainZone")
             {
                 SoundManger.instance.platSE("WalkDirt");
             }
