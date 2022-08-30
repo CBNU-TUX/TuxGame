@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class StartController : MonoBehaviour
 {
+    GameManager gameManager;
+    [SerializeField]
+    string GoTo;
+
     public void OnClick(){
         Debug.Log("Go Start");
-
-        SceneManager.LoadScene("HomeZone");
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager.setTransfer(GoTo);
+        gameManager.ChangeScene(GoTo);
     }
 }

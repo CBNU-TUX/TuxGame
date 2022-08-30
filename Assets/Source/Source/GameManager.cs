@@ -20,16 +20,22 @@ public class GameManager : MonoBehaviour
     Slider progressBar;
     [SerializeField]
     AudioSource audio;
+    [SerializeField]
+    Text Loading;
 
     public CanvasGroup Fade_img;
     float fadeDuration=2f;
 
+    bool isCheck=false;
+    AsyncOperation async;
+    
     public void setTransfer(string transfer)
     {
         this.transferScene = transfer;
     }
     private void Awake()
-    {
+    {   
+        
         GameObject[] gameManagers = GameObject.FindGameObjectsWithTag("GameManager");
         //���̵��� �����ϴ� ������Ʈ�� ���� �����ϱ� ����.
         if (gameManagers.Length == 1)
@@ -81,68 +87,92 @@ public class GameManager : MonoBehaviour
     {
         Fade_img.DOFade(0, fadeDuration)
         .OnStart(()=>{
-            progressBar.gameObject.SetActive(false);
+            audio.Stop();
         })
         .OnComplete(()=>{
-             Fade_img.blocksRaycasts = false;
+            progressBar.gameObject.SetActive(false);
+            audio.Play();
+            Fade_img.blocksRaycasts = false;
         });
-        audio.Play();
+        
     }
 
-    virtual public void ChangeScene(string transferScene,Vector3 teleportPosition = default(Vector3)){
+    virtual public void ChangeScene(string transferScene){
         try{
-            
             Fade_img.DOFade(1,fadeDuration).OnStart(()=>{
                 Fade_img.blocksRaycasts=true;
             })
             .OnComplete(()=>{
-                    if(transferScene!="SeaZone"){
-                    if (teleportPosition != default(Vector3)) // 0, 0, 0
-                        this.teleportPosition = teleportPosition;
-                }else{
-                    player.transform.position= new Vector3(0, 0, 0);
-                }
                 StartCoroutine("AsyncLoadMap",transferScene);
             });   
         }catch(NullReferenceException e){
 
         }
     }
+
+    virtual public void ChangeScene(string transferScene,Vector3 teleportPosition = default(Vector3)){
+        try{
+            Fade_img.DOFade(1,fadeDuration).OnStart(()=>{
+                Fade_img.blocksRaycasts=true;
+            })
+            .OnComplete(()=>{
+                    if(transferScene!="SeaZone"){
+                       this.teleportPosition = teleportPosition;
+                    }else{
+                        player.transform.position= new Vector3(0, 0, 0);
+                    }
+                StartCoroutine("AsyncLoadMap",transferScene);
+            });   
+        }catch(NullReferenceException e){
+
+        }
+    }
+    
     virtual public IEnumerator AsyncLoadMap()
     {
-        progressBar.gameObject.SetActive(true);
+        if(!isCheck){
 
-        AsyncOperation async = SceneManager.LoadSceneAsync(transferScene);
-        async.allowSceneActivation = false;
+            isCheck=true;
+        
+            progressBar.gameObject.SetActive(true);
 
-        float timer=0.0f;
+            async = SceneManager.LoadSceneAsync(transferScene);
+            async.allowSceneActivation = false;
 
-        while (!async.isDone)
-        {
-            yield return null;
+            float timer=0.0f;
 
-            timer+=Time.deltaTime;
-            audio.Stop();
-            
-            if(async.progress<0.9f){
-                progressBar.value=Mathf.MoveTowards(progressBar.value,0.9f, timer);
-                if (progressBar.value >= async.progress)
-                {
-                    timer = 0f;
-                }
-            }
-            else
+            while (!async.isDone)
             {
-                progressBar.value =Mathf.MoveTowards(progressBar.value,1f, timer);
-                if (progressBar.value >= 0.99f)
+                yield return null;
+
+                timer+=Time.deltaTime;
+                
+                
+                if(progressBar.value<0.9f){
+                    
+                    progressBar.value= Mathf.MoveTowards(progressBar.value,0.9f,timer);
+
+                    if (progressBar.value >= async.progress)
+                    {
+                        timer = 0f;
+                    }
+                }else
                 {
-                    async.allowSceneActivation = true;
-                    break;
+                    Loading.text="SpaceBar...";
+                }
+                
+                if(async.progress>=0.9f){
+                    progressBar.value= Mathf.MoveTowards(progressBar.value,1f,timer);
+                }
+
+                if(Input.GetKey(KeyCode.Space)&&progressBar.value>=1f&&async.progress>=0.9f){
+                        async.allowSceneActivation = true;
+                        isCheck=false;
+                        break;
                 }
             }
+            async.allowSceneActivation = true;
         }
-        async.allowSceneActivation = true;
-    
     }
 
     public Animator GetTransitionAnimator()
