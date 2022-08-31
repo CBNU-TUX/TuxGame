@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 5110626922470003348}
   - component: {fileID: 5110626922470003337}
   - component: {fileID: 8296712595362703197}
-  - component: {fileID: 56572238}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -230,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   CurrentMapName: 
+  SceneName: 
 --- !u!70 &5110626922470003337
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -258,11 +258,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdad142a54e2f40898ed1da56d4428c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!81 &56572238
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5110626922470003347}
-  m_Enabled: 1

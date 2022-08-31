@@ -53,11 +53,11 @@ public class PlayerMovement : MonoBehaviour
         if(move.sqrMagnitude>0){
             direction.x=Input.GetAxisRaw("Horizontal");
             direction.y=Input.GetAxisRaw("Vertical");
-            if (SceneName == "HomeZone")
+            if (SceneName == "HomeZone") 
             {
                 SoundManger.instance.platSE("WalkWood");
             }
-            if (SceneName == "MainZone")
+            if (SceneName == "MainZone" || SceneName == "TreeZone")
             {
                 SoundManger.instance.platSE("WalkDirt");
             }
