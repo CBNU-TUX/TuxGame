@@ -15164,6 +15164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoTo: HomeZone
+  teleportPosition: {x: 5, y: 5, z: 0}
 --- !u!1 &687849666
 GameObject:
   m_ObjectHideFlags: 0
@@ -25051,7 +25052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a821849c59dd3494da6f643f94828d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 21300000, guid: 716513855cfb4448cb118476548498e2, type: 3}
 --- !u!1001 &1498685078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25151,6 +25151,30 @@ PrefabInstance:
       propertyPath: Loading
       value: 
       objectReference: {fileID: 253029150}
+    - target: {fileID: 4948889199840309944, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
+      propertyPath: img.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948889199840309944, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
+      propertyPath: img.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: b64743805b8c848b28f7c9d34fa15658, type: 3}
+    - target: {fileID: 4948889199840309944, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
+      propertyPath: img.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0fd6a378f03284b89ae246ffd0a48314, type: 3}
+    - target: {fileID: 4948889199840309944, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
+      propertyPath: img.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 63160dd8200d84a2196393647bc4c1c9, type: 3}
+    - target: {fileID: 4948889199840309944, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
+      propertyPath: img.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: d5a11229e3c7844ea82c8a5dc02859c2, type: 3}
+    - target: {fileID: 4948889199840309944, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
+      propertyPath: img.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 716513855cfb4448cb118476548498e2, type: 3}
     - target: {fileID: 4948889199840309951, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
       propertyPath: m_Name
       value: SceneManager

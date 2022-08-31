@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     AudioSource audio;
     [SerializeField]
     Text Loading;
+    [SerializeField]
+    Sprite[] img;
 
     public CanvasGroup Fade_img;
     float fadeDuration=2f;
@@ -49,9 +51,6 @@ public class GameManager : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded; // 이벤트에 추가
 
-        //GameObject transition = transform.Find("UI").Find("Transition").gameObject;
-        //transition.SetActive(true);
-        //���� ȭ���� ��� �ڿ��������� ����
     }
     // Start is called before the first frame update
     void Start()
@@ -63,14 +62,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (transferScene != null)
-        //    transferScene = SceneManager.GetActiveScene().name;
         try
         {
             if (transferScene != null)
             {
-                //���� �÷��̾ ����. ���߿� �̸� Ǯ���ָ�ȴ�.
-                player.CurrentMapName = transferScene;
+                player = GameObject.FindObjectOfType<PlayerMovement>();
+                if(player!=null){
+                    player.CurrentMapName = transferScene;
+                }
+                
             }
         }catch(NullReferenceException e){
             ;
@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy() 
     {
+        isCheck=false;
         SceneManager.sceneLoaded -= OnSceneLoaded; // 이벤트에서 제거*
     }
 
@@ -88,10 +89,15 @@ public class GameManager : MonoBehaviour
         Fade_img.DOFade(0, fadeDuration)
         .OnStart(()=>{
             audio.Stop();
+            if(player!=null){
+                player.transform.position = teleportPosition;
+                Debug.Log(teleportPosition+" "+player.transform.position); 
+            }  
         })
         .OnComplete(()=>{
             progressBar.gameObject.SetActive(false);
             audio.Play();
+            isCheck=false;
             Fade_img.blocksRaycasts = false;
         });
         
@@ -99,11 +105,26 @@ public class GameManager : MonoBehaviour
 
     virtual public void ChangeScene(string transferScene){
         try{
+            if(transferScene=="TreeZone"){
+                Fade_img.GetComponent<Image>().sprite=img[0];
+            }else if(transferScene=="TrashZone"){
+                Fade_img.GetComponent<Image>().sprite=img[1];    
+            }else if(transferScene=="SeaZone"){
+                Fade_img.GetComponent<Image>().sprite=img[2];
+            }else if(transferScene=="FactoryZone"){
+                Fade_img.GetComponent<Image>().sprite=img[3];
+            }else{
+                Fade_img.GetComponent<Image>().sprite=img[4];
+            }
+
             Fade_img.DOFade(1,fadeDuration).OnStart(()=>{
                 Fade_img.blocksRaycasts=true;
             })
             .OnComplete(()=>{
-                StartCoroutine("AsyncLoadMap",transferScene);
+                if(!isCheck){
+                    isCheck=true;
+                    StartCoroutine("AsyncLoadMap",transferScene);
+                }
             });   
         }catch(NullReferenceException e){
 
@@ -111,17 +132,36 @@ public class GameManager : MonoBehaviour
     }
 
     virtual public void ChangeScene(string transferScene,Vector3 teleportPosition = default(Vector3)){
+
         try{
+
+            if(transferScene=="TreeZone"){
+                Fade_img.GetComponent<Image>().sprite=img[0];
+            }else if(transferScene=="TrashZone"){
+                Fade_img.GetComponent<Image>().sprite=img[1];    
+            }else if(transferScene=="SeaZone"){
+                Fade_img.GetComponent<Image>().sprite=img[2];
+            }else if(transferScene=="FactoryZone"){
+                Fade_img.GetComponent<Image>().sprite=img[3];
+            }else{
+                Fade_img.GetComponent<Image>().sprite=img[4];
+            }
+
             Fade_img.DOFade(1,fadeDuration).OnStart(()=>{
                 Fade_img.blocksRaycasts=true;
             })
             .OnComplete(()=>{
-                    if(transferScene!="SeaZone"){
-                       this.teleportPosition = teleportPosition;
-                    }else{
-                        player.transform.position= new Vector3(0, 0, 0);
-                    }
-                StartCoroutine("AsyncLoadMap",transferScene);
+                if(transferScene!="SeaZone"){
+                   if(player!=null)
+                        player.transform.position = teleportPosition;
+                   this.teleportPosition = teleportPosition;
+                }else{
+                    player.transform.position= new Vector3(0, 0, 0);
+                }
+                if(!isCheck){
+                    isCheck=true;
+                    StartCoroutine("AsyncLoadMap",transferScene);
+                }
             });   
         }catch(NullReferenceException e){
 
@@ -130,19 +170,16 @@ public class GameManager : MonoBehaviour
     
     virtual public IEnumerator AsyncLoadMap()
     {
-        if(!isCheck){
-
-            isCheck=true;
         
-            progressBar.gameObject.SetActive(true);
+        progressBar.gameObject.SetActive(true);
 
-            async = SceneManager.LoadSceneAsync(transferScene);
-            async.allowSceneActivation = false;
+        async = SceneManager.LoadSceneAsync(transferScene);
+        async.allowSceneActivation = false;
 
-            float timer=0.0f;
+        float timer=0.0f;
 
-            while (!async.isDone)
-            {
+        while (!async.isDone)
+        {
                 yield return null;
 
                 timer+=Time.deltaTime;
@@ -166,18 +203,12 @@ public class GameManager : MonoBehaviour
                 }
 
                 if(Input.GetKey(KeyCode.Space)&&progressBar.value>=1f&&async.progress>=0.9f){
-                        async.allowSceneActivation = true;
-                        isCheck=false;
-                        break;
-                }
+                    async.allowSceneActivation = true;
+                    break;
             }
-            async.allowSceneActivation = true;
         }
-    }
-
-    public Animator GetTransitionAnimator()
-    {
-        return GameObject.Find("GameManager").GetComponent<Animator>();
+        
+        async.allowSceneActivation = true;
     }
 
 

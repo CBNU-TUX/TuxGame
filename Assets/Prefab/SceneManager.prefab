@@ -289,6 +289,8 @@ MonoBehaviour:
   teleportPosition: {x: 0, y: 0, z: 0}
   progressBar: {fileID: 4948889200525054023}
   audio: {fileID: 8890370140337049252, guid: 5e9b4659a1ec59749b2218464444ac7d, type: 3}
+  Loading: {fileID: 8193738468049194205}
+  img: []
   Fade_img: {fileID: 4948889200244917758}
 --- !u!1 &4948889200244917756
 GameObject:
@@ -302,7 +304,6 @@ GameObject:
   - component: {fileID: 4948889200244917752}
   - component: {fileID: 4948889200244917759}
   - component: {fileID: 4948889200244917758}
-  - component: {fileID: 2814899150288673760}
   m_Layer: 0
   m_Name: Fadeimg
   m_TagString: Untagged
@@ -380,19 +381,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &2814899150288673760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4948889200244917756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a821849c59dd3494da6f643f94828d3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sr: {fileID: 21300000, guid: 716513855cfb4448cb118476548498e2, type: 3}
 --- !u!1 &4948889200397240554
 GameObject:
   m_ObjectHideFlags: 0

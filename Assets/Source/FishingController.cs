@@ -63,6 +63,6 @@ public class FishingController : MonoBehaviour
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
-        //StartCoroutine(gameManager.FadeOut(teleportPosition));
+        gameManager.ChangeScene(GoTo,teleportPosition);
     }
 }
