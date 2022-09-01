@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
                 if(player!=null){
                     player.CurrentMapName = transferScene;
                 }
-                
+                audio =GameObject.FindObjectOfType<SoundManager>().GetComponent<AudioSource>();
             }
         }catch(NullReferenceException e){
             ;
@@ -111,10 +111,12 @@ public class GameManager : MonoBehaviour
                 Fade_img.GetComponent<Image>().sprite=img[1];    
             }else if(transferScene=="SeaZone"){
                 Fade_img.GetComponent<Image>().sprite=img[2];
-            }else if(transferScene=="FactoryZone"){
+            }else if(transferScene=="FactoryGameZone"){
                 Fade_img.GetComponent<Image>().sprite=img[3];
-            }else{
+            }else if(transferScene=="HomeZone"){
                 Fade_img.GetComponent<Image>().sprite=img[4];
+            }else{
+                Fade_img.GetComponent<Image>().sprite=img[5];    
             }
 
             Fade_img.DOFade(1,fadeDuration).OnStart(()=>{
@@ -141,11 +143,15 @@ public class GameManager : MonoBehaviour
                 Fade_img.GetComponent<Image>().sprite=img[1];    
             }else if(transferScene=="SeaZone"){
                 Fade_img.GetComponent<Image>().sprite=img[2];
-            }else if(transferScene=="FactoryZone"){
+            }else if(transferScene=="FactoryGameZone"){
                 Fade_img.GetComponent<Image>().sprite=img[3];
-            }else{
+            }else if(transferScene=="HomeZone"){
                 Fade_img.GetComponent<Image>().sprite=img[4];
+            }else{
+                Fade_img.GetComponent<Image>().sprite=img[5];    
             }
+
+            Debug.Log(transferScene);
 
             Fade_img.DOFade(1,fadeDuration).OnStart(()=>{
                 Fade_img.blocksRaycasts=true;

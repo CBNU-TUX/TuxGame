@@ -9,9 +9,9 @@ public class Sound
     public AudioClip clip;
 }
 
-public class SoundManger : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
-    public static SoundManger instance;
+    public static SoundManager instance;
 
     [Header("���� ���")]
     [SerializeField] Sound[] bgmsounds;

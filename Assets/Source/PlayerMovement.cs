@@ -55,11 +55,11 @@ public class PlayerMovement : MonoBehaviour
             direction.y=Input.GetAxisRaw("Vertical");
             if (SceneName == "HomeZone") 
             {
-                SoundManger.instance.platSE("WalkWood");
+                SoundManager.instance.platSE("WalkWood");
             }
             if (SceneName == "MainZone" || SceneName == "TreeZone")
             {
-                SoundManger.instance.platSE("WalkDirt");
+                SoundManager.instance.platSE("WalkDirt");
             }
         }
          if (animator.GetFloat("MoveSpeed") > 0)
