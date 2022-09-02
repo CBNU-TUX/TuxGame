@@ -14,7 +14,6 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
 
     [SerializeField] private Canvas canvas;
     
-    HeartController hc;
     public static bool is_Close=false;
     public RectTransform rectTransform;
     private Vector3 loadedPosition;
@@ -24,8 +23,6 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     Animator anima;
     void Start()
     {
-        gold=300;
-        hc=GameObject.Find("Heart").GetComponent<HeartController>();
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
     }
     private void Awake()
@@ -34,6 +31,10 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
         rectTransform = GetComponent<RectTransform>();
         loadedPosition = rectTransform.anchoredPosition;
         canvasGroup = GetComponent<CanvasGroup>();
+    }
+    void Update()
+    {
+        won.text = gold.ToString();
     }
     // Start is called before the first frame update
 
@@ -100,7 +101,6 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
                 color = Color.red;
                 text = "Wrong";
                 Slot.is_ground = true;
-                hc.liftCount--;
                 CloseDoor();
                 //SpawnHUDText(text, color);
             }

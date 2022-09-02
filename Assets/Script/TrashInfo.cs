@@ -18,7 +18,8 @@ public class TrashInfo : MonoBehaviour
         return type;
     }
 
-    public int GetCoin(){
+    public int GetCoin()
+    {
         return coin;
     }
 

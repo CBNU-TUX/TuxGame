@@ -4866,7 +4866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: box
   type: PaperBox
-  coin: 0
+  coin: 10
 --- !u!114 &1735134520
 MonoBehaviour:
   m_ObjectHideFlags: 0
