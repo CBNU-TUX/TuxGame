@@ -31,6 +31,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         try{
+
             if(Player!=null&&SceneManager.GetActiveScene().name!="SeaZone")
                 this.transform.position = new Vector3(Player.transform.position.x , Player.transform.position.y,-50);
             

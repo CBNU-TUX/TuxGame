@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] float speed;
+    [SerializeField]
+    GameObject sleepPlayer;
+
     Animator animator;
     Rigidbody2D rigid;
     Vector2 move,direction;
@@ -17,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
     {
         animator=this.GetComponent<Animator>();
         rigid=this.GetComponent<Rigidbody2D>();
-       
+        this.GetComponent<SpriteRenderer>().color=new Color(1,1,1,0);
+        this.GetComponent<CapsuleCollider2D>().enabled=false;
     }
 
   private void Awake()
@@ -51,6 +55,11 @@ public class PlayerMovement : MonoBehaviour
         animator.speed = speed / 4; // 이동 속도의 4분의 1만큼의 빠르기로 애니메이션 재생
 
         if(move.sqrMagnitude>0){
+            
+            if(sleepPlayer!=null)
+                sleepPlayer.gameObject.SetActive(false);
+            this.GetComponent<SpriteRenderer>().color=new Color(1,1,1,1);
+            this.GetComponent<CapsuleCollider2D>().enabled=true;
             direction.x=Input.GetAxisRaw("Horizontal");
             direction.y=Input.GetAxisRaw("Vertical");
             if (SceneName == "HomeZone") 

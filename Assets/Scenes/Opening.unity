@@ -15164,7 +15164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoTo: HomeZone
-  teleportPosition: {x: 5, y: 5, z: 0}
+  teleportPosition: {x: 10.28, y: 7.74, z: 0}
 --- !u!1 &687849666
 GameObject:
   m_ObjectHideFlags: 0
