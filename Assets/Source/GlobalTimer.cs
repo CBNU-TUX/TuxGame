@@ -22,10 +22,15 @@ public class GlobalTimer : MonoBehaviour
     [SerializeField]
     Sprite img;
 
+    [SerializeField]
+    string GoTo;
+    [SerializeField]
+    Vector3 teleportPosition = new Vector3(0, 0, 0);
+
     private float timerSpeed = 1.0f; //초 분위
     public static float timer = 0f;
     string[] days = { "일", "이", "삼", "사", "오" };
-
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,24 +38,24 @@ public class GlobalTimer : MonoBehaviour
         secText = GameObject.FindGameObjectWithTag("SS").GetComponent<Text>();
         minText.text = ((int)min).ToString();
         secText.text = ((int)min).ToString();
-
-        Invoke("evening", 180f);
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        Invoke("evening", 120f);
     }
 
     void evening()
     {
         light.color = new Color(233f / 255f, 210f / 255f, 134f / 255f, 134f / 255f);
-        Invoke("night", 180f);
+        Invoke("night", 120f);
     }
     void night()
     {
         light.color = new Color(159f / 255f, 159f / 255f, 159f / 255f, 134f / 255f);
-        Invoke("morning", 240f);
+        Invoke("morning", 220f);
     }
     void morning()
     {
         light.color = new Color(1f, 1f, 1f, 134f / 255f);
-        Invoke("evening", 180f);
+        Invoke("evening", 120f);
     }
 
     void Update()
@@ -92,11 +97,13 @@ public class GlobalTimer : MonoBehaviour
         }catch(NullReferenceException e){
                 ;
         }
-        //
-        if (min >= 10)
+        //10을 1로 바꿈
+        if (min >= 7)
         {
-            min -= 10;
+            Reset();
+            min = 0;
             day += 1;
+            SceneTransition();
         }
 
         if ((min / 10) == 0)
@@ -126,4 +133,11 @@ public class GlobalTimer : MonoBehaviour
         timer = 0;
     }
 
+    public void SceneTransition()
+    {
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager.setTransfer(GoTo);
+        gameManager.ChangeScene(GoTo,teleportPosition);
+        GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
+    }
 }

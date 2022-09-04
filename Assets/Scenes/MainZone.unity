@@ -102237,7 +102237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4948889199840309951, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d7c47c64ee24d5299e377fc02a89d5, type: 3}
@@ -110200,6 +110200,18 @@ PrefabInstance:
     - target: {fileID: 1114849012465305737, guid: 1bc4c75d8f29b41f58ae6056b0214830, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114849013690893428, guid: 1bc4c75d8f29b41f58ae6056b0214830, type: 3}
+      propertyPath: GoTo
+      value: HomeZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114849013690893428, guid: 1bc4c75d8f29b41f58ae6056b0214830, type: 3}
+      propertyPath: teleportPosition.x
+      value: 10.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114849013690893428, guid: 1bc4c75d8f29b41f58ae6056b0214830, type: 3}
+      propertyPath: teleportPosition.y
+      value: 7.74
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bc4c75d8f29b41f58ae6056b0214830, type: 3}

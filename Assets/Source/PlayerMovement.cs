@@ -20,10 +20,25 @@ public class PlayerMovement : MonoBehaviour
     {
         animator=this.GetComponent<Animator>();
         rigid=this.GetComponent<Rigidbody2D>();
+    }
+
+  void OnEnable(){
+    SceneManager.sceneLoaded+=OnSceneLoaded;
+  }
+
+  void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+  {
+    Debug.Log("PlayerScript "+scene.name);
+    if(scene.name=="HomeZone"){
         this.GetComponent<SpriteRenderer>().color=new Color(1,1,1,0);
         this.GetComponent<CapsuleCollider2D>().enabled=false;
     }
+    sleepPlayer=GameObject.FindGameObjectWithTag("SleepPlayer");
+  }
 
+  void OnDisable(){
+    SceneManager.sceneLoaded-=OnSceneLoaded;
+  }
   private void Awake()
     {
 
@@ -58,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             
             if(sleepPlayer!=null)
                 sleepPlayer.gameObject.SetActive(false);
+
             this.GetComponent<SpriteRenderer>().color=new Color(1,1,1,1);
             this.GetComponent<CapsuleCollider2D>().enabled=true;
             direction.x=Input.GetAxisRaw("Horizontal");
