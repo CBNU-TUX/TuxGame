@@ -23,7 +23,7 @@ public class Boat_Moving : MonoBehaviour
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
         }
-
+         GlobalTimer.timer+=Time.deltaTime;
     }
 
     void FixedUpdate()

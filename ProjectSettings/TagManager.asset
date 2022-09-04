@@ -13,6 +13,10 @@ TagManager:
   - SS
   - Trashs
   - Net
+  - Sign
+  - Information
+  - Sound
+  - SleepPlayer
   layers:
   - Default
   - TransparentFX
@@ -35,7 +39,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - MiniMap
   - 
   - 
   - 
@@ -61,4 +65,13 @@ TagManager:
     locked: 0
   - name: Sea
     uniqueID: 1425871931
+    locked: 0
+  - name: SeaObject
+    uniqueID: 2280710229
+    locked: 0
+  - name: UI
+    uniqueID: 2804423513
+    locked: 0
+  - name: MiniMap
+    uniqueID: 21082229
     locked: 0

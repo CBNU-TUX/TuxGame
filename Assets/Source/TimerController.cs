@@ -11,17 +11,17 @@ public class TimerController : MonoBehaviour
     [SerializeField]
     float LimitedTime;
     Text timer;
-    [SerializeField]
-    Text Result;
 
     [Tooltip("Transfer Scene && Player Position")]
     [SerializeField]
     string GoTo;
     [SerializeField]
     Vector3 teleportPosition = new Vector3(0, 0, 0);
+    bool isFirst;
     // Start is called before the first frame update
     void Start()
     {
+       isFirst=false;
        isEnding = false;
        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
     }
@@ -36,12 +36,11 @@ public class TimerController : MonoBehaviour
     {
         if (LimitedTime <= 0)
         {
-            Result.gameObject.SetActive(true);
-            if(FactoryController.SuccessCount>=9)
-               Result.text = "SUCCESS";
-            else
-            {
-                Result.text = "FAILURE";
+            if(FactoryController.SuccessCount>=9){
+                if(!isFirst){
+                    isFirst=true;
+                    TotalGoldController.TotalGold+=100;
+                }
             }
             SceneTransition();
         }
@@ -55,6 +54,6 @@ public class TimerController : MonoBehaviour
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
-        StartCoroutine(gameManager.FadeOut(teleportPosition));
+        gameManager.ChangeScene(GoTo,teleportPosition);
     }
 }

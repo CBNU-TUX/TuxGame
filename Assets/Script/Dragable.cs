@@ -7,15 +7,13 @@ using UnityEngine.EventSystems;
 
 public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerDownHandler
 {
-    static public int gold = 0;
+    static public int gold = 300;
     Color color;
     String text;
     GameObject[] TrashBoxs;
 
     [SerializeField] private Canvas canvas;
     
-    
-    HeartController hc;
     public static bool is_Close=false;
     public RectTransform rectTransform;
     private Vector3 loadedPosition;
@@ -25,8 +23,6 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     Animator anima;
     void Start()
     {
-        gold=1000;
-        hc=GameObject.Find("Heart").GetComponent<HeartController>();
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
     }
     private void Awake()
@@ -35,6 +31,10 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
         rectTransform = GetComponent<RectTransform>();
         loadedPosition = rectTransform.anchoredPosition;
         canvasGroup = GetComponent<CanvasGroup>();
+    }
+    void Update()
+    {
+        won.text = gold.ToString();
     }
     // Start is called before the first frame update
 
@@ -100,26 +100,24 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
             {
                 color = Color.red;
                 text = "Wrong";
-                gold -= 10;
-                won.text = gold.ToString();
                 Slot.is_ground = true;
-                hc.liftCount--;
                 CloseDoor();
                 //SpawnHUDText(text, color);
             }
         }
         else
         {
+            RandomSpawn.spawn = true;
             color = Color.blue;
             text = "Correct";
             CloseDoor();
             //SpawnHUDText(text,color);
         }
-           
+        
         Slot.is_Right= false;
         canvasGroup.alpha = 1f;
         is_Close = true;
-        
+        won.text = gold.ToString();
         Debug.Log("EndDrag");
     }
 

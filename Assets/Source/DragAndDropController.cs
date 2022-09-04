@@ -50,6 +50,10 @@ public class DragAndDropController : MonoBehaviour, IDragHandler,IPointerDownHan
             billTransform.anchoredPosition = loadedPostion;
             Debug.Log("case1");
         }
+        else
+        {
+            SoundManager.instance.platSE("win");
+        }
         isCollider = false;
         canvasGroup.alpha = 1f;
         Debug.Log("EndDrag");

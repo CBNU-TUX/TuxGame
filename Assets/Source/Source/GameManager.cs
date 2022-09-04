@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,16 +13,31 @@ public class GameManager : MonoBehaviour
     PlayerMovement player;
     /*��ġ ������ ���� ����, �̵��� ��, ��ġ ����*/
     [SerializeField]
-    string transferScene;
+    public string transferScene;
     [SerializeField]
     Vector3 teleportPosition = new Vector3(0, 0, 0);
+    [SerializeField]
+    Slider progressBar;
+    [SerializeField]
+    AudioSource audio;
+    [SerializeField]
+    Text Loading;
+    [SerializeField]
+    Sprite[] img;
 
+    public CanvasGroup Fade_img;
+    float fadeDuration=2f;
+
+    bool isCheck=false;
+    AsyncOperation async;
+    
     public void setTransfer(string transfer)
     {
         this.transferScene = transfer;
     }
     private void Awake()
-    {
+    {   
+        
         GameObject[] gameManagers = GameObject.FindGameObjectsWithTag("GameManager");
         //���̵��� �����ϴ� ������Ʈ�� ���� �����ϱ� ����.
         if (gameManagers.Length == 1)
@@ -31,9 +48,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         } // �ߺ��� GameMangager ������Ʈ�� ���� ��� ������Ʈ �ı�
-        GameObject transition = transform.Find("UI").Find("Transition").gameObject;
-        transition.SetActive(true);
-        //���� ȭ���� ��� �ڿ��������� ����
+
+        SceneManager.sceneLoaded += OnSceneLoaded; // 이벤트에 추가
+
     }
     // Start is called before the first frame update
     void Start()
@@ -45,82 +62,159 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        try{
+        try
+        {
             if (transferScene != null)
             {
-                //���� �÷��̾ ����. ���߿� �̸� Ǯ���ָ�ȴ�.
-                player.CurrentMapName = transferScene;
+                player = GameObject.FindObjectOfType<PlayerMovement>();
+                if(player!=null){
+                    player.CurrentMapName = transferScene;
+                }
+                audio =GameObject.FindObjectOfType<SoundManager>().GetComponent<AudioSource>();
             }
         }catch(NullReferenceException e){
             ;
         }
     }
+
+    private void OnDestroy() 
+    {
+        isCheck=false;
+        SceneManager.sceneLoaded -= OnSceneLoaded; // 이벤트에서 제거*
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Fade_img.DOFade(0, fadeDuration)
+        .OnStart(()=>{
+            audio.Stop();
+            if(player!=null){
+                player.transform.position = teleportPosition;
+                Debug.Log(teleportPosition+" "+player.transform.position); 
+            }  
+        })
+        .OnComplete(()=>{
+            progressBar.gameObject.SetActive(false);
+            audio.Play();
+            isCheck=false;
+            Fade_img.blocksRaycasts = false;
+        });
+        
+    }
+
+    virtual public void ChangeScene(string transferScene){
+        try{
+            if(transferScene=="TreeZone"){
+                Fade_img.GetComponent<Image>().sprite=img[0];
+            }else if(transferScene=="TrashZone"){
+                Fade_img.GetComponent<Image>().sprite=img[1];    
+            }else if(transferScene=="SeaZone"){
+                Fade_img.GetComponent<Image>().sprite=img[2];
+            }else if(transferScene=="FactoryGameZone"){
+                Fade_img.GetComponent<Image>().sprite=img[3];
+            }else if(transferScene=="HomeZone"){
+                Fade_img.GetComponent<Image>().sprite=img[4];
+            }else{
+                Fade_img.GetComponent<Image>().sprite=img[5];    
+            }
+
+            Fade_img.DOFade(1,fadeDuration).OnStart(()=>{
+                Fade_img.blocksRaycasts=true;
+            })
+            .OnComplete(()=>{
+                if(!isCheck){
+                    isCheck=true;
+                    StartCoroutine("AsyncLoadMap",transferScene);
+                }
+            });   
+        }catch(NullReferenceException e){
+
+        }
+    }
+
+    virtual public void ChangeScene(string transferScene,Vector3 teleportPosition = default(Vector3)){
+
+        try{
+
+            if(transferScene=="TreeZone"){
+                Fade_img.GetComponent<Image>().sprite=img[0];
+            }else if(transferScene=="TrashZone"){
+                Fade_img.GetComponent<Image>().sprite=img[1];    
+            }else if(transferScene=="SeaZone"){
+                Fade_img.GetComponent<Image>().sprite=img[2];
+            }else if(transferScene=="FactoryGameZone"){
+                Fade_img.GetComponent<Image>().sprite=img[3];
+            }else if(transferScene=="HomeZone"){
+                Fade_img.GetComponent<Image>().sprite=img[4];
+            }else{
+                Fade_img.GetComponent<Image>().sprite=img[5];    
+            }
+
+            Debug.Log(transferScene);
+
+            Fade_img.DOFade(1,fadeDuration).OnStart(()=>{
+                Fade_img.blocksRaycasts=true;
+            })
+            .OnComplete(()=>{
+                if(transferScene!="SeaZone"){
+                   if(player!=null)
+                        player.transform.position = teleportPosition;
+                   this.teleportPosition = teleportPosition;
+                }else{
+                    player.transform.position= new Vector3(0, 0, 0);
+                }
+                if(!isCheck){
+                    isCheck=true;
+                    StartCoroutine("AsyncLoadMap",transferScene);
+                }
+            });   
+        }catch(NullReferenceException e){
+
+        }
+    }
     
-    public IEnumerator LoadMap(string transferMapName)
-    {
-        yield return new WaitForSeconds(0f);
-        if (transferMapName != null)
-        {
-            SceneManager.LoadScene(transferMapName);
-        }
-    }
-    public IEnumerator LoadMap()
-    {
-        if (transferScene != null)
-        {
-            yield return new WaitForSeconds(0f);
-            SceneManager.LoadScene(transferScene);
-        }
-    }
-
-    virtual public IEnumerator FadeOut(Vector3 teleportPosition = default(Vector3))
-    {
-        if (teleportPosition != default(Vector3)) // 0, 0, 0
-            this.teleportPosition = teleportPosition;
-        transitionAnimator.SetBool("FadeOut", true);
-        transitionAnimator.SetBool("FadeIn", false);
-        yield return new WaitForSeconds(0.5f);
-        yield return new WaitForSeconds(transitionTime);
-        StartCoroutine(AsyncLoadMap());
-        yield return null;
-    }
-
-    virtual public IEnumerator FadeIn()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        
-        if (teleportPosition != new Vector3(0, 0, 0))
-            player.transform.position = teleportPosition;
-        
-        transitionAnimator.SetBool("FadeOut", false);
-        transitionAnimator.SetBool("FadeIn", true);
-
-        yield return new WaitForSeconds(0.5f);
-        yield return new WaitForSeconds(transitionTime);
-        transitionAnimator.SetBool("FadeOut", false);
-        transitionAnimator.SetBool("FadeIn", false);
-        yield return null;
-    }
-
     virtual public IEnumerator AsyncLoadMap()
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync(transferScene);
+        
+        progressBar.gameObject.SetActive(true);
+
+        async = SceneManager.LoadSceneAsync(transferScene);
         async.allowSceneActivation = false;
+
+        float timer=0.0f;
+
         while (!async.isDone)
         {
-            if (async.progress >= 0.9f)
-            {
-                async.allowSceneActivation = true;
-                StartCoroutine(FadeIn());
-            }
-            yield return null;
-        }
-    }
+                yield return null;
 
-    public Animator GetTransitionAnimator()
-    {
-        return GameObject.Find("GameManager").GetComponent<Animator>();
+                timer+=Time.deltaTime;
+                
+                
+                if(progressBar.value<0.9f){
+                    
+                    progressBar.value= Mathf.MoveTowards(progressBar.value,0.9f,timer);
+
+                    if (progressBar.value >= async.progress)
+                    {
+                        timer = 0f;
+                    }
+                }else
+                {
+                    Loading.text="SpaceBar...";
+                }
+                
+                if(async.progress>=0.9f){
+                    progressBar.value= Mathf.MoveTowards(progressBar.value,1f,timer);
+                }
+
+                if(Input.GetKey(KeyCode.Space)&&progressBar.value>=1f&&async.progress>=0.9f){
+                    async.allowSceneActivation = true;
+                    break;
+            }
+        }
+        
+        async.allowSceneActivation = true;
     }
 
 

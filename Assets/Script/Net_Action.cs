@@ -12,6 +12,7 @@ public class Net_Action : MonoBehaviour
     Transform target;
     BoxCollider2D box;
     PolygonCollider2D polygon;
+    SpriteRenderer spriteRenderer;
     public GameObject col;
     static public bool isThrowing;
 
@@ -21,6 +22,7 @@ public class Net_Action : MonoBehaviour
         target = GetComponent<Transform>();
         box = GetComponent<BoxCollider2D>();
         polygon = GetComponent<PolygonCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();    
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,6 +43,8 @@ public class Net_Action : MonoBehaviour
             polygon.offset = new Vector2(0, 0);
             isThrowing=true;
             GameObject.Find("Canvas").transform.GetChild(1).gameObject.SetActive(true);
+            spriteRenderer.color = new Color(255, 255, 255, 255);
+            SoundManager.instance.platSE("net");
             animator.SetTrigger("isFishing");
             animator.SetBool("is_open", true);
             Invoke("Status_open", 0.5f);
@@ -49,6 +53,8 @@ public class Net_Action : MonoBehaviour
         {
             polygon.offset=new Vector2(0, 10);
             FishingController.isFishing=true;
+            spriteRenderer.color = new Color(255, 255, 255, 0);
+            SoundManager.instance.platSE("net");
             animator.SetBool("is_open", false);
             Invoke("Status_close", 1f);
         }

@@ -8,9 +8,21 @@ public class TrashInfo : MonoBehaviour
     string name;
     [SerializeField]
     string type;
+    [SerializeField]
+    int coin;
 
-    public string getType(){
+
+
+    public string getType()
+    {
         return type;
     }
-    
+
+    public int GetCoin()
+    {
+        return coin;
+    }
+
+
+
 }
