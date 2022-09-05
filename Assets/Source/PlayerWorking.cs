@@ -28,7 +28,8 @@ public class PlayerWorking : MonoBehaviour
     void Update(){
         textField=GameObject.FindGameObjectsWithTag("Text");
     }
-    void OnTriggerStay2D(Collider2D collision){
+    void OnTriggerStay2D(Collider2D collision)
+    {
         
         try{
             if(clickObject==null)
@@ -37,7 +38,11 @@ public class PlayerWorking : MonoBehaviour
             SoilInfo tmp=collision.gameObject.GetComponent<SoilInfo>();
             if(clickObject.click.name=="BoxUI01"&&clickObject.click!=null&&tmp.level<1&&shovel>0)
             {
-                if(Input.GetKey(KeyCode.Space)){
+                if(Input.GetKey(KeyCode.Space))
+                {
+                    PlayerMovement.canMove = false;
+                    SoundManager.instance.platSE("shovel");
+                    Invoke("Moveable", 1f);
                     tmp.treelevel="No";
                     tmp.level=1;
                     tmp.setImg(Soil.levelImg[1]);
@@ -47,11 +52,13 @@ public class PlayerWorking : MonoBehaviour
             }
             else if(clickObject.click.name=="BoxUI03"&&clickObject.click!=null&&wateringCan>0){
                 if(Input.GetKey(KeyCode.Space)){
+                    SoundManager.instance.platSE("water");
                     collision.gameObject.GetComponent<Animator>().SetTrigger("isStarting");
                     this.gameObject.GetComponent<Animator>().SetTrigger("isWater");
                 }
             }else if(clickObject.click.name=="BoxUI04"&&clickObject.click!=null&&tmp.level>=1&&tmp.treelevel=="No"&&seed>0){
                 if(Input.GetKey(KeyCode.Space)){
+                    SoundManager.instance.platSE("sow");
                     Debug.Log("이거 되는거 맞아? "+collision.name);
                     tmp.isGrowing=true;
                     tmp.treelevel="seed";
@@ -92,6 +99,11 @@ public class PlayerWorking : MonoBehaviour
         }catch(IndexOutOfRangeException e){
             ;
         }
+    }
+    void Moveable()
+    {
+        SoundManager.instance.platSE("shovel");
+        PlayerMovement.canMove = true;
     }
 }
 
