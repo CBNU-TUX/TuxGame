@@ -17,6 +17,7 @@ TagManager:
   - Information
   - Sound
   - SleepPlayer
+  - Text
   layers:
   - Default
   - TransparentFX
