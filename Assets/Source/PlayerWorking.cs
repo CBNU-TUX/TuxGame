@@ -87,6 +87,8 @@ public class PlayerWorking : MonoBehaviour
             ;
         }catch(MissingReferenceException e){
             ;
+        }catch(IndexOutOfRangeException e){
+            ;
         }
     }
 }
