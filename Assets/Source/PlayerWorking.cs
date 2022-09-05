@@ -25,7 +25,9 @@ public class PlayerWorking : MonoBehaviour
         textField=GameObject.FindGameObjectsWithTag("Text");
     }
 
-    
+    void Update(){
+        textField=GameObject.FindGameObjectsWithTag("Text");
+    }
     void OnTriggerStay2D(Collider2D collision){
         
         try{

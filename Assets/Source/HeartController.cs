@@ -14,6 +14,7 @@ public class HeartController : MonoBehaviour
     public int liftCount=3;
     GameObject[] trashs;
     bool isFirst;
+
     void Start(){
         isFirst=false;
         Heart=this.gameObject.GetComponentInChildren<Transform>();
@@ -29,7 +30,6 @@ public class HeartController : MonoBehaviour
         if(liftCount<0){
             if(!isFirst){
                 TotalGoldController.TotalGold+=Dragable.gold;
-                isFirst=true;
             }
             SceneTransition();
         }
@@ -53,5 +53,6 @@ public class HeartController : MonoBehaviour
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
         gameManager.ChangeScene(GoTo,teleportPosition);
+        isFirst=true;
     }
 }

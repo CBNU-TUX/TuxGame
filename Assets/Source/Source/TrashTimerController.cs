@@ -32,7 +32,6 @@ public class TrashTimerController : MonoBehaviour
         if (LimitedTime <= 0)
         {
             if(!isFirst){
-                isFirst=true;
                 TotalGoldController.TotalGold+=Dragable.gold;
             }
             
@@ -46,6 +45,7 @@ public class TrashTimerController : MonoBehaviour
 
     public void SceneTransition()
     {
+        isFirst=true;
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
         gameManager.ChangeScene(GoTo,teleportPosition);

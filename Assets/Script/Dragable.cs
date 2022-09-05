@@ -21,6 +21,7 @@ public class Dragable : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHan
     public Text won;
     Animator ani;
     Animator anima;
+    
     void Start()
     {
         TrashBoxs = GameObject.FindGameObjectsWithTag("TrashBox");
