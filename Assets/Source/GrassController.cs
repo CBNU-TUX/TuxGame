@@ -5,33 +5,39 @@ using UnityEngine.SceneManagement;
 public class GrassController : MonoBehaviour
 {
     Animator PlayerAni;
-    
-    void OnEnable(){
-        SceneManager.sceneLoaded+=OnSceneLoaded;
-    } 
-
-    void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    void OnEnable()
     {
-        PlayerAni=GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-   void OnDisable(){
-    SceneManager.sceneLoaded-=OnSceneLoaded;
-   }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlayerAni = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+    }
 
-    void OnTriggerStay2D(Collider2D collision){
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
-        if(collision.name != "Player")
-            return ;
-        
-        if(Input.GetKey(KeyCode.Space))
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.name != "Player")
+            return;
+
+        if (Input.GetKey(KeyCode.Space))
         {
             PlayerAni.SetTrigger("isDigging");
-            Invoke("InactiveGrass",1f);
+            SoundManager.instance.platSE("shovel");
+            PlayerMovement.canMove = false;
+            Invoke("InactiveGrass", 1f);
         }
     }
 
-    void InactiveGrass(){
+    void InactiveGrass()
+    {
+        SoundManager.instance.platSE("shovel");
+        PlayerMovement.canMove = true;
         this.gameObject.SetActive(false);
     }
 

@@ -12,34 +12,38 @@ public class PlayerMovement : MonoBehaviour
 
     Animator animator;
     Rigidbody2D rigid;
-    Vector2 move,direction;
+    Vector2 move, direction;
+    public static bool canMove = true;
     public string CurrentMapName;
     public string SceneName;
     // Start is called before the first frame update
     void Start()
     {
-        animator=this.GetComponent<Animator>();
-        rigid=this.GetComponent<Rigidbody2D>();
+        animator = this.GetComponent<Animator>();
+        rigid = this.GetComponent<Rigidbody2D>();
     }
 
-  void OnEnable(){
-    SceneManager.sceneLoaded+=OnSceneLoaded;
-  }
-
-  void OnSceneLoaded(Scene scene,LoadSceneMode mode)
-  {
-    Debug.Log("PlayerScript "+scene.name);
-    if(scene.name=="HomeZone"){
-        this.GetComponent<SpriteRenderer>().color=new Color(1,1,1,0);
-        this.GetComponent<CapsuleCollider2D>().enabled=false;
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    sleepPlayer=GameObject.FindGameObjectWithTag("SleepPlayer");
-  }
 
-  void OnDisable(){
-    SceneManager.sceneLoaded-=OnSceneLoaded;
-  }
-  private void Awake()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("PlayerScript " + scene.name);
+        if (scene.name == "HomeZone")
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+            this.GetComponent<CapsuleCollider2D>().enabled = false;
+        }
+        sleepPlayer = GameObject.FindGameObjectWithTag("SleepPlayer");
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void Awake()
     {
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -62,46 +66,52 @@ public class PlayerMovement : MonoBehaviour
         //animator.SetBool("isIdle",false);
         try
         {
-            
-        move.x=Input.GetAxisRaw("Horizontal");
-        move.y=Input.GetAxisRaw("Vertical");
-
-        animator.SetFloat("MoveSpeed", move.sqrMagnitude * speed);
-        animator.speed = speed / 4; // 이동 속도의 4분의 1만큼의 빠르기로 애니메이션 재생
-
-        if(move.sqrMagnitude>0){
-            
-            if(sleepPlayer!=null)
-                sleepPlayer.gameObject.SetActive(false);
-
-            this.GetComponent<SpriteRenderer>().color=new Color(1,1,1,1);
-            this.GetComponent<CapsuleCollider2D>().enabled=true;
-            direction.x=Input.GetAxisRaw("Horizontal");
-            direction.y=Input.GetAxisRaw("Vertical");
-            if (SceneName == "HomeZone") 
+            if (canMove)
             {
-                SoundManager.instance.platSE("WalkWood");
+                move.x = Input.GetAxisRaw("Horizontal");
+                move.y = Input.GetAxisRaw("Vertical");
+
+                animator.SetFloat("MoveSpeed", move.sqrMagnitude * speed);
+                animator.speed = speed / 4; // 이동 속도의 4분의 1만큼의 빠르기로 애니메이션 재생
             }
-            if (SceneName == "MainZone" || SceneName == "TreeZone")
+
+            if (move.sqrMagnitude > 0 && canMove)
             {
-                SoundManager.instance.platSE("WalkDirt");
+
+                if (sleepPlayer != null)
+                    sleepPlayer.gameObject.SetActive(false);
+
+                this.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                this.GetComponent<CapsuleCollider2D>().enabled = true;
+                direction.x = Input.GetAxisRaw("Horizontal");
+                direction.y = Input.GetAxisRaw("Vertical");
+                if (SceneName == "HomeZone")
+                {
+                    SoundManager.instance.platSE("WalkWood");
+                }
+                if (SceneName == "MainZone" || SceneName == "TreeZone")
+                {
+                    SoundManager.instance.platSE("WalkDirt");
+                }
             }
-        }
-         if (animator.GetFloat("MoveSpeed") > 0)
-            { 
+            if (animator.GetFloat("MoveSpeed") > 0 && canMove) 
+            {
                 animator.SetFloat("MoveHorizontally", move.x);
                 animator.SetFloat("MoveVertically", move.y);
             }
 
-        }catch(NullReferenceException e){
+        }
+        catch (NullReferenceException e)
+        {
             ;
         }
     }
 
 
-     void FixedUpdate()
+    void FixedUpdate()
     {
-        rigid.MovePosition(rigid.position + move * speed * Time.deltaTime);
+        if (canMove)
+            rigid.MovePosition(rigid.position + move * speed * Time.deltaTime);
     }
 
 }

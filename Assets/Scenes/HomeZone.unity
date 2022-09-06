@@ -12676,6 +12676,18 @@ PrefabInstance:
       propertyPath: bookPages.Array.data[4]
       value: 
       objectReference: {fileID: 21300000, guid: 64a6a81fbf9c14378b1641ef3cf839f7, type: 3}
+    - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
+      propertyPath: bookPages.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3b005597e0b0e4ab1b629ac84dac0f23, type: 3}
+    - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
+      propertyPath: bookPages.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: f0692b368947d4ca599e0bb81edd3b8d, type: 3}
+    - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
+      propertyPath: bookPages.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: fb4b08d5ccf5c44f78a6bc682cfcf1da, type: 3}
     - target: {fileID: 22443772, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -9,7 +9,7 @@ public class GlobalTimer : MonoBehaviour
     static int hours;
     static int sec;
     static int min;
-    static int day;
+    public static int day;
     Text minText;
     Text secText;
 
@@ -136,8 +136,8 @@ public class GlobalTimer : MonoBehaviour
     public void SceneTransition()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
-        gameManager.setTransfer(GoTo);
-        gameManager.ChangeScene(GoTo,teleportPosition);
+        gameManager.setTransfer("HomeZone");
+        gameManager.ChangeScene("HomeZone",new Vector3(10.28f,7.74f,0f));
         GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
     }
 }
