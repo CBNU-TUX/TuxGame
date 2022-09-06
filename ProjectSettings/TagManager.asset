@@ -18,6 +18,7 @@ TagManager:
   - Sound
   - SleepPlayer
   - Text
+  - SuccessSlider
   layers:
   - Default
   - TransparentFX

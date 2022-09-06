@@ -11,7 +11,9 @@ public class SoilInfo : MonoBehaviour
     public float timer;
     private float timerSpeed = 1.0f; //초 분위
     public bool isGrowing=false;
+    public int days;
 
+    public int fertillzer;
     public void setImg(Sprite img){
         this.gameObject.GetComponent<SpriteRenderer>().sprite=img;
     }
@@ -24,6 +26,8 @@ public class SoilInfo : MonoBehaviour
                     this.isGrowing=tmp.isGrowing;
                     this.treelevel=tmp.treelevel;
                     this.timer=tmp.timer;
+                    this.days=tmp.days;
+                    this.fertillzer=tmp.fertillzer;
                     Debug.Log("씬 변경 시"+this.timer);
                 }
             }
@@ -35,36 +39,37 @@ public class SoilInfo : MonoBehaviour
     }
 
     void Update(){
+
+        int day=(days!=GlobalTimer.day)? day=GlobalTimer.day-days:day=days;
+
+        if(fertillzer==3){
+            day+=1;
+            fertillzer=0;
+        }
         if(isGrowing&&treelevel=="seed"){
-            timer += Time.deltaTime * timerSpeed;
-            if(timer<=1f){
-                Invoke("GrowSeed",60f);
-            }else if(Mathf.FloorToInt(timer)>=60){
-                GrowSeed();    
+            //지난날을 계산 예를 들어서 1일날 심었으면 2일 되면 2-1 -> 1일이 지난 날.
+            if(day>=1){
+                this.gameObject.transform.Find("seed").gameObject.SetActive(false);
+                this.treelevel="sprout";
+                this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
+                this.isGrowing=false;
             }
-        }else if(isGrowing&&treelevel=="sprout")
-        {
-           timer += Time.deltaTime * timerSpeed;
-            if(timer<=1f)
-                Invoke("GrowSprout",30f);
-            else if(Mathf.FloorToInt(timer)>=30){
-                GrowSprout();    
+        }else if(isGrowing&&treelevel=="sprout"){
+            if(day>=2){
+                this.gameObject.transform.Find("sprout").gameObject.SetActive(false);
+                this.treelevel="tree";
+                this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
+                isGrowing=false;
+            }
+        }else if(treelevel=="tree"){
+            if(day>=3){
+                this.gameObject.transform.Find("tree").gameObject.SetActive(false);
+                this.treelevel="tree1";
+                this.gameObject.transform.Find("tree1").gameObject.SetActive(true);
+                isGrowing=false;
+                PlayerWorking.treeCount+=1;
             }
         }
-    }
-    void GrowSeed(){
-        this.gameObject.transform.Find("seed").gameObject.SetActive(false);
-        this.treelevel="sprout";
-        this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
-        this.isGrowing=false;
-        Invoke("GrowSprout",15f);
-    }
-
-    public void GrowSprout(){
-        this.gameObject.transform.Find("sprout").gameObject.SetActive(false);
-        this.treelevel="tree";
-        this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
-        isGrowing=false;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
@@ -77,6 +82,8 @@ public class SoilInfo : MonoBehaviour
                     this.level=tmp.level;
                     this.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
                     this.treelevel=tmp.treelevel;
+                    this.fertillzer=tmp.fertillzer;
+                    this.days=tmp.days;
                     if(treelevel!="No"){
                         this.gameObject.transform.Find(tmp.treelevel).gameObject.SetActive(true);
                     }

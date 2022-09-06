@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TreeZone.unity
     guid: 33d6227beee804642aef766a1172503a
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 2f539e1ca2e1c45ac87fe37a34f5b978
   m_configObjects: {}

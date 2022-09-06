@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +17,7 @@ public class ClickController : MonoBehaviour
 
     public void OnClick(){
         GameObject child;
-        if(TotalGoldController.TotalGold>0){
-            if(!isCheck&&!Input.GetKeyDown(KeyCode.Space)){
+             if(!isCheck&&!Input.GetKeyDown(KeyCode.Space)){
                 click = EventSystem.current.currentSelectedGameObject;
                 child=click.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
                 if(PlayerWorking.shovel==1||PlayerWorking.wateringCan==1){
@@ -41,6 +39,7 @@ public class ClickController : MonoBehaviour
                         }
                     }
                 }else if(PlayerWorking.seed>0){
+                    
                     RectTransform clickTransform=click.GetComponent<RectTransform>();
                     clickTransform.anchoredPosition=new Vector2(clickTransform.anchoredPosition.x,clickTransform.anchoredPosition.y+30);
                     isCheck=true;
@@ -81,8 +80,10 @@ public class ClickController : MonoBehaviour
                     }
                 }
             }
+    
         }
-    }
+        
+    
     
     // Start is called before the first frame update
    
