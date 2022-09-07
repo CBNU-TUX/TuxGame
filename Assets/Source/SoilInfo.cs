@@ -46,7 +46,7 @@ public class SoilInfo : MonoBehaviour
             day+=1;
             fertillzer=0;
         }
-        if(isGrowing&&treelevel=="seed"){
+        if(treelevel=="seed"){
             //지난날을 계산 예를 들어서 1일날 심었으면 2일 되면 2-1 -> 1일이 지난 날.
             if(day>=1){
                 this.gameObject.transform.Find("seed").gameObject.SetActive(false);
@@ -54,7 +54,7 @@ public class SoilInfo : MonoBehaviour
                 this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
                 this.isGrowing=false;
             }
-        }else if(isGrowing&&treelevel=="sprout"){
+        }else if(treelevel=="sprout"){
             if(day>=2){
                 this.gameObject.transform.Find("sprout").gameObject.SetActive(false);
                 this.treelevel="tree";
@@ -67,15 +67,20 @@ public class SoilInfo : MonoBehaviour
                 this.treelevel="tree1";
                 this.gameObject.transform.Find("tree1").gameObject.SetActive(true);
                 isGrowing=false;
-                PlayerWorking.treeCount+=1;
             }
         }
+
+
+        bool isFirst=false;
+        if(this.gameObject.transform.Find("tree1").gameObject.activeSelf&&!isFirst){
+            PlayerWorking.treeCount+=1;
+        }
+        isFirst=true;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
         try{
-            foreach (SoilInfo tmp in PlayerWorking.working)
-            {
+            foreach (SoilInfo tmp in PlayerWorking.working){
                 Debug.Log(tmp.name+" "+this.name);
                 if(this.name==tmp.name){
                     this.timer=tmp.timer+GlobalTimer.timer;
@@ -97,6 +102,18 @@ public class SoilInfo : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        
+        foreach(SoilInfo tmp in PlayerWorking.working){
+                if(tmp.name==this.name){
+                    this.isGrowing=tmp.isGrowing;
+                    this.treelevel=tmp.treelevel;
+                    this.timer=tmp.timer;
+                    this.days=tmp.days;
+                    this.fertillzer=tmp.fertillzer;
+                    Debug.Log("씬 변경 시"+this.timer);
+                }
+            }
+        /*
         try{
             foreach(SoilInfo tmp in PlayerWorking.working){
                 if(tmp.name==this.name){
@@ -112,6 +129,7 @@ public class SoilInfo : MonoBehaviour
         }catch(NullReferenceException e){
             ;
         }
+        */
     }
 
 /*

@@ -13,7 +13,7 @@ public class PlayerWorking : MonoBehaviour
     static public int seed;
     static public int sprout;
     static public int sapling;
-
+    GameManager gameManager;    
     [SerializeField]
     GameObject[] textField;
     [SerializeField]
@@ -58,7 +58,12 @@ public class PlayerWorking : MonoBehaviour
                 }
             }
             
+            
             Slider.GetComponent<Slider>().value=(100f/16f)*treeCount;
+
+            if(Slider.GetComponent<Slider>().value>=99){
+                SceneTransition();
+            }
         }catch(NullReferenceException e){
 
         }
@@ -154,6 +159,14 @@ public class PlayerWorking : MonoBehaviour
     {
         SoundManager.instance.platSE("shovel");
         PlayerMovement.canMove = true;
+    }
+    
+    public void SceneTransition()
+    {
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager.setTransfer("Ending");
+        gameManager.ChangeScene("Ending",new Vector3(0,0,0));
+        GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
     }
 }
 
