@@ -15,13 +15,15 @@ public class HeartController : MonoBehaviour
     GameObject[] trashs;
     bool isFirst;
 
-    void Start(){
+    void Start()
+    {
         isFirst=false;
         Heart=this.gameObject.GetComponentInChildren<Transform>();
         trashs=GameObject.FindGameObjectsWithTag("Trashs");
     }
 
-    void Update(){
+    void Update()
+    {
         GlobalTimer.timer+=Time.deltaTime;
         if(liftCount<3&&liftCount>=0){
             Heart.GetChild(liftCount).gameObject.SetActive(false);
@@ -50,6 +52,7 @@ public class HeartController : MonoBehaviour
         //목숨을 다할 경우 -> 씬이동
     public void SceneTransition()
     {
+        Dragable.gold = 300;
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.setTransfer(GoTo);
         gameManager.ChangeScene(GoTo,teleportPosition);
