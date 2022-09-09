@@ -82,7 +82,7 @@ public class PlayerWorking : MonoBehaviour
                 {
                     PlayerMovement.canMove = false;
                     SoundManager.instance.platSE("shovel");
-                    Invoke("Moveable", 1f);
+                    Invoke("Moveable1", 1f);
                     tmp.treelevel="No";
                     tmp.level=1;
                     tmp.setImg(Soil.levelImg[1]);
@@ -103,13 +103,17 @@ public class PlayerWorking : MonoBehaviour
             }
             else if(clickObject.click.name=="BoxUI03"&&clickObject.click!=null&&wateringCan>0){
                 if(Input.GetKey(KeyCode.Space)){
+                    PlayerMovement.canMove = false;
                     SoundManager.instance.platSE("water");
+                    Invoke("Moveable2", 1f);
                     collision.gameObject.GetComponent<Animator>().SetTrigger("isStarting");
                     this.gameObject.GetComponent<Animator>().SetTrigger("isWater");
                 }
             }else if(clickObject.click.name=="BoxUI04"&&clickObject.click!=null&&tmp.level>=1&&tmp.treelevel=="No"&&seed>0){
                 if(Input.GetKey(KeyCode.Space)){
+                    PlayerMovement.canMove = false;
                     SoundManager.instance.platSE("sow");
+                    Invoke("Moveable3", 1f);
                     Debug.Log("이거 되는거 맞아? "+collision.name);
                     tmp.isGrowing=true;
                     tmp.treelevel="seed";
@@ -155,12 +159,21 @@ public class PlayerWorking : MonoBehaviour
             ;
         }
     }
-    void Moveable()
+    void Moveable1()
     {
         SoundManager.instance.platSE("shovel");
         PlayerMovement.canMove = true;
     }
-    
+    void Moveable2()
+    {
+        SoundManager.instance.platSE("water");
+        PlayerMovement.canMove = true;
+    }
+    void Moveable3()
+    {
+        SoundManager.instance.platSE("sow");
+        PlayerMovement.canMove = true;
+    }
     public void SceneTransition()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();

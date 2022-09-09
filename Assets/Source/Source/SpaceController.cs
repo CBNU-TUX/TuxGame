@@ -8,7 +8,9 @@ public class SpaceController : MonoBehaviour
     GameObject Ui;
     
     void OnTriggerStay2D(Collider2D collision){
-        if(Input.GetKey(KeyCode.Space)){
+        if(Input.GetKey(KeyCode.Space))
+        {
+            SoundManager.instance.platSE("computerON");
             Ui.SetActive(true);
         }
     }
@@ -16,7 +18,9 @@ public class SpaceController : MonoBehaviour
     void Update(){
 
         if(Input.GetKey(KeyCode.Escape)){
-            if(Ui.activeSelf){
+            if(Ui.activeSelf)
+            {
+                SoundManager.instance.platSE("computerOFF");
                 Ui.SetActive(false);
             }
         }
