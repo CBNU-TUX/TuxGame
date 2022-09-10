@@ -19,11 +19,12 @@ public class PlayerWorking : MonoBehaviour
     GameObject[] textField;
     [SerializeField]
     GameObject Slider;
-
+    GameObject[] soils;
     static public int treeCount;
     // Start is called before the first frame update
     ClickController clickObject;
     void Start(){
+        soils= GameObject.FindGameObjectsWithTag("soil");
         working=new List<SoilInfo>();
         clickObject = GameObject.FindObjectOfType<ClickController>();
         textField=GameObject.FindGameObjectsWithTag("Text");
@@ -33,6 +34,7 @@ public class PlayerWorking : MonoBehaviour
     void Update(){
         textField=GameObject.FindGameObjectsWithTag("Text");
         Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
+        soils= GameObject.FindGameObjectsWithTag("soil");
         try{
             
             foreach(GameObject text in textField){
@@ -61,10 +63,6 @@ public class PlayerWorking : MonoBehaviour
             
             
             Slider.GetComponent<Slider>().value=(100f/16f)*treeCount;
-
-            if(Slider.GetComponent<Slider>().value>=99){
-                SceneTransition();
-            }
         }catch(NullReferenceException e){
 
         }
@@ -202,7 +200,6 @@ public class PlayerWorking : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
         try{
-            GameObject[] soils= GameObject.FindGameObjectsWithTag("soil");
             foreach(GameObject soil in soils){
                 foreach(SoilInfo tmp in working){
                     if(tmp.name==soil.GetComponent<SoilInfo>().name){
@@ -211,7 +208,11 @@ public class PlayerWorking : MonoBehaviour
                     }
                 }
             }
+
+
         }catch(NullReferenceException){
+            ;
+        }catch(MissingReferenceException){
             ;
         }
     }

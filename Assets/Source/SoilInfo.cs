@@ -71,15 +71,11 @@ public class SoilInfo : MonoBehaviour
                 this.gameObject.transform.Find("tree").gameObject.SetActive(false);
                 this.treelevel="tree1";
                 this.gameObject.transform.Find("tree1").gameObject.SetActive(true);
+                PlayerWorking.treeCount++;
                 //isGrowing=false;
             }
         }
 
-        bool isFirst=false;
-        if(this.gameObject.transform.Find("tree1").gameObject.activeSelf&&!isFirst){
-            PlayerWorking.treeCount+=1;
-        }
-        isFirst=true;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
