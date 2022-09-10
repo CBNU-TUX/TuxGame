@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
 public class PlayerWorking : MonoBehaviour
 {
@@ -97,6 +98,7 @@ public class PlayerWorking : MonoBehaviour
                         tmp.fertillzer++;
                         fertillzer--;
                         textField[3].GetComponent<Text>().text=fertillzer.ToString()+" 개";
+                        this.gameObject.GetComponent<Animator>().SetTrigger("isSpread");
                     }
                 }
                 isFirst=true;
@@ -147,6 +149,16 @@ public class PlayerWorking : MonoBehaviour
                     tmp.days=GlobalTimer.day;
                     child.gameObject.SetActive(true);
                 }
+
+                foreach(SoilInfo work in working){
+                    if(work.name==tmp.name){
+                        work.level=tmp.level;
+                        work.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
+                        work.treelevel=tmp.treelevel;
+                        work.fertillzer=tmp.fertillzer;
+                        work.days=tmp.days;
+                    }
+                }
             }
 
         }catch(NullReferenceException ex){
@@ -180,6 +192,34 @@ public class PlayerWorking : MonoBehaviour
         gameManager.setTransfer("Ending");
         gameManager.ChangeScene("Ending",new Vector3(0,0,0));
         GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
+    }
+
+     void OnEnable()
+    {
+    	  // 씬 매니저의 sceneLoaded에 체인을 건다.
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+
+        try{
+            GameObject[] soils= GameObject.FindGameObjectsWithTag("soil");
+            foreach(GameObject soil in soils){
+                foreach(SoilInfo tmp in working){
+                    if(tmp.name==soil.GetComponent<SoilInfo>().name){
+                        tmp.treelevel=soil.GetComponent<SoilInfo>().treelevel;
+                        tmp.days=soil.GetComponent<SoilInfo>().days;
+                    }
+                }
+            }
+        }catch(NullReferenceException){
+            ;
+        }
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    
     }
 }
 

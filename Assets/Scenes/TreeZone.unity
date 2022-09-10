@@ -1270,7 +1270,7 @@ GameObject:
   - component: {fileID: 186866341}
   m_Layer: 0
   m_Name: soil4
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1416,6 +1416,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &186866342
 Animator:
   serializedVersion: 4
@@ -2818,7 +2819,7 @@ GameObject:
   - component: {fileID: 381129699}
   m_Layer: 0
   m_Name: soil16
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2932,6 +2933,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!61 &381129701
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3972,7 +3974,7 @@ GameObject:
   - component: {fileID: 548325071}
   m_Layer: 0
   m_Name: soil9
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4014,6 +4016,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &548325072
 Animator:
   serializedVersion: 4
@@ -19924,7 +19927,7 @@ GameObject:
   - component: {fileID: 792044093}
   m_Layer: 0
   m_Name: soil7
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20018,6 +20021,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &792044094
 Animator:
   serializedVersion: 4
@@ -20602,7 +20606,7 @@ GameObject:
   - component: {fileID: 824596344}
   m_Layer: 0
   m_Name: soil6
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20716,6 +20720,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!61 &824596346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21133,7 +21138,7 @@ GameObject:
   - component: {fileID: 940283267}
   m_Layer: 0
   m_Name: soil8
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21175,6 +21180,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &940283268
 Animator:
   serializedVersion: 4
@@ -21315,7 +21321,7 @@ GameObject:
   - component: {fileID: 960242460}
   m_Layer: 0
   m_Name: soil14
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21409,6 +21415,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &960242461
 Animator:
   serializedVersion: 4
@@ -21766,7 +21773,7 @@ GameObject:
   - component: {fileID: 1004445973}
   m_Layer: 0
   m_Name: soil18
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21932,6 +21939,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!1 &1006141528
 GameObject:
   m_ObjectHideFlags: 0
@@ -25662,7 +25670,7 @@ GameObject:
   - component: {fileID: 1390218328}
   m_Layer: 0
   m_Name: soil3
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25776,6 +25784,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!61 &1390218330
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26065,7 +26074,7 @@ GameObject:
   - component: {fileID: 1433196635}
   m_Layer: 0
   m_Name: soil10
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26211,6 +26220,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &1433196636
 Animator:
   serializedVersion: 4
@@ -26996,7 +27006,7 @@ GameObject:
   - component: {fileID: 1543816266}
   m_Layer: 0
   m_Name: soil13
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27038,6 +27048,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &1543816267
 Animator:
   serializedVersion: 4
@@ -27178,7 +27189,7 @@ GameObject:
   - component: {fileID: 1552902863}
   m_Layer: 0
   m_Name: soil11
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27324,6 +27335,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &1552902864
 Animator:
   serializedVersion: 4
@@ -28282,7 +28294,7 @@ GameObject:
   - component: {fileID: 1640022070}
   m_Layer: 0
   m_Name: soil1
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28376,6 +28388,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!61 &1640022068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28743,7 +28756,7 @@ GameObject:
   - component: {fileID: 1655455674}
   m_Layer: 0
   m_Name: soil5
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28909,6 +28922,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!1 &1663201924
 GameObject:
   m_ObjectHideFlags: 0
@@ -28925,7 +28939,7 @@ GameObject:
   - component: {fileID: 1663201927}
   m_Layer: 0
   m_Name: soil17
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29019,6 +29033,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &1663201928
 Animator:
   serializedVersion: 4
@@ -30053,7 +30068,7 @@ GameObject:
   - component: {fileID: 1755925602}
   m_Layer: 0
   m_Name: soil12
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30199,6 +30214,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!95 &1755925603
 Animator:
   serializedVersion: 4
@@ -30731,7 +30747,7 @@ GameObject:
   - component: {fileID: 1882484145}
   m_Layer: 0
   m_Name: soil2
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30897,6 +30913,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!1 &1892397560
 GameObject:
   m_ObjectHideFlags: 0
@@ -30913,7 +30930,7 @@ GameObject:
   - component: {fileID: 1892397563}
   m_Layer: 0
   m_Name: soil15
-  m_TagString: Untagged
+  m_TagString: soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31079,6 +31096,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  fertillzer: 0
 --- !u!1 &1971944439
 GameObject:
   m_ObjectHideFlags: 0

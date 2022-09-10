@@ -18,22 +18,27 @@ public class SoilInfo : MonoBehaviour
         this.gameObject.GetComponent<SpriteRenderer>().sprite=img;
     }
 
-    void OnEnable()
-    {
+    void Start(){
         try{
-            foreach(SoilInfo tmp in PlayerWorking.working){
-                if(tmp.name==this.name){
-                    this.isGrowing=tmp.isGrowing;
+            foreach (SoilInfo tmp in PlayerWorking.working){
+                Debug.Log("이상한 버그 찾기 "+tmp.name);
+                if(this.name==tmp.name){
+                    this.level=tmp.level;
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
                     this.treelevel=tmp.treelevel;
-                    this.timer=tmp.timer;
-                    this.days=tmp.days;
                     this.fertillzer=tmp.fertillzer;
-                    Debug.Log("씬 변경 시"+this.timer);
+                    this.days=tmp.days;
+                    if(treelevel!="No"){
+                        this.gameObject.transform.Find(tmp.treelevel).gameObject.SetActive(true);
+                    }
                 }
             }
         }catch(NullReferenceException e){
             ;
         }
+    }
+    void OnEnable()
+    {
     	  // 씬 매니저의 sceneLoaded에 체인을 건다.
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -52,24 +57,23 @@ public class SoilInfo : MonoBehaviour
                 this.gameObject.transform.Find("seed").gameObject.SetActive(false);
                 this.treelevel="sprout";
                 this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
-                this.isGrowing=false;
+                //this.isGrowing=false;
             }
         }else if(treelevel=="sprout"){
             if(day>=2){
                 this.gameObject.transform.Find("sprout").gameObject.SetActive(false);
                 this.treelevel="tree";
                 this.gameObject.transform.Find(this.treelevel).gameObject.SetActive(true);
-                isGrowing=false;
+                //isGrowing=false;
             }
         }else if(treelevel=="tree"){
             if(day>=3){
                 this.gameObject.transform.Find("tree").gameObject.SetActive(false);
                 this.treelevel="tree1";
                 this.gameObject.transform.Find("tree1").gameObject.SetActive(true);
-                isGrowing=false;
+                //isGrowing=false;
             }
         }
-
 
         bool isFirst=false;
         if(this.gameObject.transform.Find("tree1").gameObject.activeSelf&&!isFirst){
@@ -81,9 +85,7 @@ public class SoilInfo : MonoBehaviour
 
         try{
             foreach (SoilInfo tmp in PlayerWorking.working){
-                Debug.Log(tmp.name+" "+this.name);
                 if(this.name==tmp.name){
-                    this.timer=tmp.timer+GlobalTimer.timer;
                     this.level=tmp.level;
                     this.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
                     this.treelevel=tmp.treelevel;
@@ -104,15 +106,13 @@ public class SoilInfo : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         
         foreach(SoilInfo tmp in PlayerWorking.working){
-                if(tmp.name==this.name){
-                    this.isGrowing=tmp.isGrowing;
-                    this.treelevel=tmp.treelevel;
-                    this.timer=tmp.timer;
-                    this.days=tmp.days;
-                    this.fertillzer=tmp.fertillzer;
-                    Debug.Log("씬 변경 시"+this.timer);
-                }
+            if(tmp.name==this.name){
+                this.isGrowing=tmp.isGrowing;
+                this.treelevel=tmp.treelevel;
+                this.days=tmp.days;
+                this.fertillzer=tmp.fertillzer;
             }
+        }
         /*
         try{
             foreach(SoilInfo tmp in PlayerWorking.working){
