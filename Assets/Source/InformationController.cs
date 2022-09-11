@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using System;
 
 public class InformationController : MonoBehaviour
@@ -13,13 +14,22 @@ public class InformationController : MonoBehaviour
     [SerializeField]
     Text Infor;
     // Start is called before the first frame update
-   
+    [SerializeField]
+    VideoClip[] videos;
+    [SerializeField]
+    VideoPlayer Video;
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        
+        Video.clip=videos[field-1];
+    }
     void OnTriggerStay2D(Collider2D collision){
      
         Debug.Log(collision.name);
         try{
             if(Input.GetKey(KeyCode.Space)){
                 Sign.SetActive(true);
+
             }
             
             switch(field){
@@ -33,7 +43,7 @@ public class InformationController : MonoBehaviour
                     Infor.text=" 이 구간은 회수된 쓰레기들을 분리수거하는 장소입니다.\n\n플레이어는 올바른 분리수거 방법이 무엇인지 생각하여 쓰레기를 올바른 쓰레기통에 옮겨주세요.\n\n분리배출표시 도안이 개정되었습니다. 이를 고려해주세요.";
                     break;
                 case 4:
-                    Infor.text=" 이 구간은 나무를 심는 장소입니다.\n\n 올바른 나무심기는 미세먼지와 대기오염을 줄일 수 있습니다. 현재 자금을 이용해 18그루를 심어주세요.\n\n씨앗, 5일 / 모종, 4일 /이동 나무 3일 걸립니다.물과 천연거름을 적절히 분배하여 키워주세요.";
+                    Infor.text=" 이 구간은 나무를 심는 장소입니다.\n\n 올바른 나무심기는 미세먼지와 대기오염을 줄일 수 있습니다. 현재 자금을 이용해 18그루를 심어주세요.\n\n 성체가 되기 위해선 3일이 필요합니다. 물과 천연거름을 적절히 분배하여 키워주세요.";
                     break;
             }
         }catch(NullReferenceException e){

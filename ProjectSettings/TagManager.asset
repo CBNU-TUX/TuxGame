@@ -19,6 +19,7 @@ TagManager:
   - SleepPlayer
   - Text
   - SuccessSlider
+  - soil
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
 public class PlayerWorking : MonoBehaviour
 {
@@ -13,16 +14,17 @@ public class PlayerWorking : MonoBehaviour
     static public int seed;
     static public int sprout;
     static public int sapling;
-
+    GameManager gameManager;    
     [SerializeField]
     GameObject[] textField;
     [SerializeField]
     GameObject Slider;
-
+    GameObject[] soils;
     static public int treeCount;
     // Start is called before the first frame update
     ClickController clickObject;
     void Start(){
+        soils= GameObject.FindGameObjectsWithTag("soil");
         working=new List<SoilInfo>();
         clickObject = GameObject.FindObjectOfType<ClickController>();
         textField=GameObject.FindGameObjectsWithTag("Text");
@@ -32,6 +34,7 @@ public class PlayerWorking : MonoBehaviour
     void Update(){
         textField=GameObject.FindGameObjectsWithTag("Text");
         Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
+        soils= GameObject.FindGameObjectsWithTag("soil");
         try{
             
             foreach(GameObject text in textField){
@@ -58,6 +61,7 @@ public class PlayerWorking : MonoBehaviour
                 }
             }
             
+            
             Slider.GetComponent<Slider>().value=(100f/16f)*treeCount;
         }catch(NullReferenceException e){
 
@@ -77,7 +81,7 @@ public class PlayerWorking : MonoBehaviour
                 {
                     PlayerMovement.canMove = false;
                     SoundManager.instance.platSE("shovel");
-                    Invoke("Moveable", 1f);
+                    Invoke("Moveable1", 1f);
                     tmp.treelevel="No";
                     tmp.level=1;
                     tmp.setImg(Soil.levelImg[1]);
@@ -92,19 +96,24 @@ public class PlayerWorking : MonoBehaviour
                         tmp.fertillzer++;
                         fertillzer--;
                         textField[3].GetComponent<Text>().text=fertillzer.ToString()+" 개";
+                        this.gameObject.GetComponent<Animator>().SetTrigger("isSpread");
                     }
                 }
                 isFirst=true;
             }
             else if(clickObject.click.name=="BoxUI03"&&clickObject.click!=null&&wateringCan>0){
                 if(Input.GetKey(KeyCode.Space)){
+                    PlayerMovement.canMove = false;
                     SoundManager.instance.platSE("water");
+                    Invoke("Moveable2", 1f);
                     collision.gameObject.GetComponent<Animator>().SetTrigger("isStarting");
                     this.gameObject.GetComponent<Animator>().SetTrigger("isWater");
                 }
             }else if(clickObject.click.name=="BoxUI04"&&clickObject.click!=null&&tmp.level>=1&&tmp.treelevel=="No"&&seed>0){
                 if(Input.GetKey(KeyCode.Space)){
+                    PlayerMovement.canMove = false;
                     SoundManager.instance.platSE("sow");
+                    Invoke("Moveable3", 1f);
                     Debug.Log("이거 되는거 맞아? "+collision.name);
                     tmp.isGrowing=true;
                     tmp.treelevel="seed";
@@ -123,7 +132,7 @@ public class PlayerWorking : MonoBehaviour
                     Debug.Log(child.name);
                     child.gameObject.SetActive(true);
                     sprout-=1;
-                    tmp.days=GlobalTimer.day;
+                    tmp.days=GlobalTimer.day-1;
                     textField[1].GetComponent<Text>().text=PlayerWorking.sprout.ToString()+" 개";
                 }
             }else if(clickObject.click.name=="BoxUI06"&&clickObject.click!=null&&tmp.level>=1&&tmp.treelevel=="No"&&sapling>0){
@@ -135,8 +144,18 @@ public class PlayerWorking : MonoBehaviour
                     tmp.isGrowing=true;
                     GameObject child=collision.gameObject.transform.Find("tree").gameObject;
                     Debug.Log(child.name);
-                    tmp.days=GlobalTimer.day;
+                    tmp.days=GlobalTimer.day-2;
                     child.gameObject.SetActive(true);
+                }
+
+                foreach(SoilInfo work in working){
+                    if(work.name==tmp.name){
+                        work.level=tmp.level;
+                        work.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
+                        work.treelevel=tmp.treelevel;
+                        work.fertillzer=tmp.fertillzer;
+                        work.days=tmp.days;
+                    }
                 }
             }
 
@@ -150,10 +169,60 @@ public class PlayerWorking : MonoBehaviour
             ;
         }
     }
-    void Moveable()
+    void Moveable1()
     {
         SoundManager.instance.platSE("shovel");
         PlayerMovement.canMove = true;
+    }
+    void Moveable2()
+    {
+        SoundManager.instance.platSE("water");
+        PlayerMovement.canMove = true;
+    }
+    void Moveable3()
+    {
+        SoundManager.instance.platSE("sow");
+        PlayerMovement.canMove = true;
+    }
+    public void SceneTransition()
+    {
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager.setTransfer("Ending");
+        gameManager.ChangeScene("Ending",new Vector3(0,0,0));
+        GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
+    }
+
+     void OnEnable()
+    {
+    	  // 씬 매니저의 sceneLoaded에 체인을 건다.
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+
+        try{
+            foreach(GameObject soil in soils){
+                foreach(SoilInfo tmp in working){
+                    if(tmp.name==soil.GetComponent<SoilInfo>().name){
+                        tmp.treelevel=soil.GetComponent<SoilInfo>().treelevel;
+                        tmp.days=soil.GetComponent<SoilInfo>().days;
+                        tmp.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
+
+                    }
+                }
+            }
+
+
+        }catch(NullReferenceException){
+            ;
+        }catch(MissingReferenceException){
+            ;
+        }
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    
     }
 }
 

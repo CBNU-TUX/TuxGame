@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
             if(transferScene=="TreeZone"){
                 Fade_img.GetComponent<Image>().sprite=img[0];
             }else if(transferScene=="TrashZone"){
-                Fade_img.GetComponent<Image>().sprite=img[1];    
+                Fade_img.GetComponent<Image>().sprite=img[1];
             }else if(transferScene=="SeaZone"){
                 Fade_img.GetComponent<Image>().sprite=img[2];
             }else if(transferScene=="FactoryGameZone"){

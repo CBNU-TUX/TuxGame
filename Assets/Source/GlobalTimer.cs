@@ -76,27 +76,6 @@ public class GlobalTimer : MonoBehaviour
         min = Mathf.FloorToInt(timer / 60.0f - hours * 60);
         sec = Mathf.FloorToInt(timer - min * 60 - hours * 60.0f * 60.0f);
 
-        /*밭의 경우*/
-        try{
-            foreach(SoilInfo tmp in PlayerWorking.working){
-               int freetime=Mathf.FloorToInt(timer-tmp.timer)%240;
-               if(freetime>=60&&freetime<=89&&tmp.treelevel=="seed"){
-                    tmp.treelevel="sprout";
-                    tmp.isGrowing=true;
-                    tmp.timer=freetime;
-               }
-                else if(freetime>=90&&freetime<=120&&tmp.treelevel=="sprout"){
-                    tmp.treelevel="tree";
-                    tmp.isGrowing=true;
-                    tmp.timer=freetime;
-                }
-                else
-                    ; //나무 핀다..
-
-            }
-        }catch(NullReferenceException e){
-                ;
-        }
         //10을 1로 바꿈
         if (min >= 7)
         {
@@ -105,6 +84,7 @@ public class GlobalTimer : MonoBehaviour
             day += 1;
             SceneTransition();
         }
+
 
         if ((min / 10) == 0)
             minText.text = "0" + min.ToString();
@@ -120,6 +100,8 @@ public class GlobalTimer : MonoBehaviour
         if (day <= 4)
         {
             Calender.text = days[day];
+        }else{
+            SceneTransition_Ending();
         }
 
         if (Calender.text != "일")
@@ -131,6 +113,14 @@ public class GlobalTimer : MonoBehaviour
     public void Reset()
     {
         timer = 0;
+    }
+    
+    public void SceneTransition_Ending()
+    {
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager.setTransfer("Ending");
+        gameManager.ChangeScene("Ending",new Vector3(10.28f,7.74f,0f));
+        GameObject.Find("Player").GetComponent<Animator>().SetBool("isTreeZone",false);
     }
 
     public void SceneTransition()

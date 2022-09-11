@@ -37,17 +37,21 @@ public class MailController : MonoBehaviour
         
     }
 
-    public void OnButton(){
+    public void OnButton()
+    {
         GameObject.Find("Window").gameObject.SetActive(false);
+        SoundManager.instance.platSE("computerOFF");
     }
     
     public void ExitClick(){
         try{
             
             GameObject exit=EventSystem.current.currentSelectedGameObject;
-                
-            foreach(GameObject m in mail){
-                if(m.name==exit.transform.parent.name){
+
+            foreach (GameObject m in mail){
+                if(m.name==exit.transform.parent.name)
+                {
+                    SoundManager.instance.platSE("DeleteMail");
                     Debug.Log("찾음");
                     mail.Remove(m);
                     break;
