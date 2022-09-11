@@ -155,6 +155,12 @@ MonoBehaviour:
   Sign: {fileID: 0}
   field: 0
   Infor: {fileID: 0}
+  videos:
+  - {fileID: 32900000, guid: 95dff781c4dbb4bc99bb1645fb767f72, type: 3}
+  - {fileID: 32900000, guid: 4e4147c6e61ac4a1fb109159b7a0b4b2, type: 3}
+  - {fileID: 32900000, guid: 0600f4677cd4a4a228dcecad6f042317, type: 3}
+  - {fileID: 32900000, guid: 05b489debb1b341b78a5c73e4bd4a5d7, type: 3}
+  Video: {fileID: 0}
 --- !u!1 &3908154849406874063
 GameObject:
   m_ObjectHideFlags: 0

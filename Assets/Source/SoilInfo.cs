@@ -45,7 +45,7 @@ public class SoilInfo : MonoBehaviour
 
     void Update(){
 
-        int day=(days!=GlobalTimer.day)? day=GlobalTimer.day-days:day=days;
+        int day=(days!=GlobalTimer.day)? day=Mathf.Abs(GlobalTimer.day-days):day=0;
 
         if(fertillzer==3){
             day+=1;

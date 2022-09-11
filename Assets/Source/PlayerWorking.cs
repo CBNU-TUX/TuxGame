@@ -132,7 +132,7 @@ public class PlayerWorking : MonoBehaviour
                     Debug.Log(child.name);
                     child.gameObject.SetActive(true);
                     sprout-=1;
-                    tmp.days=GlobalTimer.day;
+                    tmp.days=GlobalTimer.day-1;
                     textField[1].GetComponent<Text>().text=PlayerWorking.sprout.ToString()+" 개";
                 }
             }else if(clickObject.click.name=="BoxUI06"&&clickObject.click!=null&&tmp.level>=1&&tmp.treelevel=="No"&&sapling>0){
@@ -144,7 +144,7 @@ public class PlayerWorking : MonoBehaviour
                     tmp.isGrowing=true;
                     GameObject child=collision.gameObject.transform.Find("tree").gameObject;
                     Debug.Log(child.name);
-                    tmp.days=GlobalTimer.day;
+                    tmp.days=GlobalTimer.day-2;
                     child.gameObject.SetActive(true);
                 }
 
@@ -205,6 +205,8 @@ public class PlayerWorking : MonoBehaviour
                     if(tmp.name==soil.GetComponent<SoilInfo>().name){
                         tmp.treelevel=soil.GetComponent<SoilInfo>().treelevel;
                         tmp.days=soil.GetComponent<SoilInfo>().days;
+                        tmp.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
+
                     }
                 }
             }
