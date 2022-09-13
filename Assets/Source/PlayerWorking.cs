@@ -7,7 +7,7 @@ using System;
 public class PlayerWorking : MonoBehaviour
 {
     static public List<SoilInfo> working;
-   
+    
     static public int shovel;
     static public int fertillzer;
     static public int wateringCan;
@@ -29,6 +29,7 @@ public class PlayerWorking : MonoBehaviour
         clickObject = GameObject.FindObjectOfType<ClickController>();
         textField=GameObject.FindGameObjectsWithTag("Text");
         Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
+
     }
 
     void Update(){
@@ -61,8 +62,8 @@ public class PlayerWorking : MonoBehaviour
                 }
             }
             
-            
-            Slider.GetComponent<Slider>().value=(100f/16f)*treeCount;
+            Slider.GetComponent<Slider>().value=(100f/18f)*treeCount;
+
         }catch(NullReferenceException e){
 
         }
@@ -196,6 +197,7 @@ public class PlayerWorking : MonoBehaviour
     {
     	  // 씬 매니저의 sceneLoaded에 체인을 건다.
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
@@ -203,14 +205,18 @@ public class PlayerWorking : MonoBehaviour
             foreach(GameObject soil in soils){
                 foreach(SoilInfo tmp in working){
                     if(tmp.name==soil.GetComponent<SoilInfo>().name){
+                        Debug.Log("저장된 tmp"+tmp.name);
                         tmp.treelevel=soil.GetComponent<SoilInfo>().treelevel;
                         tmp.days=soil.GetComponent<SoilInfo>().days;
                         tmp.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
 
+                        if(tmp.gameObject.transform.Find("tree1").gameObject.activeSelf&&scene.name=="TreeZone"){
+                            treeCount++;
+                            Debug.Log("씬 등장시 treeCount 확인하기");
+                        }
                     }
                 }
             }
-
 
         }catch(NullReferenceException){
             ;
@@ -221,6 +227,7 @@ public class PlayerWorking : MonoBehaviour
 
     void OnDisable()
     {
+        treeCount=0;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     
     }

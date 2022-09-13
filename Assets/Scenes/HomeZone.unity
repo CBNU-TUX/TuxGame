@@ -1886,7 +1886,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.81, y: 11.81}
+  m_Size: {x: 5, y: 11.81}
   m_EdgeRadius: 0
 --- !u!82 &922623142 stripped
 AudioSource:
@@ -9461,6 +9461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GoTo: MainZone
   teleportPosition: {x: -3.4, y: 6, z: 0}
+  Warning: {fileID: 0}
 --- !u!212 &1355573485
 SpriteRenderer:
   m_ObjectHideFlags: 0

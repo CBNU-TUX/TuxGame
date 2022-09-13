@@ -14,6 +14,7 @@ public class BarUIController : MonoBehaviour
     /*boat bar 스피드 조절을 위함.*/
 
     Text textScore;
+    [SerializeField]
     GameObject MovingBar;
     private GraphicRaycaster GRaycast;
     PointerEventData PED;
@@ -41,12 +42,14 @@ public class BarUIController : MonoBehaviour
             count=0;
         }catch(NullReferenceException e){
             ;
+        }catch(UnassignedReferenceException){
+            ;
         }
     }
     // Update is called once per frame
     void Update()
     {
-
+        MovingBar=GameObject.Find("MoveBar");
         if(Net_Action.isThrowing){
             PED=new PointerEventData(eventSystem);
             PED.position=MovingBar.transform.position;

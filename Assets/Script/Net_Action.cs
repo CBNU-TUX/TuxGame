@@ -38,8 +38,11 @@ public class Net_Action : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        Debug.Log("버그찾기 시작"+opening);
         if (Input.GetKey(KeyCode.Space) && opening == false&&!isThrowing)
         {
+            Debug.Log("버그찾기 시작"+"????");
+            
             polygon.offset = new Vector2(0, 0);
             isThrowing=true;
             GameObject.Find("Canvas").transform.GetChild(1).gameObject.SetActive(true);
@@ -57,6 +60,7 @@ public class Net_Action : MonoBehaviour
             SoundManager.instance.platSE("net");
             animator.SetBool("is_open", false);
             Invoke("Status_close", 1f);
+            isThrowing=false;
         }
     }
     private void Status_open()

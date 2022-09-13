@@ -170,7 +170,9 @@ public class GameManager : MonoBehaviour
                 }
             });   
         }catch(NullReferenceException e){
-
+            ;
+        }catch(IndexOutOfRangeException){
+            ;
         }
     }
     

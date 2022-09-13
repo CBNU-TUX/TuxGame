@@ -24,7 +24,7 @@ public class HeartController : MonoBehaviour
 
     void Update()
     {
-        GlobalTimer.timer+=Time.deltaTime;
+        //GlobalTimer.timer+=Time.deltaTime;
         if(liftCount<3&&liftCount>=0){
             Heart.GetChild(liftCount).gameObject.SetActive(false);
         }
@@ -33,7 +33,9 @@ public class HeartController : MonoBehaviour
             if(!isFirst){
                 TotalGoldController.TotalGold+=Dragable.gold;
             }
-            SceneTransition();
+
+            if(GlobalTimer.min<6.5f)
+                SceneTransition();
         }
 
         bool isCheck=false;

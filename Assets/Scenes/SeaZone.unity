@@ -5605,6 +5605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boat: {fileID: 0}
   speed: 8
+  MovingBar: {fileID: 714328758}
 --- !u!114 &1584538643
 MonoBehaviour:
   m_ObjectHideFlags: 0

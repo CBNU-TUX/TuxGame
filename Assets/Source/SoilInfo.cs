@@ -100,14 +100,20 @@ public class SoilInfo : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        
-        foreach(SoilInfo tmp in PlayerWorking.working){
-            if(tmp.name==this.name){
-                this.isGrowing=tmp.isGrowing;
-                this.treelevel=tmp.treelevel;
-                this.days=tmp.days;
-                this.fertillzer=tmp.fertillzer;
+        try{
+            
+            foreach(SoilInfo tmp in PlayerWorking.working){
+                if(tmp.name==this.name){
+                    this.isGrowing=tmp.isGrowing;
+                    this.treelevel=tmp.treelevel;
+                    this.days=tmp.days;
+                    this.fertillzer=tmp.fertillzer;
+                }
             }
+        }catch(NullReferenceException){
+            ;
+        }catch(MissingReferenceException){
+            ;
         }
         /*
         try{
