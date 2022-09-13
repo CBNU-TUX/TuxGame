@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FishingController : MonoBehaviour
 {
-    static public bool isFishing=false;
+    static public bool isFishing = false;
     Text Money;
-    static int gold = 0;
+    public static int gold = 0;
     GameObject[] trash;
     GameManager gameManager;
     [SerializeField]
@@ -17,7 +17,9 @@ public class FishingController : MonoBehaviour
 
     bool isFirst;
     void Start(){
+        gold = 0;
         isFirst=false;
+        isFishing = false ;
         Money=GameObject.Find("don").GetComponent<Text>();
         Money.text = gold.ToString();    
         trash=GameObject.FindGameObjectsWithTag("Trashs");
