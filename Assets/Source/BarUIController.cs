@@ -49,7 +49,6 @@ public class BarUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovingBar=GameObject.Find("MoveBar");
         if(Net_Action.isThrowing){
             PED=new PointerEventData(eventSystem);
             PED.position=MovingBar.transform.position;

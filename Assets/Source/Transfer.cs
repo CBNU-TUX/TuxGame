@@ -40,16 +40,22 @@ public class Transfer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(GlobalTimer.min>=6&&(GoTo!="TreeZone"||GoTo!="MainZone")){
+        if(GlobalTimer.min>=6&&(GoTo=="TreeZone"||GoTo=="MainZone")){
+            if (Input.GetKey(KeyCode.Space))
+            {
+              SceneTransition();
+            }
+        }else if(GlobalTimer.min>=6&&(GoTo!="TreeZone"||GoTo!="MainZone")){
             if (Input.GetKey(KeyCode.Space))
             {
                 Warning.SetActive(true);
             }
-        }
-
-        if (GlobalTimer.min<6&&Input.GetKey(KeyCode.Space))
+        }else if (GlobalTimer.min<6&&Input.GetKey(KeyCode.Space))
         {
-            SceneTransition();
+            if (Input.GetKey(KeyCode.Space))
+            {
+              SceneTransition();
+            }
         }
         
     }

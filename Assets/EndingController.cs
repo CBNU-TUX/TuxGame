@@ -9,7 +9,7 @@ public class EndingController : MonoBehaviour
     {
         if(PlayerWorking.treeCount<=8){
             this.transform.GetChild(2).gameObject.SetActive(true);
-        }else if(PlayerWorking.treeCount<=15){
+        }else if(PlayerWorking.treeCount<=16){
             this.transform.GetChild(1).gameObject.SetActive(true);
         }else{
             this.transform.GetChild(0).gameObject.SetActive(true);

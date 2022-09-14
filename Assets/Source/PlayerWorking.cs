@@ -30,6 +30,22 @@ public class PlayerWorking : MonoBehaviour
         textField=GameObject.FindGameObjectsWithTag("Text");
         Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
 
+        try{
+            foreach(GameObject soil in soils){
+                foreach(SoilInfo tmp in working){
+                    if(tmp.name==soil.GetComponent<SoilInfo>().name){
+
+                        if(tmp.gameObject.transform.Find("tree1").gameObject.activeSelf){
+                            treeCount++;
+                            Debug.Log("씬 등장시 treeCount 확인하기");
+                        }
+                    }
+                }
+            }
+        }catch(NullReferenceException){
+
+        }
+        
     }
 
     void Update(){
@@ -227,7 +243,8 @@ public class PlayerWorking : MonoBehaviour
 
     void OnDisable()
     {
-        treeCount=0;
+        if(GlobalTimer.day<5)
+            treeCount=0;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     
     }
