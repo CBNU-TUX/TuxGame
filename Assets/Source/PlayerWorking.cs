@@ -29,22 +29,6 @@ public class PlayerWorking : MonoBehaviour
         clickObject = GameObject.FindObjectOfType<ClickController>();
         textField=GameObject.FindGameObjectsWithTag("Text");
         Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
-
-        try{
-            foreach(GameObject soil in soils){
-                foreach(SoilInfo tmp in working){
-                    if(tmp.name==soil.GetComponent<SoilInfo>().name){
-
-                        if(tmp.gameObject.transform.Find("tree1").gameObject.activeSelf){
-                            treeCount++;
-                            Debug.Log("씬 등장시 treeCount 확인하기");
-                        }
-                    }
-                }
-            }
-        }catch(NullReferenceException){
-
-        }
         
     }
 
@@ -164,14 +148,27 @@ public class PlayerWorking : MonoBehaviour
                     tmp.days=GlobalTimer.day-2;
                     child.gameObject.SetActive(true);
                 }
+            }
 
-                foreach(SoilInfo work in working){
-                    if(work.name==tmp.name){
-                        work.level=tmp.level;
-                        work.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
-                        work.treelevel=tmp.treelevel;
-                        work.fertillzer=tmp.fertillzer;
-                        work.days=tmp.days;
+            foreach(SoilInfo work in working){
+                Debug.Log("work의 이름"+work.name);
+                if(work.name==tmp.name){
+                    Debug.Log("? tmp 이름과 현재 work의 level"+tmp.name+" "+work.level);
+                    working.Add(tmp);
+                    //work.treelevel=soil.GetComponent<SoilInfo>().treelevel;
+                    //wor.days=soil.GetComponent<SoilInfo>().days;
+                    //    t.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
+                }
+            }
+
+            
+            foreach(GameObject soil in soils){
+                foreach(SoilInfo t in working){
+                    if(t.name==soil.GetComponent<SoilInfo>().name){
+                        Debug.Log("저장된 tmp"+tmp.name);
+                        t.treelevel=soil.GetComponent<SoilInfo>().treelevel;
+                        t.days=soil.GetComponent<SoilInfo>().days;
+                        t.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
                     }
                 }
             }
@@ -213,38 +210,41 @@ public class PlayerWorking : MonoBehaviour
     {
     	  // 씬 매니저의 sceneLoaded에 체인을 건다.
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
+        treeCount=0;
+        try{
+            foreach(SoilInfo tmp in working){
+                if(tmp.treelevel=="tree1"){
+                    treeCount++;
+                    Debug.Log("씬 등장시 treeCount 확인하기");
+                }
+            }
+            
+            Slider.GetComponent<Slider>().value=(100f/18f)*treeCount;
+            
+        }catch(NullReferenceException){
+
+        }
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
+        treeCount=0;
         try{
-            foreach(GameObject soil in soils){
-                foreach(SoilInfo tmp in working){
-                    if(tmp.name==soil.GetComponent<SoilInfo>().name){
-                        Debug.Log("저장된 tmp"+tmp.name);
-                        tmp.treelevel=soil.GetComponent<SoilInfo>().treelevel;
-                        tmp.days=soil.GetComponent<SoilInfo>().days;
-                        tmp.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
-
-                        if(tmp.gameObject.transform.Find("tree1").gameObject.activeSelf&&scene.name=="TreeZone"){
-                            treeCount++;
-                            Debug.Log("씬 등장시 treeCount 확인하기");
-                        }
-                    }
+            foreach(SoilInfo tmp in working){
+                if(tmp.treelevel=="tree1"){
+                    treeCount++;
+                    Debug.Log("씬 등장시 treeCount 확인하기");
                 }
             }
-
+            
+            Slider.GetComponent<Slider>().value=(100f/18f)*treeCount;
+            
         }catch(NullReferenceException){
-            ;
-        }catch(MissingReferenceException){
-            ;
+
         }
     }
 
     void OnDisable()
     {
-        if(GlobalTimer.day<5)
-            treeCount=0;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     
     }

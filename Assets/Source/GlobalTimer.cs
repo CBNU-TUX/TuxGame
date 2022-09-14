@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using System;
 public class GlobalTimer : MonoBehaviour
 {
@@ -13,8 +12,6 @@ public class GlobalTimer : MonoBehaviour
     Text minText;
     Text secText;
 
-    [SerializeField]
-    Light2D light;
     [SerializeField]
     Text Calender;
     [SerializeField]
@@ -39,23 +36,6 @@ public class GlobalTimer : MonoBehaviour
         minText.text = ((int)min).ToString();
         secText.text = ((int)min).ToString();
         gameManager = GameObject.FindObjectOfType<GameManager>();
-        Invoke("evening", 120f);
-    }
-
-    void evening()
-    {
-        light.color = new Color(233f / 255f, 210f / 255f, 134f / 255f, 134f / 255f);
-        Invoke("night", 120f);
-    }
-    void night()
-    {
-        light.color = new Color(159f / 255f, 159f / 255f, 159f / 255f, 134f / 255f);
-        Invoke("morning", 220f);
-    }
-    void morning()
-    {
-        light.color = new Color(1f, 1f, 1f, 134f / 255f);
-        Invoke("evening", 120f);
     }
 
     void Update()

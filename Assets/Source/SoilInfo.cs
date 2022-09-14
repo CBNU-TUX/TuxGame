@@ -71,7 +71,7 @@ public class SoilInfo : MonoBehaviour
                 this.gameObject.transform.Find("tree").gameObject.SetActive(false);
                 this.treelevel="tree1";
                 this.gameObject.transform.Find("tree1").gameObject.SetActive(true);
-                PlayerWorking.treeCount++;
+                //PlayerWorking.treeCount++;
                 //isGrowing=false;
             }
         }
