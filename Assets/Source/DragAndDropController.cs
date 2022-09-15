@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEditor;
-using UnityEditor.UIElements;
 
 public class DragAndDropController : MonoBehaviour, IDragHandler,IPointerDownHandler, IBeginDragHandler,IEndDragHandler,IDropHandler
 {
-    //SerializeFieldÀÇ °æ¿ì private º¯¼ö¸¦ inspector¿¡¼­ °Çµå¸± ¼ö ÀÖµµ·Ï ÇÏ´Â À¯´ÏÆ¼ Á¦°ø µµ±¸
+    //SerializeFieldï¿½ï¿½ ï¿½ï¿½ï¿½ private ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ inspectorï¿½ï¿½ï¿½ï¿½ ï¿½Çµå¸± ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private Canvas gameCanvas;
     private RectTransform billTransform;
     private CanvasGroup canvasGroup;
@@ -21,13 +19,13 @@ public class DragAndDropController : MonoBehaviour, IDragHandler,IPointerDownHan
         canvasGroup = GetComponent<CanvasGroup>();
         loadedPostion = billTransform.anchoredPosition;
         factorys = GameObject.FindGameObjectsWithTag("Factory");
-        //canvasGroup¿¡ ÇØ´çÇÏ´Â ¸ðµç Äµ¹ö½º¸¦ ´Ù°°ÀÌ Á¶ÀýÇÏ±â À§ÇØ¼­ »ç¿ë.
-        //billTransformÀÇ anchoredPositionÀ» °¡Á®¿È. anchoredPositionÀ» »ç¿ëÇÑ ÀÌÀ¯, inspector»ó x,yÁÂÇ¥ »ç¿ëÀ» À§ÇÔ.
+        //canvasGroupï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½.
+        //billTransformï¿½ï¿½ anchoredPositionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. anchoredPositionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, inspectorï¿½ï¿½ x,yï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
     }
-    //drag¸¦ ½ÃÀÛÇÒ¶§
+    //dragï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //½ÃÀÛÇÒ¶§ raycast¸¦ ²û.
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ raycastï¿½ï¿½ ï¿½ï¿½.
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
         Debug.Log("OnBeginDrag");
@@ -40,7 +38,7 @@ public class DragAndDropController : MonoBehaviour, IDragHandler,IPointerDownHan
         Debug.Log("OnDrag");
     }
 
-    //drag°¡ ³¡³µÀ»¶§
+    //dragï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void OnEndDrag(PointerEventData eventData)
     {
         
@@ -58,9 +56,9 @@ public class DragAndDropController : MonoBehaviour, IDragHandler,IPointerDownHan
         canvasGroup.alpha = 1f;
         Debug.Log("EndDrag");
         //canvasGroup.blocksRaycasts = true;
-        //drag°¡ ³¡³µÀ»¶§ raycast ÇÔ
+        //dragï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ raycast ï¿½ï¿½
     }
-    //drag¸¦ À§ÇØ Å¬¸¯ÇÒ¶§
+    //dragï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ò¶ï¿½
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("OnPointerDown");
