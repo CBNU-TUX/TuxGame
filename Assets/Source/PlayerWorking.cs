@@ -7,7 +7,7 @@ using System;
 public class PlayerWorking : MonoBehaviour
 {
     static public List<SoilInfo> working;
-    
+    static public Dictionary<string,SoilInfo> Trees;
     static public int shovel;
     static public int fertillzer;
     static public int wateringCan;
@@ -25,6 +25,7 @@ public class PlayerWorking : MonoBehaviour
     void Start(){
         soils= GameObject.FindGameObjectsWithTag("soil");
         working=new List<SoilInfo>();
+        Trees=new Dictionary<string,SoilInfo>();
         clickObject = GameObject.FindObjectOfType<ClickController>();
         textField=GameObject.FindGameObjectsWithTag("Text");
         

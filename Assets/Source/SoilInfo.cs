@@ -83,7 +83,8 @@ public class SoilInfo : MonoBehaviour
                         break;
                     }
                 }
-                //PlayerWorking.treeCount++;
+                if(!PlayerWorking.Trees.ContainsKey(this.name))
+                    PlayerWorking.Trees.Add(this.name,this);
                 //isGrowing=false;
             }
         }

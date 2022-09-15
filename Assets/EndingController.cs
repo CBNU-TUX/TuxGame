@@ -8,8 +8,8 @@ public class EndingController : MonoBehaviour
 
     void Start()
     {
-        treeCount = SoilInfo.trees;
-        
+        treeCount = PlayerWorking.Trees.Count;
+        Debug.Log("tree의 수"+PlayerWorking.Trees.Count.ToString());
         if(treeCount<=8){
             this.transform.GetChild(2).gameObject.SetActive(true);
             
