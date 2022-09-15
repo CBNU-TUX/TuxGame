@@ -29,7 +29,7 @@ public class LightController : MonoBehaviour
     void night()
     {
         light.color = new Color(159f / 255f, 159f / 255f, 159f / 255f, 134f / 255f);
-        Invoke("morning", 60f); //1
+        Invoke("morning", 70f); //1
     }
     void morning()
     {

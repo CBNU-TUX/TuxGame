@@ -17,8 +17,7 @@ public class PlayerWorking : MonoBehaviour
     GameManager gameManager;    
     [SerializeField]
     GameObject[] textField;
-    [SerializeField]
-    GameObject Slider;
+
     GameObject[] soils;
     static public int treeCount;
     // Start is called before the first frame update
@@ -28,13 +27,11 @@ public class PlayerWorking : MonoBehaviour
         working=new List<SoilInfo>();
         clickObject = GameObject.FindObjectOfType<ClickController>();
         textField=GameObject.FindGameObjectsWithTag("Text");
-        Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
         
     }
 
     void Update(){
         textField=GameObject.FindGameObjectsWithTag("Text");
-        Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
         soils= GameObject.FindGameObjectsWithTag("soil");
         try{
             
@@ -61,8 +58,7 @@ public class PlayerWorking : MonoBehaviour
                         break;
                 }
             }
-            
-            Slider.GetComponent<Slider>().value=(100f/18f)*treeCount;
+        
 
         }catch(NullReferenceException e){
 
@@ -150,27 +146,16 @@ public class PlayerWorking : MonoBehaviour
                 }
             }
 
+            Debug.Log("working의 크기"+working.Count);
             foreach(SoilInfo work in working){
                 Debug.Log("work의 이름"+work.name);
                 if(work.name==tmp.name){
                     Debug.Log("? tmp 이름과 현재 work의 level"+tmp.name+" "+work.level);
-                    working.Add(tmp);
-                    //work.treelevel=soil.GetComponent<SoilInfo>().treelevel;
-                    //wor.days=soil.GetComponent<SoilInfo>().days;
-                    //    t.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
-                }
-            }
-
-            
-            foreach(GameObject soil in soils){
-                foreach(SoilInfo t in working){
-                    if(t.name==soil.GetComponent<SoilInfo>().name){
-                        Debug.Log("저장된 tmp"+tmp.name);
-                        t.treelevel=soil.GetComponent<SoilInfo>().treelevel;
-                        t.days=soil.GetComponent<SoilInfo>().days;
-                        t.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
+                    work.treelevel=tmp.treelevel;
+                    work.days=tmp.days;
+                    work.fertillzer=tmp.fertillzer;
+                    break;
                     }
-                }
             }
 
         }catch(NullReferenceException ex){
@@ -210,37 +195,23 @@ public class PlayerWorking : MonoBehaviour
     {
     	  // 씬 매니저의 sceneLoaded에 체인을 건다.
         SceneManager.sceneLoaded += OnSceneLoaded;
-        treeCount=0;
-        try{
-            foreach(SoilInfo tmp in working){
-                if(tmp.treelevel=="tree1"){
-                    treeCount++;
-                    Debug.Log("씬 등장시 treeCount 확인하기");
-                }
-            }
-            
-            Slider.GetComponent<Slider>().value=(100f/18f)*treeCount;
-            
-        }catch(NullReferenceException){
-
-        }
+        
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
-        treeCount=0;
-        try{
-            foreach(SoilInfo tmp in working){
-                if(tmp.treelevel=="tree1"){
-                    treeCount++;
-                    Debug.Log("씬 등장시 treeCount 확인하기");
+        
+        if(scene.name=="TreeZone"){
+            int treeCount=0;
+            foreach(SoilInfo t in PlayerWorking.working){
+                if(t.treelevel=="tree1"){
+                        treeCount++;
                 }
             }
-            
-            Slider.GetComponent<Slider>().value=(100f/18f)*treeCount;
-            
-        }catch(NullReferenceException){
 
+            Debug.Log("트리의 갯수는?(트리존)"+treeCount);
+            
         }
+        
     }
 
     void OnDisable()
