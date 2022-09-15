@@ -150,12 +150,13 @@ public class PlayerWorking : MonoBehaviour
             foreach(SoilInfo work in working){
                 Debug.Log("work의 이름"+work.name);
                 if(work.name==tmp.name){
-                    Debug.Log("? tmp 이름과 현재 work의 level"+tmp.name+" "+work.level);
+                    Debug.Log("? tmp 이름과 현재 work의 level"+tmp.name+" "+work.level+" "+tmp.isEnd);
                     work.treelevel=tmp.treelevel;
                     work.days=tmp.days;
                     work.fertillzer=tmp.fertillzer;
+                    work.isEnd=tmp.isEnd;
                     break;
-                    }
+                }
             }
 
         }catch(NullReferenceException ex){
@@ -198,20 +199,20 @@ public class PlayerWorking : MonoBehaviour
         
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
-
-        
-        if(scene.name=="TreeZone"){
+        try{
             int treeCount=0;
             foreach(SoilInfo t in PlayerWorking.working){
-                if(t.treelevel=="tree1"){
-                        treeCount++;
+                Debug.Log(t.treelevel+" 엔딩");
+                if(t.treelevel.Contains("tree1")){
+                    treeCount++;
                 }
             }
+            Debug.Log("트리의 갯수는?(트리존)"+treeCount);  
+        }catch(MissingReferenceException){
 
-            Debug.Log("트리의 갯수는?(트리존)"+treeCount);
+        }catch(NullReferenceException){
             
         }
-        
     }
 
     void OnDisable()
