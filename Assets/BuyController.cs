@@ -44,13 +44,13 @@ public class BuyController : MonoBehaviour
                     Debug.Log(click.name+" "+price);
                     if(TotalGoldController.TotalGold>0){
 
-                        if(price.Contains("50")){
+                        if(price.Contains("250")){
                     
                             if(click.name=="1"){
                                 if(PlayerWorking.shovel<1){
-                                    TotalGoldController.TotalGold-=50;
+                                    TotalGoldController.TotalGold-=250;
                                     if(TotalGoldController.TotalGold<0){
-                                        TotalGoldController.TotalGold+=50;
+                                        TotalGoldController.TotalGold+=250;
                                     return ;
                                     }
                                 }   
@@ -58,30 +58,30 @@ public class BuyController : MonoBehaviour
                                 child.GetComponent<Text>().text=PlayerWorking.shovel.ToString()+" 개";
                             }else if(click.name=="3"){
                                 if(PlayerWorking.wateringCan<1){
-                                    TotalGoldController.TotalGold-=50;
+                                    TotalGoldController.TotalGold-=250;
                                     if(TotalGoldController.TotalGold<0){
-                                        TotalGoldController.TotalGold+=50;
+                                        TotalGoldController.TotalGold+=250;
                                     return ;
                                     }
                                 }   
                                 PlayerWorking.wateringCan=1;
                                 child.GetComponent<Text>().text=PlayerWorking.wateringCan.ToString()+" 개";
                             }else if(click.name=="4"){
-                                TotalGoldController.TotalGold-=50;
+                                TotalGoldController.TotalGold-=250;
                                     if(TotalGoldController.TotalGold<0){
-                                        TotalGoldController.TotalGold+=50;
+                                        TotalGoldController.TotalGold+=250;
                                         return ;
                                     }
                                 PlayerWorking.seed+=1;
                                 child.GetComponent<Text>().text=PlayerWorking.seed.ToString()+" 개";
                             }
 
-                        }else if(price.Contains("100")){
+                        }else if(price.Contains("500")){
 
-                            TotalGoldController.TotalGold-=100;
+                            TotalGoldController.TotalGold-=500;
                             
                             if(TotalGoldController.TotalGold<0){
-                                TotalGoldController.TotalGold+=100;
+                                TotalGoldController.TotalGold+=500;
                                 return;
                             }
 
@@ -94,12 +94,12 @@ public class BuyController : MonoBehaviour
                             }
                         
 
-                        }else if(price.Contains("300")){
+                        }else if(price.Contains("1000")){
                             PlayerWorking.sapling+=1;
-                            TotalGoldController.TotalGold-=300;
+                            TotalGoldController.TotalGold-=1000;
                             
                             if(TotalGoldController.TotalGold<0){
-                                TotalGoldController.TotalGold+=300;
+                                TotalGoldController.TotalGold+=1000;
                                 PlayerWorking.sapling-=1;
                             }
                             child.GetComponent<Text>().text=PlayerWorking.sapling.ToString()+" 개";

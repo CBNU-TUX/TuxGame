@@ -20,6 +20,7 @@ TagManager:
   - Text
   - SuccessSlider
   - soil
+  - Light
   layers:
   - Default
   - TransparentFX

@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class EndingController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    int treeCount=0;
+
     void Start()
     {
-        if(PlayerWorking.treeCount<=8){
+        treeCount = PlayerWorking.Trees.Count;
+        Debug.Log("tree의 수"+PlayerWorking.Trees.Count.ToString());
+        if(treeCount<=8){
             this.transform.GetChild(2).gameObject.SetActive(true);
-        }else if(PlayerWorking.treeCount<=13){
+            
+        }else if(treeCount<=16){
             this.transform.GetChild(1).gameObject.SetActive(true);
+            
         }else{
             this.transform.GetChild(0).gameObject.SetActive(true);
+            
         }
+
+        
     }
 
 }

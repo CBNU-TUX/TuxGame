@@ -9,7 +9,8 @@ public class Transfer : MonoBehaviour
     string GoTo;
     [SerializeField]
     Vector3 teleportPosition = new Vector3(0, 0, 0);
-
+    [SerializeField]
+    GameObject Warning;
     //When Moving the Scene, Stop the audio.
 
     //�̵��� ��ġ�� ���̸�
@@ -39,10 +40,24 @@ public class Transfer : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKey(KeyCode.Space))
+        if(GlobalTimer.min>=6&&(GoTo=="TreeZone"||GoTo=="MainZone")){
+            if (Input.GetKey(KeyCode.Space))
+            {
+              SceneTransition();
+            }
+        }else if(GlobalTimer.min>=6&&(GoTo!="TreeZone"||GoTo!="MainZone")){
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Warning.SetActive(true);
+            }
+        }else if (GlobalTimer.min<6&&Input.GetKey(KeyCode.Space))
         {
-            SceneTransition();
+            if (Input.GetKey(KeyCode.Space))
+            {
+              SceneTransition();
+            }
         }
+        
     }
     public void SceneTransition()
     {

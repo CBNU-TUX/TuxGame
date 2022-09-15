@@ -6,12 +6,14 @@ using System;
 public class SoilInfo : MonoBehaviour
 {
     public string name;
+    public static int trees=0;
     public int level;
     public string treelevel;
     public float timer;
     private float timerSpeed = 1.0f; //초 분위
     public bool isGrowing=false;
     public int days;
+    public bool isEnd=false;
 
     public int fertillzer;
     public void setImg(Sprite img){
@@ -28,6 +30,7 @@ public class SoilInfo : MonoBehaviour
                     this.treelevel=tmp.treelevel;
                     this.fertillzer=tmp.fertillzer;
                     this.days=tmp.days;
+            
                     if(treelevel!="No"){
                         this.gameObject.transform.Find(tmp.treelevel).gameObject.SetActive(true);
                     }
@@ -41,6 +44,7 @@ public class SoilInfo : MonoBehaviour
     {
     	  // 씬 매니저의 sceneLoaded에 체인을 건다.
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
 
     void Update(){
@@ -71,7 +75,16 @@ public class SoilInfo : MonoBehaviour
                 this.gameObject.transform.Find("tree").gameObject.SetActive(false);
                 this.treelevel="tree1";
                 this.gameObject.transform.Find("tree1").gameObject.SetActive(true);
-                PlayerWorking.treeCount++;
+                isEnd=true;
+                trees += 1;
+                foreach (SoilInfo tmp in PlayerWorking.working){
+                    if(this.name==tmp.name){
+                        tmp.isEnd=this.isEnd;
+                        break;
+                    }
+                }
+                if(!PlayerWorking.Trees.ContainsKey(this.name))
+                    PlayerWorking.Trees.Add(this.name,this);
                 //isGrowing=false;
             }
         }
@@ -80,18 +93,35 @@ public class SoilInfo : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 
         try{
-            foreach (SoilInfo tmp in PlayerWorking.working){
-                if(this.name==tmp.name){
-                    this.level=tmp.level;
-                    this.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
-                    this.treelevel=tmp.treelevel;
-                    this.fertillzer=tmp.fertillzer;
-                    this.days=tmp.days;
-                    if(treelevel!="No"){
-                        this.gameObject.transform.Find(tmp.treelevel).gameObject.SetActive(true);
+
+            if(scene.name=="MainZone")
+                foreach (SoilInfo tmp in PlayerWorking.working){
+                    if(this.name==tmp.name){
+                        tmp.level=this.level;
+                        tmp.isEnd=this.isEnd;
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
+                        tmp.treelevel=this.treelevel;
+                        tmp.fertillzer=this.fertillzer;
+                        if(treelevel!="No"){
+                            this.gameObject.transform.Find(tmp.treelevel).gameObject.SetActive(true);
+                        }
                     }
                 }
-            }
+            else
+            foreach (SoilInfo tmp in PlayerWorking.working){
+                    if(this.name==tmp.name){
+                        this.level=tmp.level;
+                        this.isEnd=tmp.isEnd;
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
+                        this.treelevel=tmp.treelevel;
+                        this.fertillzer=tmp.fertillzer;
+                        this.days=tmp.days;
+                        if(treelevel!="No"){
+                            this.gameObject.transform.Find(tmp.treelevel).gameObject.SetActive(true);
+                        }
+                        break;
+                    }
+                }
         }catch(NullReferenceException){
             ;
         }
@@ -100,14 +130,21 @@ public class SoilInfo : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        
-        foreach(SoilInfo tmp in PlayerWorking.working){
-            if(tmp.name==this.name){
-                this.isGrowing=tmp.isGrowing;
-                this.treelevel=tmp.treelevel;
-                this.days=tmp.days;
-                this.fertillzer=tmp.fertillzer;
+        try{
+            
+            foreach(SoilInfo tmp in PlayerWorking.working){
+                if(tmp.name==this.name){
+                    this.isGrowing=tmp.isGrowing;
+                    this.treelevel=tmp.treelevel;
+                    this.days=tmp.days;
+                    this.fertillzer=tmp.fertillzer;
+                    this.isEnd=tmp.isEnd;
+                }
             }
+        }catch(NullReferenceException){
+            ;
+        }catch(MissingReferenceException){
+            ;
         }
         /*
         try{

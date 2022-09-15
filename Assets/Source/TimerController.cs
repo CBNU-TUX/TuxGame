@@ -39,7 +39,7 @@ public class TimerController : MonoBehaviour
             if(FactoryController.SuccessCount>=9){
                 if(!isFirst){
                     isFirst=true;
-                    TotalGoldController.TotalGold+=100;
+                    TotalGoldController.TotalGold+=300;
                 }
             }
             SceneTransition();

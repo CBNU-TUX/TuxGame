@@ -7,7 +7,7 @@ using System;
 public class PlayerWorking : MonoBehaviour
 {
     static public List<SoilInfo> working;
-   
+    static public Dictionary<string,SoilInfo> Trees;
     static public int shovel;
     static public int fertillzer;
     static public int wateringCan;
@@ -17,8 +17,7 @@ public class PlayerWorking : MonoBehaviour
     GameManager gameManager;    
     [SerializeField]
     GameObject[] textField;
-    [SerializeField]
-    GameObject Slider;
+
     GameObject[] soils;
     static public int treeCount;
     // Start is called before the first frame update
@@ -26,14 +25,14 @@ public class PlayerWorking : MonoBehaviour
     void Start(){
         soils= GameObject.FindGameObjectsWithTag("soil");
         working=new List<SoilInfo>();
+        Trees=new Dictionary<string,SoilInfo>();
         clickObject = GameObject.FindObjectOfType<ClickController>();
         textField=GameObject.FindGameObjectsWithTag("Text");
-        Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
+        
     }
 
     void Update(){
         textField=GameObject.FindGameObjectsWithTag("Text");
-        Slider=GameObject.FindGameObjectWithTag("SuccessSlider");
         soils= GameObject.FindGameObjectsWithTag("soil");
         try{
             
@@ -60,9 +59,8 @@ public class PlayerWorking : MonoBehaviour
                         break;
                 }
             }
-            
-            
-            Slider.GetComponent<Slider>().value=(100f/16f)*treeCount;
+        
+
         }catch(NullReferenceException e){
 
         }
@@ -147,15 +145,18 @@ public class PlayerWorking : MonoBehaviour
                     tmp.days=GlobalTimer.day-2;
                     child.gameObject.SetActive(true);
                 }
+            }
 
-                foreach(SoilInfo work in working){
-                    if(work.name==tmp.name){
-                        work.level=tmp.level;
-                        work.gameObject.GetComponent<SpriteRenderer>().sprite=Soil.levelImg[tmp.level];
-                        work.treelevel=tmp.treelevel;
-                        work.fertillzer=tmp.fertillzer;
-                        work.days=tmp.days;
-                    }
+            Debug.Log("working의 크기"+working.Count);
+            foreach(SoilInfo work in working){
+                Debug.Log("work의 이름"+work.name);
+                if(work.name==tmp.name){
+                    Debug.Log("? tmp 이름과 현재 work의 level"+tmp.name+" "+work.level+" "+tmp.isEnd);
+                    work.treelevel=tmp.treelevel;
+                    work.days=tmp.days;
+                    work.fertillzer=tmp.fertillzer;
+                    work.isEnd=tmp.isEnd;
+                    break;
                 }
             }
 
@@ -196,26 +197,22 @@ public class PlayerWorking : MonoBehaviour
     {
     	  // 씬 매니저의 sceneLoaded에 체인을 건다.
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
-
         try{
-            foreach(GameObject soil in soils){
-                foreach(SoilInfo tmp in working){
-                    if(tmp.name==soil.GetComponent<SoilInfo>().name){
-                        tmp.treelevel=soil.GetComponent<SoilInfo>().treelevel;
-                        tmp.days=soil.GetComponent<SoilInfo>().days;
-                        tmp.fertillzer=soil.GetComponent<SoilInfo>().fertillzer;
-
-                    }
+            int treeCount=0;
+            foreach(SoilInfo t in PlayerWorking.working){
+                Debug.Log(t.treelevel+" 엔딩");
+                if(t.treelevel.Contains("tree1")){
+                    treeCount++;
                 }
             }
-
+            Debug.Log("트리의 갯수는?(트리존)"+treeCount);  
+        }catch(MissingReferenceException){
 
         }catch(NullReferenceException){
-            ;
-        }catch(MissingReferenceException){
-            ;
+            
         }
     }
 
