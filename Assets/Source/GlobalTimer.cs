@@ -8,7 +8,7 @@ public class GlobalTimer : MonoBehaviour
     static int hours;
     static int sec;
     public static int min;
-    public static int day=3;
+    public static int day;
     Text minText;
     Text secText;
 

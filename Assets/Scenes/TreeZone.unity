@@ -1379,6 +1379,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &186866342
 Animator:
@@ -1849,7 +1850,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "$50 \uAD6C\uB9E4\uD558\uAE30"
+  m_Text: "$250 \uAD6C\uB9E4\uD558\uAE30"
 --- !u!222 &223453896
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2744,6 +2745,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!61 &381129701
 BoxCollider2D:
@@ -3832,6 +3834,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &548325072
 Animator:
@@ -4112,7 +4115,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "$50 \uAD6C\uB9E4\uD558\uAE30"
+  m_Text: "$250 \uAD6C\uB9E4\uD558\uAE30"
 --- !u!222 &595153675
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4360,7 +4363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "$100 \uAD6C\uB9E4\uD558\uAE30"
+  m_Text: "$500 \uAD6C\uB9E4\uD558\uAE30"
 --- !u!222 &705029868
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19837,6 +19840,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &792044094
 Animator:
@@ -20536,6 +20540,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!61 &824596346
 BoxCollider2D:
@@ -20996,6 +21001,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &940283268
 Animator:
@@ -21231,6 +21237,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &960242461
 Animator:
@@ -21755,6 +21762,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!1 &1006141528
 GameObject:
@@ -23264,7 +23272,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "$300 \uAD6C\uB9E4\uD558\uAE30"
+  m_Text: "$1000 \uAD6C\uB9E4\uD558\uAE30"
 --- !u!222 &1240632065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25077,7 +25085,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "$100 \uAD6C\uB9E4\uD558\uAE30"
+  m_Text: "$500 \uAD6C\uB9E4\uD558\uAE30"
 --- !u!222 &1298470125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25608,6 +25616,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!61 &1390218330
 BoxCollider2D:
@@ -26145,6 +26154,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &1433196636
 Animator:
@@ -26973,6 +26983,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &1543816267
 Animator:
@@ -27260,6 +27271,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &1552902864
 Animator:
@@ -28312,6 +28324,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!61 &1640022068
 BoxCollider2D:
@@ -28846,6 +28859,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!1 &1663201924
 GameObject:
@@ -28957,6 +28971,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &1663201928
 Animator:
@@ -29584,7 +29599,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "$50 \uAD6C\uB9E4\uD558\uAE30"
+  m_Text: "$250 \uAD6C\uB9E4\uD558\uAE30"
 --- !u!222 &1723899047
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30138,6 +30153,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!95 &1755925603
 Animator:
@@ -30837,6 +30853,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!1 &1892397560
 GameObject:
@@ -31020,6 +31037,7 @@ MonoBehaviour:
   timer: 0
   isGrowing: 0
   days: 0
+  isEnd: 0
   fertillzer: 0
 --- !u!1 &1971944439
 GameObject:

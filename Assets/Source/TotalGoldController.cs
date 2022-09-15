@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class TotalGoldController : MonoBehaviour
 {
-    public static int TotalGold=6000;
+    public static int TotalGold=0;
     [SerializeField]
     Text TotalMoney;
     void Update(){
