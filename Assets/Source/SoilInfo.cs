@@ -6,6 +6,7 @@ using System;
 public class SoilInfo : MonoBehaviour
 {
     public string name;
+    public static int trees=0;
     public int level;
     public string treelevel;
     public float timer;
@@ -75,6 +76,7 @@ public class SoilInfo : MonoBehaviour
                 this.treelevel="tree1";
                 this.gameObject.transform.Find("tree1").gameObject.SetActive(true);
                 isEnd=true;
+                trees += 1;
                 foreach (SoilInfo tmp in PlayerWorking.working){
                     if(this.name==tmp.name){
                         tmp.isEnd=this.isEnd;

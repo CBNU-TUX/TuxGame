@@ -8,14 +8,7 @@ public class EndingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(SoilInfo t in PlayerWorking.working){
-            Debug.Log(t.treelevel+" 엔딩");
-            if(t.isEnd){
-                treeCount++;
-            }
-            Debug.Log(treeCount+" 엔딩");
-        }
-        Debug.Log("트리의 갯수 "+ treeCount);
+        treeCount = SoilInfo.trees;
         
         if(treeCount<=8){
             this.transform.GetChild(2).gameObject.SetActive(true);
